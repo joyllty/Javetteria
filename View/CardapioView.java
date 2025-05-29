@@ -1,5 +1,5 @@
-package View;
-import Controller.CardapioController;
+package view;
+import controller.CardapioController;
 
 import java.util.Scanner;
 
