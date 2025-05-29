@@ -1,9 +1,10 @@
+package Model;
 public class Bebidas extends Produto {
 
     private String tamanho;
     private String temperatura;
 
-    public Bebidas(String nome,double preco, String descricao,
+    public Bebidas(String nome,float preco, String descricao,
                    String tamanho,String temperatura) {
         super(nome,preco,descricao);
         this.tamanho = tamanho;
