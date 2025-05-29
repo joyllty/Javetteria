@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public class Comidas extends Produto{
 
@@ -28,4 +28,3 @@ public class Comidas extends Produto{
                 + "Porção >> " + porcao + "\n";
     }
 }
-
