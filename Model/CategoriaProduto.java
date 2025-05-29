@@ -1,5 +1,5 @@
 //enum
-package Model;
+package model;
 
 public enum CategoriaProduto {
   BEBIDAS_QUENTES, BEBIDAS_FRIAS,
