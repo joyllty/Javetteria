@@ -1,10 +1,16 @@
+package Model;
+
+import java.util.List;
+
 public abstract class  Produto {
 
     private String nome;
-    private double preco;
+    private float preco;
     private String descricao;
 
-    public Produto(String nome,double preco, String descricao) {
+    private List<CategoriaProduto> produtos;
+
+    public Produto(String nome,float preco, String descricao) {
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
@@ -14,7 +20,7 @@ public abstract class  Produto {
         return nome;
     }
 
-    public double getPreco() {
+    public float getPreco() {
         return preco;
     }
 
