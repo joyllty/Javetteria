@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import java.util.Scanner;
 
@@ -22,8 +22,7 @@ public class MenuCliente {
             System.out.println(" |                          |");
             System.out.println(" |__________________________| ");
 
-            System.out.print(
-                    "\n" + (LAVENDER + ">>" + RESET) + CREME + " Selecione uma opção: ");
+            System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Selecione uma opção: ");
             op = input.nextInt();
 
 
