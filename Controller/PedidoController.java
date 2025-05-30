@@ -59,6 +59,6 @@ public class PedidoController {
     }
 
     private void carregarPedidos() {
-        // Simples: não carrega nada, apenas inicializa a lista vazia
+        // TODO: Carregar .txt quando incializa progama com pedidos antigos
     }
 }

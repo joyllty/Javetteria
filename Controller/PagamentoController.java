@@ -24,7 +24,7 @@ public class PagamentoController {
     }
 
     private boolean validarPagamento(Pedido pedido, Pagamento pagamento) {
-        return pagamento.validarPagamento(pedido.getValorTotal());
+        return pagamento.validarPagamento(pedido.getValorTotal()); //Ainda vou implementar getValorTotal
     }
 
     public double calcularTroco(PagamentoDinheiro pagamento, double valorTotal) {
