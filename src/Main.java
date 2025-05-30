@@ -16,9 +16,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        View.MenuInterativo.arteInicial();
+        model.Estoque.inicializarEstoque();
+        view.MenuInterativo.arteInicial();
 
-        View.MenuInterativo.menuPrincipal();
+        view.MenuInterativo.menuPrincipal();
 
 
     }

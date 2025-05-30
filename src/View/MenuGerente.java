@@ -1,4 +1,6 @@
-package View;
+package view;
+
+import controller.EstoqueController;
 
 import java.util.Scanner;
 
@@ -31,11 +33,12 @@ public class MenuGerente {
                     menuGerentePedidos();
                     break;
                 case 2:
-                    System.out.println("ESTOQUE");
+                    //cria um objeto para chamar o metodo executar, que não é static
+                    new view.EstoqueView().executar();
+
                     break;
                 case 3:
                     System.out.println("Parei aqui\n[1] EXIBIR FUNCIONÁRIOS\n[2] HISTÓRICO DE VENDAS");
-
                     break;
                 default:
 
