@@ -47,8 +47,8 @@ public class MenuPedido {
         String nomeProduto = InputHelper.lerString();
         System.out.printf("Quantidade: ");
         int quantidade = InputHelper.lerInt();
-        // TODO: Alterar para usar Produto quando o Módulo 1 (Produtos e Cardápio) estiver pronto
-        ItemPedido item = new ItemPedido(nomeProduto, quantidade); //Ainda vou fazer a logica do ItemPedido corretamente
+        // TODO: Alterar para usar Produto quando o Módulo 1 estiver pronto
+        ItemPedido item = new ItemPedido(nomeProduto, quantidade); //PARA TESTES
         pedidoController.adicionarItem(pedido, item);
         System.out.println(CREME + "Pedido registrado!" + RESET);
     }

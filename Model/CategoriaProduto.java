@@ -1,8 +1,0 @@
-//enum
-package Model;
-
-public enum CategoriaProduto {
-  BEBIDAS_QUENTES, BEBIDAS_FRIAS,
-   DRINKS_ALCOOLICOS, DRINKS_NAOALCOOLICOS,
-    DOCES, SALGADOS, FRIOS;
-}
