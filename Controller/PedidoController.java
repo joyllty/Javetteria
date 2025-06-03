@@ -1,6 +1,6 @@
-package Controller;
+package controller;
 
-import Model.*;
+import model.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class PedidoController {
     private List<Pedido> pedidos;
-    private static final String ARQUIVO_PEDIDOS = "Data/pedidos.txt";
+    private static final String ARQUIVO_PEDIDOS = "data/pedidos.txt";
 
     public PedidoController() {
         this.pedidos = new ArrayList<>();
@@ -59,6 +59,20 @@ public class PedidoController {
     }
 
     private void carregarPedidos() {
-        // TODO: Carregar .txt quando incializa progama com pedidos antigos
+        try (BufferedReader reader = new BufferedReader(new FileReader(ARQUIVO_PEDIDOS))) {
+            String linha;
+            while ((linha = reader.readLine()) != null) {
+                if (linha.trim().isEmpty()) continue;
+                
+                String[] dados = linha.split("\\|");
+                if (dados.length >= 3) {
+                    String usuario = dados[1].trim();
+                    Pedido pedido = new Pedido(usuario);
+                    pedidos.add(pedido);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Erro ao carregar pedidos: " + e.getMessage());
+        }
     }
 }
