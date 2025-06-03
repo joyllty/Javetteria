@@ -1,6 +1,6 @@
-package controller;
+package Controller;
 
-import model.*;
+import Model.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,10 +40,13 @@ public class PedidoController {
         return sucesso;
     }
 
-    public Optional<Pedido> buscarPedido(int numeroPedido) {
-        return pedidos.stream()
-                .filter(p -> p.getNumeroPedido() == numeroPedido)
-                .findFirst();
+    public Pedido buscarPedido(int numeroPedido) {
+        for (Pedido pedido : pedidos) {
+            if (pedido.getNumeroPedido() == numeroPedido) {
+                return pedido;
+            }
+        }
+        return null;
     }
 
     public List<Pedido> listarPedidos() {

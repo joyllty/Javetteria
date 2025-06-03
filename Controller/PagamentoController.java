@@ -12,7 +12,7 @@ public class PagamentoController {
         return new PagamentoPix(chavePix);
     }
 
-    public Pagamento criarPagamentoDinheiro(double valorRecebido) {
+    public Pagamento criarPagamentoDinheiro(float valorRecebido) {
         return new PagamentoDinheiro(valorRecebido);
     }
 
@@ -27,10 +27,10 @@ public class PagamentoController {
         return pagamento.validarPagamento(pedido.getValorTotal()); //Ainda vou implementar getValorTotal
     }
 
-    public double calcularTroco(PagamentoDinheiro pagamento, double valorTotal) {
+    public float calcularTroco(PagamentoDinheiro pagamento, float valorTotal) {
         if (pagamento.getValorRecebido() >= valorTotal) {
             return pagamento.getValorRecebido() - valorTotal;
         }
-        return 0.0;
+        return 0.0f;
     }
 } 

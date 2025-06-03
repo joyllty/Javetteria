@@ -9,7 +9,7 @@ public class PagamentoPix implements Pagamento {
     }
 
     @Override
-    public boolean processarPagamento(double valor) {
+    public boolean processarPagamento(float valor) {
         if (validarPagamento(valor)) {
             this.comprovante = gerarComprovante();
             return true;
@@ -23,7 +23,7 @@ public class PagamentoPix implements Pagamento {
     }
 
     @Override
-    public boolean validarPagamento(double valor) {
+    public boolean validarPagamento(float valor) {
         return chavePix != null && !chavePix.isEmpty() && valor > 0;
     }
 

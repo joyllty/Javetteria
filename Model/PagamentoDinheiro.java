@@ -1,15 +1,15 @@
 package Model;
 
 public class PagamentoDinheiro implements Pagamento {
-    private double valorRecebido;
-    private double troco;
+    private float valorRecebido;
+    private float troco;
 
-    public PagamentoDinheiro(double valorRecebido) {
+    public PagamentoDinheiro(float valorRecebido) {
         this.valorRecebido = valorRecebido;
     }
 
     @Override
-    public boolean processarPagamento(double valor) {
+    public boolean processarPagamento(float valor) {
         if (validarPagamento(valor)) {
             this.troco = valorRecebido - valor;
             return true;
@@ -23,15 +23,15 @@ public class PagamentoDinheiro implements Pagamento {
     }
 
     @Override
-    public boolean validarPagamento(double valor) {
+    public boolean validarPagamento(float valor) {
         return valorRecebido >= valor && valor > 0;
     }
 
-    public double getTroco() {
+    public float getTroco() {
         return troco;
     }
 
-    public double getValorRecebido() {
+    public float getValorRecebido() {
         return valorRecebido;
     }
 }

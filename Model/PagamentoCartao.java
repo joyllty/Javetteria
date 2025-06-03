@@ -8,7 +8,7 @@ public class PagamentoCartao implements Pagamento {
     }
 
     @Override
-    public boolean processarPagamento(double valor) {
+    public boolean processarPagamento(float valor) {
         return validarPagamento(valor);
     }
 
@@ -18,7 +18,7 @@ public class PagamentoCartao implements Pagamento {
     }
 
     @Override
-    public boolean validarPagamento(double valor) {
+    public boolean validarPagamento(float valor) {
         return numeroCartao != null && !numeroCartao.isEmpty() && valor > 0;
     }
 }

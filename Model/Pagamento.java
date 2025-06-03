@@ -1,7 +1,7 @@
 package Model;
 
 public interface Pagamento {
-    boolean processarPagamento(double valor);
+    boolean processarPagamento(float valor);
     String getFormaPagamento();
-    boolean validarPagamento(double valor);
+    boolean validarPagamento(float valor);
 }

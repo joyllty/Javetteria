@@ -26,7 +26,15 @@ public class Pedido {
 
     public boolean processarPagamento(Pagamento pagamento) {
         this.formaPagamento = pagamento;
-        return pagamento.processarPagamento(0f);
+        return pagamento.processarPagamento(getValorTotal());
+    }
+
+    public float getValorTotal() {
+        float total = 0.0f;
+        for (ItemPedido item : itens) {
+            total += item.getSubtotal();
+        }
+        return total;
     }
 
     public int getNumeroPedido() {
@@ -46,7 +54,16 @@ public class Pedido {
     }
 
     public String resumoPedido() {
-        int quantidadeItens = itens.size();
-        return "Pedido #" + numeroPedido + " | Usuário: " + usuario + " | Quantidade de itens: " + quantidadeItens;
+        StringBuilder resumo = new StringBuilder();
+        resumo.append("Pedido #").append(numeroPedido)
+              .append(" | Usuário: ").append(usuario)
+              .append("\nItens:\n");
+        
+        for (ItemPedido item : itens) {
+            resumo.append("- ").append(item.toString()).append("\n");
+        }
+        
+        resumo.append(String.format("Total: R$ %.2f", getValorTotal()));
+        return resumo.toString();
     }
 }

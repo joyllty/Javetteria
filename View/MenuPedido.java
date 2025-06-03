@@ -47,6 +47,7 @@ public class MenuPedido {
         String nomeProduto = InputHelper.lerString();
         System.out.printf("Quantidade: ");
         int quantidade = InputHelper.lerInt();
+        // TODO: Alterar para usar Produto quando o Módulo 1 (Produtos e Cardápio) estiver pronto
         ItemPedido item = new ItemPedido(nomeProduto, quantidade); //Ainda vou fazer a logica do ItemPedido corretamente
         pedidoController.adicionarItem(pedido, item);
         System.out.println(CREME + "Pedido registrado!" + RESET);
@@ -129,8 +130,8 @@ public class MenuPedido {
                 System.out.println(CREME + "Comprovante PIX: " + pix.getComprovante() + RESET);
             }
             if (pagamento instanceof PagamentoDinheiro dinheiro) {
-                float troco = pagamentoController.calcularTroco(dinheiro, ultimoPedido.getValorTotal());
-                System.out.println(CREME + "Troco: R$ " + troco + RESET);
+                float troco = pagamentoController.calcularTroco(dinheiro, (float)ultimoPedido.getValorTotal());
+                System.out.println(CREME + "Troco: R$ " + String.format("%.2f", troco) + RESET);
             }
         } else {
             System.out.println(BROWN + "Falha no pagamento." + RESET);
