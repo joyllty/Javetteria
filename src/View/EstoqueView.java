@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Scanner;
 
 
-//entrada de dados
-
 public class EstoqueView {
     public static final String LAVENDER = "\u001B[38;5;183m";
     public static final String CREME = "\u001B[38;5;229m";
@@ -27,18 +25,17 @@ public class EstoqueView {
         } while (opEstoque != 5);
     }
 
-
     public void verificarOp(int op){
 
         switch (op) {
             case 1 -> listarItens();
             case 2 -> adicionarItem();
-            case 3 -> System.out.println("remover"); //atualizarItens();
-            case 4 -> System.out.println("atualizar"); //removerItens();
+            case 3 -> removerItem();
+            case 4 -> editarItem();
+            case 5 -> System.out.println("\nVoltando...");
             default -> System.out.println("Opção inválida!");
         }
     }
-
 
     public static void menuEstoque(){
         System.out.println("\n  ========= ESTOQUE =========");
@@ -53,11 +50,10 @@ public class EstoqueView {
         System.out.println(" ╚═══════════════════════════╝ ");
 
         System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Selecione uma opção: ");
-
     }
 
     private void listarItens() {
-        List<Ingrediente> lista = EstoqueController.listarIngredientes(); //cria uma lista pegando a lista do estoque
+        List<Ingrediente> lista = EstoqueController.listarItens(); //cria uma lista pegando a lista do estoque
 
         System.out.println("\n╔════╦════════════════════════╦══════════════╦════════════╗");
         System.out.printf("║ %-2s ║ %-22s ║ %-12s ║ %-10s ║\n", "ID", "Nome", "Quantidade", "Unidade");
@@ -69,13 +65,11 @@ public class EstoqueView {
         }
 
         System.out.println("╚════╩════════════════════════╩══════════════╩════════════╝");
-
     }
 
-
     public static void adicionarItem() {
-        System.out.println("\n=================================");
-        System.out.println("Digite os dados do item a ser adicionado: ");
+        System.out.println("\n============" + (LAVENDER + " ADICIONAR ITEM " + RESET) + CREME + "============");
+        System.out.println("\nDigite os dados do item a ser adicionado: ");
         System.out.print((LAVENDER + "\n>>" + RESET) + CREME + " ID: ");
         int id = InputHelper.lerInt();
 
@@ -89,9 +83,36 @@ public class EstoqueView {
         String unidade = InputHelper.lerString();
 
         EstoqueController.adicionarItem(id, nome, quantidade, unidade);
-        System.out.println("Ingrediente adicionado com sucesso!");
+        System.out.println("\nItem adicionado com sucesso!");
+        System.out.println("=========================================");
     }
 
+    public static void removerItem(){
+        System.out.println("\n============" + (LAVENDER + " REMOVER ITEM " + RESET) + CREME + "============");
+        System.out.print("\nDigite o id do item a ser removido: ");
+        int id = InputHelper.lerInt();
+
+        if(EstoqueController.removerItem(id)){
+            System.out.println((LAVENDER + "\n>>" + RESET) + CREME + " Item removido!");
+        } else {
+            System.out.println((LAVENDER + "\n>>" + RESET) + CREME + " Item não encontrado!");
+        }
+        System.out.println("======================================");
+    }
+
+    public static void editarItem() {
+        System.out.println("\n============" + (LAVENDER + " EDITAR ITEM " + RESET) + CREME + "============");
+        System.out.println("\nDigite o ID do item a ser alterado: ");
+        System.out.print((LAVENDER + "\n>>" + RESET) + CREME + " ID: ");
+        int id = InputHelper.lerInt();
+
+        System.out.print((LAVENDER + "\n>>" + RESET) + CREME + " Digite a nova quantidade: ");
+        int quantidade = InputHelper.lerInt();
+
+        EstoqueController.atualizarItem(id, quantidade);
+        System.out.println("\nItem editado com sucesso!");
+        System.out.println("=====================================");
+    }
 
 
 }
