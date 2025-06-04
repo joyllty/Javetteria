@@ -1,5 +1,7 @@
 package view;
 
+import utils.InputHelper;
+
 import java.util.Scanner;
 
 public class MenuFuncionario {
@@ -15,18 +17,18 @@ public class MenuFuncionario {
         int op;
 
         do {
-            System.out.println("  __________________________");
-            System.out.println(" |                          |");
-            System.out.println(" | [1] REGISTRAR PEDIDOS    |");
-            System.out.println(" | [2] ACOMPANHAR PEDIDOS   |");
-            System.out.println(" | [3] PAGAMENTO            |");
-            System.out.println(" | [4] VOLTAR               |");
-            System.out.println(" |                          |");
-            System.out.println(" |__________________________| ");
+            System.out.println("\n ╔══════════════════════════╗");
+            System.out.println(" ║                          ║");
+            System.out.println(" ║ [1] REGISTRAR PEDIDOS    ║");
+            System.out.println(" ║ [2] ACOMPANHAR PEDIDOS   ║");
+            System.out.println(" ║ [3] PAGAMENTO            ║");
+            System.out.println(" ║ [4] VOLTAR               ║");
+            System.out.println(" ║                          ║");
+            System.out.println(" ╚══════════════════════════╝ ");
 
             System.out.print(
                     "\n" + (LAVENDER + ">>" + RESET) + CREME + " Selecione uma opção: ");
-            op = input.nextInt();
+            op = InputHelper.lerInt();
 
             switch(op){
                 case 1:
@@ -40,10 +42,10 @@ public class MenuFuncionario {
                     System.out.println("[1] CARTÃO\n[2] DINHEIRO\n[3]PIX");
                     break;
                 case 4:
+                    System.out.println("\nVoltando...");
                     break;
                 default:
                     System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + "Opção inválida! Digite novamente: ");
-                    op = input.nextInt();
             }
 
         } while (op != 4);
