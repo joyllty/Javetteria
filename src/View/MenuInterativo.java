@@ -1,5 +1,7 @@
 package view;
 
+import utils.InputHelper;
+
 import java.util.Scanner;
 
 public class MenuInterativo {
@@ -34,35 +36,27 @@ public class MenuInterativo {
         int opPrincipal;
         do{
 
-            System.out.println(CREME + "  _______________________ ");
-            System.out.println(" |                       |");
-            System.out.println(" | [1] LOGIN             |");
-            System.out.println(" | [2] CADASTRO          |");
-            System.out.println(" | [3] SAIR              |");
-            System.out.println(" |                       |");
-            System.out.println(" |_______________________| ");
+            System.out.println(CREME + "\n ╔═══════════════════════╗ ");
+            System.out.println(" ║                       ║");
+            System.out.println(" ║ [1] LOGIN             ║");
+            System.out.println(" ║ [2] CADASTRO          ║");
+            System.out.println(" ║ [3] SAIR              ║");
+            System.out.println(" ║                       ║");
+            System.out.println(" ╚═══════════════════════╝ ");
 
             System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Selecione uma opção: ");
             opPrincipal = input.nextInt();
 
 
             switch(opPrincipal) {
-                case 1:
-                    menuLogin();
-
+                case 1 -> menuLogin();
                     //ADICIONAR SLEEP
-                    break;
-                case 2:
-                    System.out.println("Cadastrando cliente");
-
+                case 2 -> System.out.println("Cadastrando cliente");
                     //ADICIONAR SLEEP
-                    break;
-                case 3:
-                    System.out.println(LAVENDER + "\nSaindo do programa..." + RESET);
-
+                case 3 -> System.out.println(LAVENDER + "\nSaindo do programa..." + RESET);
                     //ADICIONAR SLEEP
-                    break;
-
+                default -> System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + "Opção inválida! " +
+                        "Digite novamente: ");
             }
 
         } while (opPrincipal != 3);
@@ -72,37 +66,23 @@ public class MenuInterativo {
     public static void menuLogin() {
         int opLogin;
         do {
-            System.out.println(CREME + "  _______________________ ");
-            System.out.println(" |                       |");
-            System.out.println(" | [1] CLIENTE           |");
-            System.out.println(" | [2] FUNCIONÁRIO       |");
-            System.out.println(" | [3] VOLTAR            |");
-            System.out.println(" |                       |");
-            System.out.println(" |_______________________| ");
+            System.out.println(CREME + "\n ╔═══════════════════════╗ ");
+            System.out.println(" ║                       ║");
+            System.out.println(" ║ [1] CLIENTE           ║");
+            System.out.println(" ║ [2] FUNCIONÁRIO       ║");
+            System.out.println(" ║ [3] VOLTAR            ║");
+            System.out.println(" ║                       ║");
+            System.out.println(" ╚═══════════════════════╝ ");
 
             System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Selecione como deseja logar: ");
-            opLogin = input.nextInt();
+            opLogin = InputHelper.lerInt();
 
             switch (opLogin) {
-                case 1:
-                    int opCliente = 0;
-                    System.out.println("logou como cliente");
-
-                    MenuCliente.menuCliente(opCliente);
-                    break;
-                case 2:
-                    System.out.println("logou como funcionario");
-
-                    menuFuncionario();
-
-                    break;
-                case 3:
-                    break;
-
-                default:
-                    System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + "Opção inválida! Digite novamente: ");
-                    opLogin = input.nextInt();
-                    break;
+                case 1 -> MenuCliente.menuCliente();
+                case 2 -> menuFuncionario();
+                case 3 -> System.out.println("\nVoltando...");
+                default -> System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + "Opção inválida! " +
+                        "Digite novamente: ");
             }
 
         } while (opLogin != 3);
@@ -112,22 +92,23 @@ public class MenuInterativo {
         int op;
 
         do{
-            System.out.println(CREME + "  _______________________ ");
-            System.out.println(" |                       |");
-            System.out.println(" | [1] FUNCIONÁRIO       |");
-            System.out.println(" | [2] GERÊNCIA          |");
-            System.out.println(" | [3] VOLTAR            |");
-            System.out.println(" |                       |");
-            System.out.println(" |_______________________| ");
+            System.out.println(CREME + "\n ╔═══════════════════════╗ ");
+            System.out.println(" ║                       ║");
+            System.out.println(" ║ [1] FUNCIONÁRIO       ║");
+            System.out.println(" ║ [2] GERÊNCIA          ║");
+            System.out.println(" ║ [3] VOLTAR            ║");
+            System.out.println(" ║                       ║");
+            System.out.println(" ╚═══════════════════════╝ ");
 
             System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Selecione como deseja logar: ");
-            op = input.nextInt();
+            op = InputHelper.lerInt();
 
-            if(op == 1){
-                MenuFuncionario.menuFuncionario();
-            }
-            if(op == 2){
-                MenuGerente.menuGerente();
+            switch (op){
+                case 1 -> MenuFuncionario.menuFuncionario();
+                case 2 -> MenuGerente.menuGerente();
+                case 3 -> System.out.println("\nVoltando...");
+                default -> System.out.println("\n" + (LAVENDER + ">>" + RESET) + CREME + "Opção inválida! " +
+                        "Digite novamente: ");
             }
 
         } while(op != 3);
