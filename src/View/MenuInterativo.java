@@ -10,7 +10,6 @@ public class MenuInterativo {
     public static final String BROWN = "\u001B[38;5;130m";
     public static final String RESET = "\u001B[0m";
 
-    public static Scanner input = new Scanner(System.in);
     //---------------------------#--------------------------//
 
     public static void arteInicial(){
@@ -45,7 +44,7 @@ public class MenuInterativo {
             System.out.println(" ╚═══════════════════════╝ ");
 
             System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Selecione uma opção: ");
-            opPrincipal = input.nextInt();
+            opPrincipal = InputHelper.lerInt();
 
 
             switch(opPrincipal) {
@@ -55,8 +54,7 @@ public class MenuInterativo {
                     //ADICIONAR SLEEP
                 case 3 -> System.out.println(LAVENDER + "\nSaindo do programa..." + RESET);
                     //ADICIONAR SLEEP
-                default -> System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + "Opção inválida! " +
-                        "Digite novamente: ");
+                default -> System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + "Opção inválida! ");
             }
 
         } while (opPrincipal != 3);
@@ -78,11 +76,10 @@ public class MenuInterativo {
             opLogin = InputHelper.lerInt();
 
             switch (opLogin) {
-                case 1 -> MenuCliente.menuCliente();
+                case 1 -> new MenuCliente().executar();
                 case 2 -> menuFuncionario();
                 case 3 -> System.out.println("\nVoltando...");
-                default -> System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + "Opção inválida! " +
-                        "Digite novamente: ");
+                default -> System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Opção inválida! ");
             }
 
         } while (opLogin != 3);
@@ -105,10 +102,9 @@ public class MenuInterativo {
 
             switch (op){
                 case 1 -> MenuFuncionario.menuFuncionario();
-                case 2 -> MenuGerente.menuGerente();
+                case 2 -> new MenuGerente().executar();
                 case 3 -> System.out.println("\nVoltando...");
-                default -> System.out.println("\n" + (LAVENDER + ">>" + RESET) + CREME + "Opção inválida! " +
-                        "Digite novamente: ");
+                default -> System.out.println("\n" + (LAVENDER + ">>" + RESET) + CREME + " Opção inválida!");
             }
 
         } while(op != 3);
