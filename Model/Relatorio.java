@@ -1,3 +1,5 @@
+//Essa classe vai ser usada para gerar relatorio de venda e relatorio de estoque. //Arthur
+
 package Model;
 
 import java.util.List;
