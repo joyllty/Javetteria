@@ -10,7 +10,6 @@ public class MenuFuncionario {
     public static final String BROWN = "\u001B[38;5;130m";
     public static final String RESET = "\u001B[0m";
 
-    public static Scanner input = new Scanner(System.in);
     //---------------------------#--------------------------//
 
     public static void menuFuncionario(){
