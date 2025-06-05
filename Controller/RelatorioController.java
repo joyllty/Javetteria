@@ -12,11 +12,13 @@ public class RelatorioController {
         this.pedidoController = pedidoController;
     }
 
+    // Gera relatório usando lista de pedidos do controller
     public void gerarRelatorioVendas() {
         List<Pedido> pedidos = pedidoController.listarPedidos();
         gerarRelatorioVendas(pedidos);
     }
 
+    // Gera relatório com números sequenciais para pedidos válidos
     public void gerarRelatorioVendas(List<Pedido> pedidos) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(ARQUIVO_RELATORIO))) {
             writer.println("=== RELATÓRIO DE VENDAS ===");

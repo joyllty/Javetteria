@@ -8,6 +8,7 @@ public class PagamentoPix implements Pagamento {
         this.chavePix = chavePix;
     }
 
+    // Processa pagamento e gera comprovante se válido
     @Override
     public boolean processarPagamento(float valor) {
         if (validarPagamento(valor)) {
@@ -22,13 +23,14 @@ public class PagamentoPix implements Pagamento {
         return "PIX";
     }
 
+    // Valida se chave PIX existe e valor é positivo
     @Override
     public boolean validarPagamento(float valor) {
         return chavePix != null && !chavePix.isEmpty() && valor > 0;
     }
 
+    // Gera comprovante único baseado no timestamp
     private String gerarComprovante() {
-        // Simulação de geração de comprovante, ainda em teste //Arthur
         return "PIX_" + System.currentTimeMillis();
     }
 

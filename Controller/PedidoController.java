@@ -8,7 +8,6 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
 
-
 public class PedidoController {
     private List<Pedido> pedidos;
     private static final String ARQUIVO_PEDIDOS = "data/pedidos.txt";
@@ -19,6 +18,7 @@ public class PedidoController {
         carregarPedidos();
     }
 
+    // Cria novo pedido e adiciona à lista
     public Pedido criarPedido(String usuario) {
         Pedido pedido = new Pedido(usuario);
         pedidos.add(pedido);
@@ -33,6 +33,7 @@ public class PedidoController {
         pedido.removerItem(item);
     }
 
+    // Processa pagamento e salva pedidos se sucesso
     public boolean processarPagamento(Pedido pedido, Pagamento pagamento) {
         boolean sucesso = pedido.processarPagamento(pagamento);
         if (sucesso && pedido.getItens().size() > 0) {
@@ -41,6 +42,7 @@ public class PedidoController {
         return sucesso;
     }
 
+    // Busca pedido pelo número
     public Pedido buscarPedido(int numeroPedido) {
         for (Pedido pedido : pedidos) {
             if (pedido.getNumeroPedido() == numeroPedido) {
@@ -50,18 +52,18 @@ public class PedidoController {
         return null;
     }
 
+    // Retorna cópia da lista para evitar modificações externas
     public List<Pedido> listarPedidos() {
         return new ArrayList<>(pedidos);
     }
 
+    // Salva pedidos no arquivo com números sequenciais
     private void salvarPedidos() {
         try (PrintWriter writer = new PrintWriter(new FileWriter(ARQUIVO_PEDIDOS))) {
             int numeroSequencial = 1;
             for (Pedido pedido : pedidos) {
-                // Só salva pedidos que têm itens e pagamento processado
                 if (pedido.getItens().size() > 0 && pedido.getFormaPagamento() != null) {
                     String resumo = pedido.resumoPedido();
-                    // Substitui o número do pedido pelo número sequencial
                     resumo = resumo.replaceFirst("Pedido #\\d+", "Pedido #" + numeroSequencial);
                     writer.println(resumo);
                     numeroSequencial++;
@@ -72,6 +74,7 @@ public class PedidoController {
         }
     }
 
+    // Carrega pedidos do arquivo e recria objetos
     private void carregarPedidos() {
         try (BufferedReader reader = new BufferedReader(new FileReader(ARQUIVO_PEDIDOS))) {
             String linha;
@@ -82,12 +85,10 @@ public class PedidoController {
                 if (linha.trim().isEmpty()) continue;
                 
                 if (linha.startsWith("Pedido #")) {
-                    // Se já temos um pedido sendo processado, salvamos ele
                     if (pedidoAtual != null) {
                         pedidos.add(pedidoAtual);
                     }
                     
-                    // Iniciamos um novo pedido
                     String[] partes = linha.split("\\|");
                     if (partes.length >= 2) {
                         String usuario = partes[1].trim().replace("Usuário: ", "");
@@ -95,7 +96,6 @@ public class PedidoController {
                         linhasPedido.clear();
                     }
                 } else if (pedidoAtual != null && linha.startsWith("- ")) {
-                    // Processa item do pedido
                     String[] partes = linha.substring(2).split(" x");
                     if (partes.length >= 2) {
                         String nome = partes[0].trim();
@@ -115,7 +115,6 @@ public class PedidoController {
                 }
             }
             
-            // Adiciona o último pedido se existir
             if (pedidoAtual != null) {
                 pedidos.add(pedidoAtual);
             }
