@@ -60,7 +60,7 @@ public class Pedido {
               .append("\nItens:\n");
         
         for (ItemPedido item : itens) {
-            resumo.append("- ").append(item.toString()).append("\n");
+            resumo.append("- ").append(item.formatarItem()).append("\n");
         }
         
         resumo.append(String.format("Total: R$ %.2f", getValorTotal()));

@@ -56,10 +56,15 @@ public class PedidoController {
 
     private void salvarPedidos() {
         try (PrintWriter writer = new PrintWriter(new FileWriter(ARQUIVO_PEDIDOS))) {
+            int numeroSequencial = 1;
             for (Pedido pedido : pedidos) {
                 // Só salva pedidos que têm itens e pagamento processado
                 if (pedido.getItens().size() > 0 && pedido.getFormaPagamento() != null) {
-                    writer.println(pedido.resumoPedido());
+                    String resumo = pedido.resumoPedido();
+                    // Substitui o número do pedido pelo número sequencial
+                    resumo = resumo.replaceFirst("Pedido #\\d+", "Pedido #" + numeroSequencial);
+                    writer.println(resumo);
+                    numeroSequencial++;
                 }
             }
         } catch (IOException e) {
