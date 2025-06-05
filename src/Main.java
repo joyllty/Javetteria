@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class Main {
-    static Scanner input = new Scanner(System.in);
 
     //#---------------- CORES ----------------#
     public static final String LAVENDER = "\u001B[38;5;183m";
@@ -17,6 +16,7 @@ public class Main {
     public static void main(String[] args) {
 
         model.Estoque.inicializarEstoque();
+
         view.MenuInterativo.arteInicial();
 
         view.MenuInterativo.menuPrincipal();
