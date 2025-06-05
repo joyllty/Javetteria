@@ -1,5 +1,4 @@
 package Model;
-import.Model*;
 
 public class ItemPedido {
     private Produto produto;
@@ -22,6 +21,8 @@ public class ItemPedido {
         return produto.getPreco() * quantidade;
     }
 
+
+    //TODO: SIMPLICAR E ACHAR OUTRO METODO SEM TOSTRING //arthur
     @Override
     public String toString() {
         return String.format("%s x%d - R$ %.2f", 

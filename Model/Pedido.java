@@ -8,7 +8,7 @@ public class Pedido {
     private List<ItemPedido> itens;
     private Pagamento formaPagamento;
     private static int contadorPedidos = 1;
-    private String usuario; // Criada temporariamente até a logica do modulo de clientes e func estar finalizada.
+    private String usuario; //Criada temporariamente até merge com modulo de usuarios //Arthur
 
     public Pedido(String usuario) {
         this.numeroPedido = contadorPedidos++;

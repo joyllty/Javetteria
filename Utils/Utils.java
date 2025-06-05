@@ -1,6 +1,6 @@
 package Utils;
 
-//Nao precisei utilizar a classe utils no meu modulo. Att:ARTHUR
+//Nao precisei utilizar a classe utils no meu modulo. //Arthur
 public class Utils {
 
 }

@@ -28,7 +28,7 @@ public class PagamentoPix implements Pagamento {
     }
 
     private String gerarComprovante() {
-        // Simulação de geração de comprovante
+        // Simulação de geração de comprovante, ainda em teste //Arthur
         return "PIX_" + System.currentTimeMillis();
     }
 
