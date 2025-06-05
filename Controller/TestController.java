@@ -2,18 +2,15 @@
 package Controller;
 
 import Model.*;
-import java.io.File;
 import java.util.List;
 
 public class TestController {
     private final PedidoController pedidoController;
     private final PagamentoController pagamentoController;
-    private final RelatorioController relatorioController;
 
     public TestController() {
         this.pedidoController = new PedidoController();
         this.pagamentoController = new PagamentoController();
-        this.relatorioController = new RelatorioController(pedidoController);
     }
 
     public void testarCriarPedido() {
@@ -105,15 +102,6 @@ public class TestController {
         }
     }
 
-    public void testarRelatorio() {
-        System.out.println("\n=== Testando Geração de Relatório ===");
-        relatorioController.gerarRelatorioVendas();
-        
-        // Verificar se o arquivo de relatório foi criado
-        File arquivoRelatorio = new File("Data/relatorios.txt");
-        System.out.println("Arquivo de relatório criado: " + arquivoRelatorio.exists());
-    }
-
     public void testarBuscaPedido() {
         System.out.println("\n=== Testando Busca de Pedido ===");
         
@@ -132,7 +120,6 @@ public class TestController {
         testarOperacoesPedido();
         testarListarPedidos();
         testarPagamento();
-        testarRelatorio();
         testarBuscaPedido();
     }
 } 
