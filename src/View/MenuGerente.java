@@ -1,45 +1,54 @@
 package view;
 
-import controller.EstoqueController;
+import model.Menu;
 import utils.InputHelper;
 
-import java.util.Scanner;
-
-public class MenuGerente {
+public class MenuGerente implements Menu {
     public static final String LAVENDER = "\u001B[38;5;183m";
     public static final String CREME = "\u001B[38;5;229m";
     public static final String BROWN = "\u001B[38;5;130m";
     public static final String RESET = "\u001B[0m";
 
-    public static Scanner input = new Scanner(System.in);
+
     //---------------------------#--------------------------//
 
-    public static void menuGerente() {
-        int opGerente;
+    @Override
+    public void executar() {
+        int opGerente = 0;
         do {
-            System.out.println("\n ╔══════════════════════════╗");
-            System.out.println(" ║                          ║");
-            System.out.println(" ║ [1] PEDIDOS              ║");
-            System.out.println(" ║ [2] ESTOQUE              ║");
-            System.out.println(" ║ [3] GERENCIAMENTO        ║");
-            System.out.println(" ║ [4] VOLTAR               ║");
-            System.out.println(" ║                          ║");
-            System.out.println(" ╚══════════════════════════╝ ");
-
-            System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Selecione uma opção: ");
-            opGerente = InputHelper.lerInt();
-
-            switch(opGerente){
-                case 1 -> menuGerentePedidos();
-                case 2 -> new view.EstoqueView().executar();//cria um objeto para chamar o metodo executar, que não é static
-                case 3 -> System.out.println("Parei aqui\n[1] EXIBIR FUNCIONÁRIOS\n[2] HISTÓRICO DE VENDAS");
-                default -> System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + "Opção inválida! Digite novamente: ");
-            }
+            menuGerente();
+            opGerente= InputHelper.lerInt();
+            verificarOp(opGerente);
 
         } while (opGerente != 4);
     }
 
-    public static void menuGerentePedidos(){
+    public void verificarOp(int op){
+
+        switch (op) {
+            case 1 -> menuGerentePedidos();
+            case 2 -> new view.EstoqueView().executar();//cria um objeto para chamar o metodo executar, que não é static
+            case 3 -> menuGerenteGerenciamento();
+            case 4 -> System.out.println("\nVoltando...");
+            default -> System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Opção inválida!");
+        }
+    }
+
+    public static void menuGerente() {
+        System.out.println("\n ╔══════════════════════════╗");
+        System.out.println(" ║                          ║");
+        System.out.println(" ║ [1] PEDIDOS              ║");
+        System.out.println(" ║ [2] ESTOQUE              ║");
+        System.out.println(" ║ [3] GERENCIAMENTO        ║");
+        System.out.println(" ║ [4] VOLTAR               ║");
+        System.out.println(" ║                          ║");
+        System.out.println(" ╚══════════════════════════╝ ");
+
+        System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Selecione uma opção: ");
+    }
+
+
+    public static void menuGerentePedidos() {
         int opPedidosG;
         do {
             System.out.println("\n ╔══════════════════════════╗");
@@ -55,7 +64,7 @@ public class MenuGerente {
             System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Selecione uma opção: ");
             opPedidosG = InputHelper.lerInt();
 
-            switch(opPedidosG){
+            switch (opPedidosG) {
                 case 1:
                     System.out.println("Registrando pedido......");
                     break;
@@ -72,11 +81,35 @@ public class MenuGerente {
                     System.out.println("\nVoltando...");
                     break;
                 default:
-                    System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + "Opção inválida! Digite novamente: ");
-                    opPedidosG = input.nextInt();
+                    System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Opção inválida!");
             }
 
-        } while(opPedidosG != 5);
+        } while (opPedidosG != 5);
+    }
+
+    public static void menuGerenteGerenciamento () {
+        int opGerencia;
+        do {
+            System.out.println("\n ╔═══════════════════════════╗");
+            System.out.println(" ║                           ║");
+            System.out.println(" ║ [1] EXIBIR FUNCIONÁRIOS   ║");
+            System.out.println(" ║ [2] HISTÓRICO DE VENDAS   ║");
+            System.out.println(" ║ [3] VOLTAR                ║");
+            System.out.println(" ║                           ║");
+            System.out.println(" ╚═══════════════════════════╝ ");
+
+            System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Selecione uma opção: ");
+            opGerencia = InputHelper.lerInt();
+
+            switch (opGerencia) {
+                case 1 -> System.out.println("\n============" + (LAVENDER + " FUNCIONÁRIOS " + RESET) + CREME +
+                        "============");
+                case 2 -> System.out.println("\n============" + (LAVENDER + " HISTÓRICO VENDAS " + RESET) + CREME +
+                        "============");
+                case 3 -> System.out.println("\nVoltando...");
+
+            }
+        } while (opGerencia != 3);
     }
 
 }

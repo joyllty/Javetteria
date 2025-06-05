@@ -1,24 +1,23 @@
 package view;
 import controller.EstoqueController;
 import model.Ingrediente;
+import model.Menu;
 import utils.InputHelper;
 import java.util.List;
-import java.util.Scanner;
 
 
-public class EstoqueView {
+public class EstoqueView implements Menu {
     public static final String LAVENDER = "\u001B[38;5;183m";
     public static final String CREME = "\u001B[38;5;229m";
     public static final String BROWN = "\u001B[38;5;130m";
     public static final String RESET = "\u001B[0m";
     //---------------------------#--------------------------//
 
-    static Scanner input = new Scanner(System.in);
-
+    @Override
     public void executar() {
         int opEstoque = 0;
         do {
-            view.EstoqueView.menuEstoque();
+            menuEstoque();
             opEstoque = InputHelper.lerInt();
             verificarOp(opEstoque);
 
@@ -33,7 +32,7 @@ public class EstoqueView {
             case 3 -> removerItem();
             case 4 -> editarItem();
             case 5 -> System.out.println("\nVoltando...");
-            default -> System.out.println("Opção inválida!");
+            default -> System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + "Opção inválida! Digite novamente: ");
         }
     }
 
