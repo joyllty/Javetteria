@@ -19,15 +19,17 @@ public class MenuPedido {
     public static void menuPedidos(String usuario) {
         int op;
         do {
-            System.out.println(CREME + "  ___________________________ ");
-            System.out.println(" |                           |");
-            System.out.println(" | [1] Registrar pedido      |");
-            System.out.println(" | [2] Acompanhar pedidos    |");
-            System.out.println(" | [3] Remover pedido        |");
-            System.out.println(" | [4] Pagamento             |");
-            System.out.println(" | [5] Voltar                |");
-            System.out.println(" |___________________________| ");
-            System.out.printf("\n%s>>%s%s Selecione uma opção: %s", LAVENDER, RESET, CREME, RESET);
+            System.out.println("\n ╔═════════════════════════╗");
+            System.out.println(" ║                         ║");
+            System.out.println(" ║ [1] REGISTRAR PEDIDO    ║");
+            System.out.println(" ║ [2] ACOMPANHAR PEDIDOS  ║");
+            System.out.println(" ║ [3] REMOVER PEDIDO      ║");
+            System.out.println(" ║ [4] PAGAMENTO           ║");
+            System.out.println(" ║ [5] VOLTAR              ║");
+            System.out.println(" ║                         ║");
+            System.out.println(" ╚═════════════════════════╝");
+
+            System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Selecione uma opção: " + RESET);
             op = InputHelper.lerInt();
 
             switch (op) {
@@ -35,8 +37,8 @@ public class MenuPedido {
                 case 2 -> acompanharPedidos(usuario);
                 case 3 -> removerPedido(usuario);
                 case 4 -> pagamentoPedido(usuario);
-                case 5 -> System.out.println(LAVENDER + "Voltando..." + RESET);
-                default -> System.out.println(BROWN + "Opção inválida!" + RESET);
+                case 5 -> System.out.println(LAVENDER + "\nVoltando..." + RESET);
+                default -> System.out.println(BROWN + "\nOpção inválida!" + RESET);
             }
         } while (op != 5);
     }
