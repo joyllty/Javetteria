@@ -12,15 +12,17 @@ public class PedidoController {
     private List<Pedido> pedidos;
     private static final String ARQUIVO_PEDIDOS = "data/pedidos.txt";
     private static final NumberFormat numberFormat = NumberFormat.getInstance(Locale.of("pt", "BR"));
+    private int proximoNumeroPedido;
 
     public PedidoController() {
         this.pedidos = new ArrayList<>();
+        this.proximoNumeroPedido = 1;
         carregarPedidos();
     }
 
     // Cria novo pedido e adiciona à lista
     public Pedido criarPedido(String usuario) {
-        Pedido pedido = new Pedido(usuario);
+        Pedido pedido = new Pedido(usuario, proximoNumeroPedido++);
         pedidos.add(pedido);
         return pedido;
     }
@@ -35,6 +37,9 @@ public class PedidoController {
 
     // Processa pagamento e salva pedidos se sucesso
     public boolean processarPagamento(Pedido pedido, Pagamento pagamento) {
+        if (pedido == null || pedido.isPago()) {
+            return false;
+        }
         boolean sucesso = pedido.processarPagamento(pagamento);
         if (sucesso && pedido.getItens().size() > 0) {
             salvarPedidos();
@@ -57,16 +62,12 @@ public class PedidoController {
         return new ArrayList<>(pedidos);
     }
 
-    // Salva pedidos no arquivo com números sequenciais
+    // Salva pedidos no arquivo mantendo os números originais
     private void salvarPedidos() {
         try (PrintWriter writer = new PrintWriter(new FileWriter(ARQUIVO_PEDIDOS))) {
-            int numeroSequencial = 1;
             for (Pedido pedido : pedidos) {
                 if (pedido.getItens().size() > 0) {
-                    String resumo = pedido.resumoPedido();
-                    resumo = resumo.replaceFirst("Pedido #\\d+", "Pedido #" + numeroSequencial);
-                    writer.println(resumo);
-                    numeroSequencial++;
+                    writer.println(pedido.resumoPedido());
                 }
             }
         } catch (IOException e) {
@@ -98,7 +99,13 @@ public class PedidoController {
                     String[] partes = linha.split("\\|");
                     if (partes.length >= 2) {
                         String usuario = partes[1].trim().replace("Usuário: ", "");
-                        pedidoAtual = new Pedido(usuario);
+                        // Extrai o número do pedido do texto
+                        int numeroPedido = Integer.parseInt(linha.split("#")[1].split("\\|")[0].trim());
+                        pedidoAtual = new Pedido(usuario, numeroPedido);
+                        // Atualiza o próximo número de pedido
+                        if (numeroPedido >= proximoNumeroPedido) {
+                            proximoNumeroPedido = numeroPedido + 1;
+                        }
                         linhasPedido.clear();
                     }
                 } else if (pedidoAtual != null && linha.startsWith("- ")) {

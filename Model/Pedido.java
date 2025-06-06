@@ -7,11 +7,10 @@ public class Pedido {
     private int numeroPedido;
     private List<ItemPedido> itens;
     private Pagamento formaPagamento;
-    private static int contadorPedidos = 1;
-    private String usuario; //Criada temporariamente até merge com modulo de usuarios //Arthur
+    private String usuario;
 
-    public Pedido(String usuario) {
-        this.numeroPedido = contadorPedidos++;
+    public Pedido(String usuario, int numeroPedido) {
+        this.numeroPedido = numeroPedido;
         this.itens = new ArrayList<>();
         this.usuario = usuario;
     }
@@ -56,6 +55,11 @@ public class Pedido {
 
     public String getUsuario() {
         return usuario;
+    }
+
+    // Verifica se o pedido já foi pago
+    public boolean isPago() {
+        return formaPagamento != null;
     }
 
     // Gera resumo formatado do pedido com número, usuário, itens e total

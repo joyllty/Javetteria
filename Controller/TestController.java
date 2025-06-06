@@ -4,7 +4,7 @@ import Model.*;
 import View.MenuPedido;
 import java.util.List;
 
-public class TestController {
+public class    TestController {
     private final PedidoController pedidoController;
     private final PagamentoController pagamentoController;
 

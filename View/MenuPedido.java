@@ -6,6 +6,7 @@ import Model.*;
 import Utils.InputHelper;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class MenuPedido {
     public static final String LAVENDER = "\u001B[38;5;183m";
@@ -58,52 +59,105 @@ public class MenuPedido {
 
     private static void acompanharPedidos(String usuario) {
         List<Pedido> pedidos = pedidoController.listarPedidos();
-        Pedido ultimoPedido = null;
-        // Busca o último pedido criado pelo usuário
-        for (int i = pedidos.size() - 1; i >= 0; i--) {
-            if (pedidos.get(i).getUsuario().equals(usuario)) {
-                ultimoPedido = pedidos.get(i);
-                break;
+        boolean temPedidos = false;
+        
+        System.out.println(LAVENDER + "\nSeus pedidos:" + RESET);
+        for (Pedido pedido : pedidos) {
+            if (pedido.getUsuario().equals(usuario)) {
+                System.out.println("\n" + pedido.resumoPedido());
+                temPedidos = true;
             }
         }
-        if (ultimoPedido != null) {
-            System.out.println(LAVENDER + "Seu último pedido:" + RESET);
-            System.out.println(ultimoPedido.resumoPedido());
-        } else {
+        
+        if (!temPedidos) {
             System.out.println(BROWN + "Você ainda não fez nenhum pedido." + RESET);
         }
     }
 
     private static void removerPedido(String usuario) {
         List<Pedido> pedidos = pedidoController.listarPedidos();
-        Pedido ultimoPedido = null;
-        for (int i = pedidos.size() - 1; i >= 0; i--) {
-            if (pedidos.get(i).getUsuario().equals(usuario)) {
-                ultimoPedido = pedidos.get(i);
+        List<Pedido> pedidosPendentes = new ArrayList<>();
+        
+        // Filtra apenas pedidos pendentes do usuário
+        for (Pedido pedido : pedidos) {
+            if (pedido.getUsuario().equals(usuario) && !pedido.isPago()) {
+                pedidosPendentes.add(pedido);
+            }
+        }
+        
+        if (pedidosPendentes.isEmpty()) {
+            System.out.println(BROWN + "Você não tem pedidos pendentes para remover." + RESET);
+            return;
+        }
+        
+        // Mostra os pedidos pendentes
+        System.out.println(LAVENDER + "\nSeus pedidos pendentes:" + RESET);
+        for (Pedido pedido : pedidosPendentes) {
+            System.out.println("\n" + pedido.resumoPedido());
+        }
+        
+        // Solicita o número do pedido a ser removido
+        System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Digite o número do pedido que deseja remover (ex: 28): " + RESET);
+        int numeroPedido = InputHelper.lerInt();
+        
+        // Busca o pedido pelo número
+        Pedido pedidoRemover = null;
+        for (Pedido pedido : pedidosPendentes) {
+            if (pedido.getNumeroPedido() == numeroPedido) {
+                pedidoRemover = pedido;
                 break;
             }
         }
-        if (ultimoPedido != null) {
-            pedidoController.listarPedidos().remove(ultimoPedido);
-            System.out.println(CREME + "Pedido removido!" + RESET);
-        } else {
-            System.out.println(BROWN + "Você ainda não fez nenhum pedido." + RESET);
+        
+        if (pedidoRemover == null) {
+            System.out.println(BROWN + "Número de pedido inválido!" + RESET);
+            return;
         }
+        
+        pedidoController.listarPedidos().remove(pedidoRemover);
+        System.out.println(CREME + "Pedido removido com sucesso!" + RESET);
     }
 
     private static void pagamentoPedido(String usuario) {
         List<Pedido> pedidos = pedidoController.listarPedidos();
-        Pedido ultimoPedido = null;
-        for (int i = pedidos.size() - 1; i >= 0; i--) {
-            if (pedidos.get(i).getUsuario().equals(usuario)) {
-                ultimoPedido = pedidos.get(i);
+        List<Pedido> pedidosPendentes = new ArrayList<>();
+        
+        // Filtra apenas pedidos pendentes do usuário
+        for (Pedido pedido : pedidos) {
+            if (pedido.getUsuario().equals(usuario) && !pedido.isPago()) {
+                pedidosPendentes.add(pedido);
+            }
+        }
+        
+        if (pedidosPendentes.isEmpty()) {
+            System.out.println(BROWN + "Você não tem pedidos pendentes para pagar." + RESET);
+            return;
+        }
+        
+        // Mostra os pedidos pendentes
+        System.out.println(LAVENDER + "\nSeus pedidos pendentes:" + RESET);
+        for (Pedido pedido : pedidosPendentes) {
+            System.out.println("\n" + pedido.resumoPedido());
+        }
+        
+        // Solicita o número do pedido a ser pago
+        System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Digite o número do pedido que deseja pagar (ex: 28): " + RESET);
+        int numeroPedido = InputHelper.lerInt();
+        
+        // Busca o pedido pelo número
+        Pedido pedidoPagar = null;
+        for (Pedido pedido : pedidosPendentes) {
+            if (pedido.getNumeroPedido() == numeroPedido) {
+                pedidoPagar = pedido;
                 break;
             }
         }
-        if (ultimoPedido == null) {
-            System.out.println(BROWN + "Você ainda não fez nenhum pedido." + RESET);
+        
+        if (pedidoPagar == null) {
+            System.out.println(BROWN + "Número de pedido inválido!" + RESET);
             return;
         }
+        
         System.out.println(CREME + "Formas de pagamento:" + RESET);
         System.out.println("[1] Cartão\n[2] PIX\n[3] Dinheiro");
         System.out.printf("Escolha: ");
@@ -127,13 +181,13 @@ public class MenuPedido {
             }
             default -> System.out.println(BROWN + "Opção inválida." + RESET);
         }
-        if (pagamento != null && pagamentoController.processarPagamento(ultimoPedido, pagamento)) {
+        if (pagamento != null && pagamentoController.processarPagamento(pedidoPagar, pagamento)) {
             System.out.println(LAVENDER + "Pagamento realizado com sucesso!" + RESET);
             if (pagamento instanceof PagamentoPix pix) {
                 System.out.println(CREME + "Comprovante PIX: " + pix.getComprovante() + RESET);
             }
             if (pagamento instanceof PagamentoDinheiro dinheiro) {
-                float troco = pagamentoController.calcularTroco(dinheiro, (float)ultimoPedido.getValorTotal());
+                float troco = pagamentoController.calcularTroco(dinheiro, (float)pedidoPagar.getValorTotal());
                 System.out.println(CREME + "Troco: R$ " + String.format("%.2f", troco) + RESET);
             }
         } else {
