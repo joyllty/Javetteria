@@ -61,7 +61,9 @@ public class Pedido {
     // Gera resumo formatado do pedido com número, usuário, itens e total
     public String resumoPedido() {
         StringBuilder resumo = new StringBuilder();
-        resumo.append("Pedido #").append(numeroPedido)
+        String status = formaPagamento != null ? "[PAGO]" : "[PENDENTE]";
+        resumo.append(status)
+              .append(" Pedido #").append(numeroPedido)
               .append(" | Usuário: ").append(usuario)
               .append("\nItens:\n");
         
@@ -70,6 +72,9 @@ public class Pedido {
         }
         
         resumo.append(String.format("Total: R$ %.2f", getValorTotal()));
+        if (formaPagamento != null) {
+            resumo.append("\nForma de Pagamento: ").append(formaPagamento.getFormaPagamento());
+        }
         return resumo.toString();
     }
 }

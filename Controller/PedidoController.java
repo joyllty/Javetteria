@@ -11,7 +11,7 @@ import java.util.Locale;
 public class PedidoController {
     private List<Pedido> pedidos;
     private static final String ARQUIVO_PEDIDOS = "data/pedidos.txt";
-    private static final NumberFormat numberFormat = NumberFormat.getInstance(new Locale("pt", "BR"));
+    private static final NumberFormat numberFormat = NumberFormat.getInstance(Locale.of("pt", "BR"));
 
     public PedidoController() {
         this.pedidos = new ArrayList<>();
@@ -62,7 +62,7 @@ public class PedidoController {
         try (PrintWriter writer = new PrintWriter(new FileWriter(ARQUIVO_PEDIDOS))) {
             int numeroSequencial = 1;
             for (Pedido pedido : pedidos) {
-                if (pedido.getItens().size() > 0 && pedido.getFormaPagamento() != null) {
+                if (pedido.getItens().size() > 0) {
                     String resumo = pedido.resumoPedido();
                     resumo = resumo.replaceFirst("Pedido #\\d+", "Pedido #" + numeroSequencial);
                     writer.println(resumo);
@@ -71,7 +71,7 @@ public class PedidoController {
             }
         } catch (IOException e) {
             System.err.println("Erro ao salvar pedidos: " + e.getMessage());
-        }
+        }   
     }
 
     // Carrega pedidos do arquivo e recria objetos
@@ -83,6 +83,12 @@ public class PedidoController {
             
             while ((linha = reader.readLine()) != null) {
                 if (linha.trim().isEmpty()) continue;
+                
+                // Checa se foi pago
+                boolean isPago = linha.startsWith("[PAGO]");
+                if (linha.startsWith("[PAGO]") || linha.startsWith("[PENDENTE]")) {
+                    linha = linha.substring(linha.indexOf("]") + 1).trim();
+                }
                 
                 if (linha.startsWith("Pedido #")) {
                     if (pedidoAtual != null) {
@@ -110,6 +116,20 @@ public class PedidoController {
                             } catch (ParseException e) {
                                 System.err.println("Erro ao processar preço: " + e.getMessage());
                             }
+                        }
+                    }
+                } else if (pedidoAtual != null && linha.startsWith("Forma de Pagamento: ")) {
+                    // Se o pedido foi pago, cria um pagamento
+                    if (isPago) {
+                        String formaPagamento = linha.replace("Forma de Pagamento: ", "").trim();
+                        Pagamento pagamento = null;
+                        switch (formaPagamento) {
+                            case "Cartão" -> pagamento = new PagamentoCartao("0000000000000000");
+                            case "PIX" -> pagamento = new PagamentoPix("chave.pix@teste.com");
+                            case "Dinheiro" -> pagamento = new PagamentoDinheiro(pedidoAtual.getValorTotal());
+                        }
+                        if (pagamento != null) {
+                            pedidoAtual.processarPagamento(pagamento);
                         }
                     }
                 }

@@ -1,7 +1,7 @@
-// CLASSE DE TESTES
 package Controller;
 
 import Model.*;
+import View.MenuPedido;
 import java.util.List;
 
 public class TestController {
@@ -98,7 +98,7 @@ public class TestController {
             boolean sucessoInvalido = pedidoController.processarPagamento(pedidoInvalido, null);
             System.out.println("Pagamento inválido: " + (sucessoInvalido ? "Sucesso" : "Falha"));
         } catch (NullPointerException e) {
-            System.out.println("Pagamento inválido: Falha (NullPointerException esperada)");
+            System.out.println("Pagamento inválido: Falha (NullPointerException)");
         }
     }
 
@@ -115,11 +115,26 @@ public class TestController {
         System.out.println("Busca de pedido inexistente: " + (pedidoInexistente == null ? "Sucesso" : "Falha"));
     }
 
+    public void testarMenuPedido() {
+        System.out.println("\n=== Testando Menu de Pedidos ===");
+        
+        // Teste de registro de pedido
+        System.out.println("\nTestando registro de pedido:");
+        MenuPedido.menuPedidos("usuario_teste_menu");
+        
+        // Verificar se o pedido foi criado
+        List<Pedido> pedidos = pedidoController.listarPedidos();
+        boolean pedidoCriado = pedidos.stream()
+            .anyMatch(p -> p.getUsuario().equals("usuario_teste_menu"));
+        System.out.println("Pedido criado através do menu: " + (pedidoCriado ? "Sucesso" : "Falha"));
+    }
+
     public void executarTodosTestes() {
         testarCriarPedido();
         testarOperacoesPedido();
         testarListarPedidos();
         testarPagamento();
         testarBuscaPedido();
+        testarMenuPedido();
     }
 } 
