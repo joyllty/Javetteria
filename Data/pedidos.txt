@@ -1,0 +1,15 @@
+[PAGO] Pedido #3 | Usuário: usuario_teste_cartao
+Itens:
+- Café Expresso x1 - R$ 5,00
+Total: R$ 5,00
+Forma de Pagamento: Cartão
+[PAGO] Pedido #4 | Usuário: usuario_teste_pix
+Itens:
+- Café Expresso x1 - R$ 5,00
+Total: R$ 5,00
+Forma de Pagamento: PIX
+[PAGO] Pedido #5 | Usuário: usuario_teste_dinheiro
+Itens:
+- Café Expresso x1 - R$ 5,00
+Total: R$ 5,00
+Forma de Pagamento: Dinheiro
