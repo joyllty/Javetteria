@@ -44,7 +44,7 @@ public class MenuFuncionario {
                     System.out.println("\nVoltando...");
                     break;
                 default:
-                    System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + "Opção inválida! Digite novamente: ");
+                    System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Opção inválida!");
             }
 
         } while (op != 4);
