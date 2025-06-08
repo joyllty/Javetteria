@@ -1,7 +1,7 @@
 package model;
 
 public class Ingrediente {
-    //apenas dados
+
     private int id;
     private String nome;
     private int quantidade;
