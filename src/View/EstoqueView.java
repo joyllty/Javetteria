@@ -21,7 +21,7 @@ public class EstoqueView implements Menu {
             opEstoque = InputHelper.lerInt();
             verificarOp(opEstoque);
 
-        } while (opEstoque != 5);
+        } while (opEstoque != 6);
     }
 
     public void verificarOp(int op){
@@ -31,7 +31,8 @@ public class EstoqueView implements Menu {
             case 2 -> adicionarItem();
             case 3 -> removerItem();
             case 4 -> editarItem();
-            case 5 -> System.out.println("\nVoltando...");
+            case 5 -> EstoqueController.exportarEstoque();
+            case 6 -> System.out.println("\nVoltando...");
             default -> System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + "Opção inválida! Digite novamente: ");
         }
     }
@@ -44,7 +45,8 @@ public class EstoqueView implements Menu {
         System.out.println(" ║ [2] ADICIONAR ITENS       ║");
         System.out.println(" ║ [3] REMOVER ITENS         ║");
         System.out.println(" ║ [4] ATUALIZAR QUANTIDADES ║");
-        System.out.println(" ║ [5] VOLTAR                ║");
+        System.out.println(" ║ [5] EXPORTAR ESTOQUE      ║");
+        System.out.println(" ║ [6] VOLTAR                ║");
         System.out.println(" ║                           ║");
         System.out.println(" ╚═══════════════════════════╝ ");
 
@@ -82,6 +84,7 @@ public class EstoqueView implements Menu {
         String unidade = InputHelper.lerString();
 
         EstoqueController.adicionarItem(id, nome, quantidade, unidade);
+        EstoqueController.exportarEstoque(); // adiciona estoque atualizado no arquivo estoque.txt
         System.out.println("\nItem adicionado com sucesso!");
         System.out.println("=========================================");
     }
@@ -93,9 +96,11 @@ public class EstoqueView implements Menu {
 
         if(EstoqueController.removerItem(id)){
             System.out.println((LAVENDER + "\n>>" + RESET) + CREME + " Item removido!");
+            EstoqueController.exportarEstoque(); // adiciona estoque atualizado no arquivo estoque.txt
         } else {
             System.out.println((LAVENDER + "\n>>" + RESET) + CREME + " Item não encontrado!");
         }
+
         System.out.println("======================================");
     }
 
@@ -109,8 +114,15 @@ public class EstoqueView implements Menu {
         int quantidade = InputHelper.lerInt();
 
         EstoqueController.atualizarItem(id, quantidade);
+        EstoqueController.exportarEstoque();
+
         System.out.println("\nItem editado com sucesso!");
         System.out.println("=====================================");
+    }
+
+    public static void mostrarMensagem(String msg) {
+        // mostrar a mensagem da exportação do estoque
+        System.out.println(msg);
     }
 
 
