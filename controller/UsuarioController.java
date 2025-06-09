@@ -29,7 +29,7 @@ public class UsuarioController {
     // --------- CLIENTES ---------
     public void adicionarCliente(Cliente cliente) {
         clientes.add(cliente);
-        salvarEmArquivo("clientes.txt", cliente);
+        salvarEmArquivo("data/clientes.txt", cliente);
     }
 
     public ArrayList<Cliente> listarClientes() {
@@ -68,7 +68,7 @@ public class UsuarioController {
     // --------- FUNCIONÁRIOS ---------
     public void adicionarFuncionario(Funcionario funcionario) {
         funcionarios.add(funcionario);
-        salvarEmArquivo("funcionarios.txt", funcionario);
+        salvarEmArquivo("data/funcionarios.txt", funcionario);
 
     }
 
@@ -110,7 +110,7 @@ public class UsuarioController {
     // --------- GERENTES ---------
     public void adicionarGerente(Gerente gerente) {
         gerentes.add(gerente);
-        salvarEmArquivo("gerentes.txt", gerente);
+        salvarEmArquivo("data/gerentes.txt", gerente);
 
     }
 
@@ -194,7 +194,7 @@ public class UsuarioController {
 
 
     private void salvarListaFuncionarios() {
-        try (FileWriter fw = new FileWriter("funcionarios.txt", false);  // false = sobrescreve
+        try (FileWriter fw = new FileWriter("data/funcionarios.txt", false);  // false = sobrescreve
              BufferedWriter bw = new BufferedWriter(fw)) {
 
             for (Funcionario f : funcionarios) {
@@ -210,7 +210,7 @@ public class UsuarioController {
     }
 
     private void salvarListaGerentes() {
-        try (FileWriter fw = new FileWriter("gerentes.txt", false);
+        try (FileWriter fw = new FileWriter("data/gerentes.txt", false);
              BufferedWriter bw = new BufferedWriter(fw)) {
 
             for (Gerente g : gerentes) {
@@ -227,7 +227,7 @@ public class UsuarioController {
 
 
     private void salvarListaClientes() {
-        try (FileWriter fw = new FileWriter("clientes.txt", false);
+        try (FileWriter fw = new FileWriter("data/clientes.txt", false);
              BufferedWriter bw = new BufferedWriter(fw)) {
 
             for (Cliente c : clientes) {
