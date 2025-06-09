@@ -4,14 +4,16 @@ import utils.InputHelper;
 
 import java.util.Scanner;
 
+// junção de todos os menus
 public class MenuInterativo {
+    //#---------------- CORES ----------------#
     public static final String LAVENDER = "\u001B[38;5;183m";
     public static final String CREME = "\u001B[38;5;229m";
     public static final String BROWN = "\u001B[38;5;130m";
     public static final String RESET = "\u001B[0m";
-
     //---------------------------#--------------------------//
 
+    // arte inicial do programa
     public static void arteInicial(){
         System.out.print(LAVENDER + "================================================" + RESET);
         System.out.print(LAVENDER + "\n" +
@@ -31,6 +33,7 @@ public class MenuInterativo {
         System.out.println(LAVENDER + "\n\n    ✧˖°. Seja bem-vinde a Javetteria! ✧˖°.\n" + RESET);
     }
 
+    // view menu principal
     public static void menuPrincipal(){
         int opPrincipal;
         do{
@@ -48,7 +51,7 @@ public class MenuInterativo {
 
 
             switch(opPrincipal) {
-                case 1 -> menuLogin();
+                case 1 -> menuLogin(); // chama as opções de login
                     //ADICIONAR SLEEP
                 case 2 -> System.out.println("Cadastrando cliente");
                     //ADICIONAR SLEEP
@@ -60,7 +63,7 @@ public class MenuInterativo {
         } while (opPrincipal != 3);
     }
 
-
+    // view menu login
     public static void menuLogin() {
         int opLogin;
         do {
@@ -76,7 +79,7 @@ public class MenuInterativo {
             opLogin = InputHelper.lerInt();
 
             switch (opLogin) {
-                case 1 -> new MenuCliente().executar();
+                case 1 -> new MenuCliente().executar(); 
                 case 2 -> menuFuncionario();
                 case 3 -> System.out.println("\nVoltando...");
                 default -> System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Opção inválida! ");
@@ -85,6 +88,7 @@ public class MenuInterativo {
         } while (opLogin != 3);
     }
 
+    // view menu funcionário
     public static void menuFuncionario(){
         int op;
 
