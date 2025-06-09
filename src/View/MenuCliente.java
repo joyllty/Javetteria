@@ -11,6 +11,7 @@ public class MenuCliente implements Menu {
 
     //---------------------------#--------------------------//
 
+    // função princiapl do menu cliente - sobrescrita
     @Override
     public void executar() {
         int opCliente = 0;
@@ -22,6 +23,7 @@ public class MenuCliente implements Menu {
         } while (opCliente != 3);
     }
 
+    // ler opção do menu cliente
     public void verificarOp(int op){
 
         switch (op) {
@@ -32,6 +34,7 @@ public class MenuCliente implements Menu {
         }
     }
 
+    // view menu cliente
     public static void menuCliente(){
         System.out.println("\n ╔═════════════════════════╗");
         System.out.println(" ║                         ║");
