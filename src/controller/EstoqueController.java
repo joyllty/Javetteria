@@ -8,13 +8,14 @@ import model.Ingrediente;
 
 
 public class EstoqueController {
+    //#---------------- CORES ----------------#
     public static final String LAVENDER = "\u001B[38;5;183m";
     public static final String CREME = "\u001B[38;5;229m";
     public static final String BROWN = "\u001B[38;5;130m";
     public static final String RESET = "\u001B[0m";
+    //---------------------------#--------------------------//
 
     public static List<Ingrediente> listarItens() {
-
         return Estoque.getIngredientes();
     }
 
@@ -32,9 +33,8 @@ public class EstoqueController {
 
     public static void exportarEstoque() {
         List<Ingrediente> ingredientes = Estoque.getIngredientes();
-        //otimizar a escrita em arquivos
-        try (BufferedWriter escritor = new BufferedWriter(new FileWriter("estoque.txt"))){
-            //filewriter sobrescreve o arquivo
+        // otimizar a escrita em arquivos
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter("estoque.txt"))){ // filewriter sobrescreve o arquivo
             escritor.write("========== ESTOQUE ==========\n");
 
             for (Ingrediente i : ingredientes) {
