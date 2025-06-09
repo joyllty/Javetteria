@@ -9,9 +9,17 @@ import View.Menu;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class coisa {
+public class Main {
 
+    public static void main(String[] args) {
 
+        model.Estoque.inicializarEstoque();
+
+        view.MenuInterativo.arteInicial();
+
+        view.MenuInterativo.menuPrincipal();
+
+    }
 
     public static void coisa() {
         ArrayList<Cliente> clientes = new ArrayList<>();
