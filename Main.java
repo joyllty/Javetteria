@@ -12,60 +12,64 @@ import java.util.Scanner;
 public class
 Main {
     public static void main(String[] args) {
-        ArrayList<Cliente> clientes = new ArrayList<>();
-        ArrayList<Funcionario> funcionarios = new ArrayList<>();
-        ArrayList<Gerente> gerentes = new ArrayList<>();
 
-        UsuarioController usuarioController = new UsuarioController(clientes, funcionarios, gerentes);
-        Menu menu = new Menu(usuarioController);
-        Scanner scanner = new Scanner(System.in);
+}
 
-        clientes.add(new Cliente("Letícia", "let", "123456789", "123"));
-        funcionarios.add(new Funcionario("Carlos", "car", "987654321", "Atendente", "Noite", "123"));
-        gerentes.add(new Gerente("Marina", "mar", "112233445", "Gerente Geral", "Manhã", "123"));
+    public static void main2() {
+            ArrayList<Cliente> clientes = new ArrayList<>();
+            ArrayList<Funcionario> funcionarios = new ArrayList<>();
+            ArrayList<Gerente> gerentes = new ArrayList<>();
 
-        while (true) {
-            System.out.println("\n=== Javetteria ===");
-            System.out.println(" ╔════════════════════════════════╗");
-            System.out.println(" ║                                ║");
-            System.out.println(" ║ [1] Cadastrar                  ║");
-            System.out.println(" ║ [2] Login                      ║");
-            System.out.println(" ║ [0] Sair                       ║");
-            System.out.println(" ║                                ║");
-            System.out.println(" ╚════════════════════════════════╝");
+            UsuarioController usuarioController = new UsuarioController(clientes, funcionarios, gerentes);
+            Menu menu = new Menu(usuarioController);
+            Scanner scanner = new Scanner(System.in);
 
-            System.out.print("Escolha uma opção: ");
-            String opcao = scanner.nextLine();
+//        clientes.add(new Cliente("Letícia", "let", "123456789", "123"));
+//        funcionarios.add(new Funcionario("Carlos", "car", "987654321", "Atendente", "Noite", "123"));
+//        gerentes.add(new Gerente("Marina", "mar", "112233445", "Gerente Geral", "Manhã", "123"));
 
-            switch (opcao) {
-                case "1":
-                    menu.exibirCadastro();
-                    break;
+            while (true) {
+                System.out.println("\n=== Javetteria ===");
+                System.out.println(" ╔════════════════════════════════╗");
+                System.out.println(" ║                                ║");
+                System.out.println(" ║ [1] Cadastrar                  ║");
+                System.out.println(" ║ [2] Login                      ║");
+                System.out.println(" ║ [0] Sair                       ║");
+                System.out.println(" ║                                ║");
+                System.out.println(" ╚════════════════════════════════╝");
 
-                case "2":
-                    System.out.print("Login: ");
-                    String login = scanner.nextLine();
-                    System.out.print("Senha: ");
-                    String senha = scanner.nextLine();
+                System.out.print("Escolha uma opção: ");
+                String opcao = scanner.nextLine();
 
-                    LoginController loginController = new LoginController(clientes, funcionarios, gerentes);
-                    Pessoa pessoaLogada = loginController.autenticar(login, senha);
+                switch (opcao) {
+                    case "1":
+                        menu.exibirCadastro();
+                        break;
 
-                    if (pessoaLogada != null) {
-                        System.out.println("\nLogin bem-sucedido!");
-                        menu.exibirMenu(pessoaLogada);
-                    } else {
-                        System.out.println("Login inválido.");
-                    }
-                    break;
+                    case "2":
+                        System.out.print("Login: ");
+                        String login = scanner.nextLine();
+                        System.out.print("Senha: ");
+                        String senha = scanner.nextLine();
 
-                case "3":
-                    System.out.println("Saindo do sistema...");
-                    return;
+                        LoginController loginController = new LoginController(clientes, funcionarios, gerentes);
+                        Pessoa pessoaLogada = loginController.autenticar(login, senha);
 
-                default:
-                    System.out.println("Opção inválida.");
+                        if (pessoaLogada != null) {
+                            System.out.println("\nLogin bem-sucedido!");
+                            menu.exibirMenu(pessoaLogada);
+                        } else {
+                            System.out.println("Login inválido.");
+                        }
+                        break;
+
+                    case "3":
+                        System.out.println("Saindo do sistema...");
+                        return;
+
+                    default:
+                        System.out.println("Opção inválida.");
+                }
             }
         }
     }
-}
