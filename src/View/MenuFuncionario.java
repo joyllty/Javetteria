@@ -39,7 +39,8 @@ public class MenuFuncionario implements Menu {
 
     // view menu funcionario
     public static void menuFuncionario(){
-        System.out.println("\n ╔══════════════════════════╗");
+        System.out.println("\n  =======" + (Cores.LAVENDER +  " FUNCIONÁRIO " + Cores.RESET) + Cores.CREME +  "======");
+        System.out.println(" ╔══════════════════════════╗");
         System.out.println(" ║                          ║");
         System.out.println(" ║ [1] REGISTRAR PEDIDOS    ║");
         System.out.println(" ║ [2] ACOMPANHAR PEDIDOS   ║");
@@ -50,6 +51,5 @@ public class MenuFuncionario implements Menu {
 
         System.out.print(
                 "\n" + (LAVENDER + ">>" + RESET) + CREME + " Selecione uma opção: ");
-
     }
 }
