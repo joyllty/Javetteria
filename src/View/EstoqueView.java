@@ -7,6 +7,7 @@ import java.util.List;
 
 
 public class EstoqueView implements Menu {
+    //#---------------- CORES ----------------#
     public static final String LAVENDER = "\u001B[38;5;183m";
     public static final String CREME = "\u001B[38;5;229m";
     public static final String BROWN = "\u001B[38;5;130m";
