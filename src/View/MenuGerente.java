@@ -12,6 +12,7 @@ public class MenuGerente implements Menu {
 
     //---------------------------#--------------------------//
 
+    // função principal do menu gerência - sobrescrita
     @Override
     public void executar() {
         int opGerente = 0;
@@ -23,17 +24,19 @@ public class MenuGerente implements Menu {
         } while (opGerente != 4);
     }
 
+    // ler opção do menu gerência
     public void verificarOp(int op){
 
         switch (op) {
-            case 1 -> menuGerentePedidos();
-            case 2 -> new view.EstoqueView().executar();//cria um objeto para chamar o metodo executar, que não é static
+            case 1 -> menuGerentePedidos(); 
+            case 2 -> new view.EstoqueView().executar(); // cria um objeto para chamar o metodo executar, que não é static
             case 3 -> menuGerenteGerenciamento();
             case 4 -> System.out.println("\nVoltando...");
             default -> System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Opção inválida!");
         }
     }
 
+    // view menu gerência
     public static void menuGerente() {
         System.out.println("\n ╔══════════════════════════╗");
         System.out.println(" ║                          ║");
@@ -48,6 +51,7 @@ public class MenuGerente implements Menu {
     }
 
 
+    // view menu gerência - pedidos
     public static void menuGerentePedidos() {
         int opPedidosG;
         do {
@@ -87,6 +91,7 @@ public class MenuGerente implements Menu {
         } while (opPedidosG != 5);
     }
 
+    // view menu gerência - gerenciamento
     public static void menuGerenteGerenciamento () {
         int opGerencia;
         do {
