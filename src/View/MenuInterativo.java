@@ -2,8 +2,6 @@ package view;
 
 import utils.InputHelper;
 
-import java.util.Scanner;
-
 // junção de todos os menus
 public class MenuInterativo {
     //#---------------- CORES ----------------#
@@ -30,7 +28,7 @@ public class MenuInterativo {
                 "\t\t\t\t" + (LAVENDER + "  C|__| \\___/" + RESET));
 
         System.out.println(LAVENDER + "================================================" + RESET);
-        System.out.println(LAVENDER + "\n\n    ✧˖°. Seja bem-vinde a Javetteria! ✧˖°.\n" + RESET);
+        System.out.println(LAVENDER + "\n\n    ✧˖°. Seja bem-vinde a Javetteria! ✧˖°." + RESET);
     }
 
     // view menu principal
@@ -57,7 +55,7 @@ public class MenuInterativo {
                     //ADICIONAR SLEEP
                 case 3 -> System.out.println(LAVENDER + "\nSaindo do programa..." + RESET);
                     //ADICIONAR SLEEP
-                default -> System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + "Opção inválida! ");
+                default -> System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Opção inválida! ");
             }
 
         } while (opPrincipal != 3);
@@ -79,7 +77,7 @@ public class MenuInterativo {
             opLogin = InputHelper.lerInt();
 
             switch (opLogin) {
-                case 1 -> new MenuCliente().executar(); 
+                case 1 -> new MenuCliente().executar();
                 case 2 -> menuFuncionario();
                 case 3 -> System.out.println("\nVoltando...");
                 default -> System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Opção inválida! ");
@@ -105,7 +103,7 @@ public class MenuInterativo {
             op = InputHelper.lerInt();
 
             switch (op){
-                case 1 -> MenuFuncionario.menuFuncionario();
+                case 1 -> new MenuFuncionario().executar();
                 case 2 -> new MenuGerente().executar();
                 case 3 -> System.out.println("\nVoltando...");
                 default -> System.out.println("\n" + (LAVENDER + ">>" + RESET) + CREME + " Opção inválida!");

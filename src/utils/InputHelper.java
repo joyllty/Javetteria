@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class InputHelper {
 
-    private static final Scanner input = new Scanner(System.in);
+    static Scanner input = new Scanner(System.in);
 
     public static int lerInt() {
         return Integer.parseInt(input.nextLine());
@@ -14,9 +14,5 @@ public class InputHelper {
     }
     public static float lerFloat() {
         return Float.parseFloat(input.nextLine().replace(",", "."));
-    }
-
-    public static void limparBuffer() {
-        input.nextLine();
     }
 }

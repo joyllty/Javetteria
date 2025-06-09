@@ -45,11 +45,11 @@ public class EstoqueController {
 
                 escritor.write("==============================\n");
             }
-            view.EstoqueView.mostrarMensagem((LAVENDER + "\n>>" + RESET) + CREME + "\n Estoque exportado com sucesso!");
+            view.EstoqueView.mostrarMensagem((LAVENDER + "\n>>" + RESET) + CREME + " Estoque exportado com sucesso!");
 
         } catch (IOException e){
             // IOException -> erros de entrada e saida
-            view.EstoqueView.mostrarMensagem((LAVENDER + "\n>>" + RESET) + CREME + "\n Erro ao exportar o estoque: " + e.getMessage());
+            view.EstoqueView.mostrarMensagem((LAVENDER + "\n>>" + RESET) + CREME + " Erro ao exportar o estoque: " + e.getMessage());
             // getMessage -> mensagem descritiva do erro
 
         }

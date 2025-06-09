@@ -33,7 +33,7 @@ public class MenuFuncionario implements Menu {
             case 2 -> System.out.println("Exibir fila de pedidos.....");
             case 3 -> System.out.println("[1] CARTÃO\n[2] DINHEIRO\n[3]PIX");
             case 4 -> System.out.println("\nVoltando...");
-            default -> System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + "Opção inválida!");
+            default -> System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Opção inválida!");
         }
     }
 
