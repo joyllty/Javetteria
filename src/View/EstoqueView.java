@@ -13,6 +13,7 @@ public class EstoqueView implements Menu {
     public static final String RESET = "\u001B[0m";
     //---------------------------#--------------------------//
 
+    // lógica menu principal do estoque
     @Override
     public void executar() {
         int opEstoque = 0;
@@ -24,6 +25,7 @@ public class EstoqueView implements Menu {
         } while (opEstoque != 6);
     }
 
+    // ler opção do menu
     public void verificarOp(int op){
 
         switch (op) {
@@ -37,6 +39,7 @@ public class EstoqueView implements Menu {
         }
     }
 
+    // view menu estoque
     public static void menuEstoque(){
         System.out.println("\n  ========= ESTOQUE =========");
         System.out.println(" ╔═══════════════════════════╗");
@@ -53,6 +56,7 @@ public class EstoqueView implements Menu {
         System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Selecione uma opção: ");
     }
 
+    // listar os itens do estoque
     private void listarItens() {
         List<Ingrediente> lista = EstoqueController.listarItens(); //cria uma lista pegando a lista do estoque
 
@@ -68,6 +72,7 @@ public class EstoqueView implements Menu {
         System.out.println("╚════╩════════════════════════╩══════════════╩════════════╝");
     }
 
+    // adicionar itens ao estoque
     public static void adicionarItem() {
         System.out.println("\n============" + (LAVENDER + " ADICIONAR ITEM " + RESET) + CREME + "============");
         System.out.println("\nDigite os dados do item a ser adicionado: ");
@@ -89,6 +94,7 @@ public class EstoqueView implements Menu {
         System.out.println("=========================================");
     }
 
+    // remover itens do estoque
     public static void removerItem(){
         System.out.println("\n============" + (LAVENDER + " REMOVER ITEM " + RESET) + CREME + "============");
         System.out.print("\nDigite o id do item a ser removido: ");
@@ -104,6 +110,7 @@ public class EstoqueView implements Menu {
         System.out.println("======================================");
     }
 
+    // editar quantidade dos itens do estoque
     public static void editarItem() {
         System.out.println("\n============" + (LAVENDER + " EDITAR ITEM " + RESET) + CREME + "============");
         System.out.println("\nDigite o ID do item a ser alterado: ");
@@ -120,6 +127,7 @@ public class EstoqueView implements Menu {
         System.out.println("=====================================");
     }
 
+    // mostrar a mensagem de sucesso da exportação do estoque
     public static void mostrarMensagem(String msg) {
         // mostrar a mensagem da exportação do estoque
         System.out.println(msg);
