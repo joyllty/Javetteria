@@ -10,10 +10,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class
-Main {
-    public static void main(String[] args) {
+Main2 {
 
-}
+
 
     public static void main2() {
             ArrayList<Cliente> clientes = new ArrayList<>();
