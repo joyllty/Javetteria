@@ -5,8 +5,8 @@ public class Comidas extends Produto{
     private String acompanhamentos;
     private String porcao;
 
-    public Comidas( String nome, float preco, String descricao,String acompanhamentos, String porcao){
-        super(nome,preco,descricao);
+    public Comidas(  CategoriaProduto categoria,String nome, float preco, String descricao,String acompanhamentos, String porcao){
+        super(categoria,nome,preco,descricao);
         this.acompanhamentos = acompanhamentos;
         this.porcao = porcao;
 
@@ -21,7 +21,8 @@ public class Comidas extends Produto{
     }
     @Override
     public String descricaoDetalhada(){
-        return  "Nome >> " + getNome() + "\n"
+        return  "Categoria >> " + getCategoria().name() + "\n"+
+                "Nome >> " + getNome() + "\n"
                 + "Preço >> R$ " + getPreco() + "\n"
                 + "Descrição >> " + getDescricao() + "\n"
                 + "Acompanhamentos >> " + acompanhamentos + "\n"

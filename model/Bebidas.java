@@ -4,9 +4,9 @@ public class Bebidas extends Produto {
     private String tamanho;
     private String temperatura;
 
-    public Bebidas(String nome,float preco, String descricao,
+    public Bebidas(CategoriaProduto categoria,String nome,float preco, String descricao,
                    String tamanho,String temperatura) {
-        super(nome,preco,descricao);
+        super(categoria,nome,preco,descricao);
         this.tamanho = tamanho;
         this.temperatura = temperatura;
 
@@ -15,7 +15,8 @@ public class Bebidas extends Produto {
     @Override
     public String descricaoDetalhada(){
 
-     return  "Nome da Bebida >> " + getNome() + "\n"
+     return  "Categoria >> " + getCategoria().name() + "\n"+
+             "Nome da Bebida >> " + getNome() + "\n"
              + "Preço >> R$ " + getPreco() + "\n"
              + "Descrição >> " + getDescricao() + "\n"
              + "Tamanho >> " + tamanho + "\n"

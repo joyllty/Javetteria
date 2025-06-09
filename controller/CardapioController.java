@@ -5,6 +5,8 @@ import view.CardapioView;
 
 import java.util.List;
 
+//Aqui estarão as classes que recebem as ações do usuário
+
 public class CardapioController {
     private Cardapio cardapio;
 
