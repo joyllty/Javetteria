@@ -14,7 +14,7 @@ public class EstoqueView implements Menu {
     public static final String RESET = "\u001B[0m";
     //---------------------------#--------------------------//
 
-    // função princiapl do menu estoque - sobrescrita
+    // função principal do menu estoque - sobrescrita
     @Override
     public void executar() {
         int opEstoque = 0;
