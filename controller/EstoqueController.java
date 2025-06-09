@@ -34,7 +34,7 @@ public class EstoqueController {
     public static void exportarEstoque() {
         List<Ingrediente> ingredientes = Estoque.getIngredientes();
         // otimizar a escrita em arquivos
-        try (BufferedWriter escritor = new BufferedWriter(new FileWriter("estoque.txt"))){ // filewriter sobrescreve o arquivo
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter("data/estoque.txt"))){ // filewriter sobrescreve o arquivo
             escritor.write("========== ESTOQUE ==========\n");
 
             for (Ingrediente i : ingredientes) {
