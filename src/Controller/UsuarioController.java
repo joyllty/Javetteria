@@ -49,6 +49,7 @@ public class UsuarioController {
         Cliente c = buscarClientePorLogin(login);
         if (c != null) {
             clientes.remove(c);
+            salvarListaClientes();
             return true;
         }
         return false;
@@ -130,6 +131,7 @@ public class UsuarioController {
         Gerente g = buscarGerentePorLogin(login);
         if (g != null) {
             gerentes.remove(g);
+            salvarListaGerentes(); // atualiza o arquivo
             return true;
         }
         return false;
@@ -206,6 +208,40 @@ public class UsuarioController {
             e.printStackTrace();
         }
     }
+
+    private void salvarListaGerentes() {
+        try (FileWriter fw = new FileWriter("gerentes.txt", false);
+             BufferedWriter bw = new BufferedWriter(fw)) {
+
+            for (Gerente g : gerentes) {
+                String linha = g.getLogin() + ";" + g.getSenha() + ";" + g.getTipoPessoa();
+                bw.write(linha);
+                bw.newLine();
+            }
+
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar lista de gerentes.");
+            e.printStackTrace();
+        }
+    }
+
+
+    private void salvarListaClientes() {
+        try (FileWriter fw = new FileWriter("clientes.txt", false);
+             BufferedWriter bw = new BufferedWriter(fw)) {
+
+            for (Cliente c : clientes) {
+                String linha = c.getLogin() + ";" + c.getSenha() + ";" + c.getTipoPessoa();
+                bw.write(linha);
+                bw.newLine();
+            }
+
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar lista de clientes.");
+            e.printStackTrace();
+        }
+    }
+
 
 
 
