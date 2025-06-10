@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public interface Pagamento {
     boolean processarPagamento(float valor);

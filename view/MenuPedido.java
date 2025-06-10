@@ -1,9 +1,9 @@
-package View;
+package view;
 
-import Controller.PedidoController;
-import Controller.PagamentoController;
-import Model.*;
-import Utils.InputHelper;
+import controller.PedidoController;
+import controller.PagamentoController;
+import model.*;
+import utils.InputHelper;
 
 import java.util.List;
 import java.util.ArrayList;

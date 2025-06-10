@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public class PagamentoCartao implements Pagamento {
     private String numeroCartao;

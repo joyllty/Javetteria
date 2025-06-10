@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 // ATENÇÃO: Classe criada para testes. Implementação concreta de Produto para testes do sistema
 public class Cafe extends Produto {

@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public class PagamentoDinheiro implements Pagamento {
     private float valorRecebido;

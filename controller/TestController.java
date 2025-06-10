@@ -1,7 +1,7 @@
-package Controller;
+package controller;
 
-import Model.*;
-import View.MenuPedido;
+import model.*;
+import view.MenuPedido;
 import java.util.List;
 
 public class    TestController {
