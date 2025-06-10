@@ -62,6 +62,33 @@ public class PedidoController {
         return new ArrayList<>(pedidos);
     }
 
+    // Retorna lista de pedidos pendentes do usuário
+    public List<Pedido> listarPedidosPendentes(String usuario) {
+        List<Pedido> pedidosPendentes = new ArrayList<>();
+        for (Pedido pedido : pedidos) {
+            if (pedido.getUsuario().equals(usuario) && !pedido.isPago()) {
+                pedidosPendentes.add(pedido);
+            }
+        }
+        return pedidosPendentes;
+    }
+
+    // Remove um pedido da lista
+    public boolean removerPedido(int numeroPedido) {
+        Pedido pedido = buscarPedido(numeroPedido);
+        if (pedido != null && !pedido.isPago()) {
+            pedidos.remove(pedido);
+            return true;
+        }
+        return false;
+    }
+
+    // Cria um novo item de pedido
+    public ItemPedido criarItemPedido(String nomeProduto, int quantidade) {
+        Cafe cafe = new Cafe(nomeProduto, 5.0f, "Produto temporário");
+        return new ItemPedido(cafe, quantidade);
+    }
+
     // Salva pedidos no arquivo mantendo os números originais
     private void salvarPedidos() {
         try (PrintWriter writer = new PrintWriter(new FileWriter(ARQUIVO_PEDIDOS))) {
@@ -148,5 +175,23 @@ public class PedidoController {
         } catch (IOException e) {
             System.err.println("Erro ao carregar pedidos: " + e.getMessage());
         }
+    }
+
+    // Registra um novo pedido com item
+    public void registrarNovoPedido(String usuario, String nomeProduto, int quantidade) {
+        Pedido pedido = criarPedido(usuario);
+        ItemPedido item = criarItemPedido(nomeProduto, quantidade);
+        adicionarItem(pedido, item);
+    }
+
+    // Lista todos os pedidos de um usuário
+    public List<Pedido> listarPedidosUsuario(String usuario) {
+        List<Pedido> pedidosUsuario = new ArrayList<>();
+        for (Pedido pedido : pedidos) {
+            if (pedido.getUsuario().equals(usuario)) {
+                pedidosUsuario.add(pedido);
+            }
+        }
+        return pedidosUsuario;
     }
 }

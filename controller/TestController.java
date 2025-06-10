@@ -7,10 +7,12 @@ import java.util.List;
 public class    TestController {
     private final PedidoController pedidoController;
     private final PagamentoController pagamentoController;
+    private final MenuPedidoController menuPedidoController;
 
     public TestController() {
         this.pedidoController = new PedidoController();
         this.pagamentoController = new PagamentoController();
+        this.menuPedidoController = new MenuPedidoController(pedidoController, pagamentoController);
     }
 
     public void testarCriarPedido() {
@@ -120,7 +122,7 @@ public class    TestController {
         
         // Teste de registro de pedido
         System.out.println("\nTestando registro de pedido:");
-        MenuPedido.menuPedidos("usuario_teste_menu");
+        menuPedidoController.iniciar("usuario_teste_menu");
         
         // Verificar se o pedido foi criado
         List<Pedido> pedidos = pedidoController.listarPedidos();
