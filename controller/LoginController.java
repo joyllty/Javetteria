@@ -1,5 +1,5 @@
-package Controller;
-import Model.*;
+package controller;
+import model.*;
 
 import java.util.ArrayList;
 

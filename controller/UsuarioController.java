@@ -1,16 +1,14 @@
-package Controller;
+package controller;
+import model.*;
 
 //arquivos
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileReader;
 //---
 
-
-import Model.Cliente;
-import Model.Funcionario;
-import Model.Gerente;
-import Model.Pessoa;
 
 import java.util.ArrayList;
 

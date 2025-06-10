@@ -1,8 +1,8 @@
-package View;
+package view;
 
-import Model.*;
-import Controller.UsuarioController;
-import Controller.LoginController;
+import model.*;
+import controller.UsuarioController;
+import controller.LoginController;
 
 import java.util.Scanner;
 

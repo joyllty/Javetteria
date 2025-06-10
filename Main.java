@@ -1,10 +1,10 @@
-import Controller.LoginController;
-import Controller.UsuarioController;
-import Model.Cliente;
-import Model.Funcionario;
-import Model.Gerente;
-import Model.Pessoa;
-import View.Menu;
+import controller.LoginController;
+import controller.UsuarioController;
+import model.Cliente;
+import model.Funcionario;
+import model.Gerente;
+import model.Pessoa;
+import view.Menu;
 
 import java.util.ArrayList;
 import java.util.Scanner;
