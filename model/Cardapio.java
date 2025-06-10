@@ -52,6 +52,21 @@ public void cadastrarProdutos(){
                 "ou ainda cacau em pó em sua confecção","nenhum","1 UNIDADE MÉDIA"));
         produtos.add(new Comidas(CategoriaProduto.DOCES,"Lemon Bomb",8.0f,"Bolo de limão com cobertura de chocolate " +
                 "branco e licor de limão","nenhum","1 UNIDADE MÉDIA"));
+        produtos.add(new Comidas(CategoriaProduto.DOCES,"Cenoura Trad",8.0f,"Bolo de Cenoura tradicional e delicioso com " +
+                "cobertura de brigadeiro","nenhum","1 FATIA MÉDIA"));
+        produtos.add(new Comidas(CategoriaProduto.DOCES,"Honey Bliss[DA CASA]",12.0f,"Bolo de massa macia e levemente úmida de mel, com pedaços crocantes de nozes. Recheado e coberto com creme de " +
+                "queijo suave e toque de baunilha. Finalizado com fio de mel e farofa crocante de nozes","nenhum","1 FATIA MÉDIA"));
+        produtos.add(new Comidas(CategoriaProduto.DOCES,"Berryache",18.0f,"Bolo de massa amanteigada de pistache,recheada com ganache branca cremosa e geleia artesanal de " +
+                "frutas vermelhas. Finalizado com pistaches crocantes e frutas frescas.","nenhum","1 FATIA MÉDIA"));
+        produtos.add(new Comidas(CategoriaProduto.DOCES,"Velvet Salgado",14.0f,"Torta de caramelo salgado,chocolate meio amargo e amendoim tostado","nenhum","1 FATIA PEQUENA"));
+        produtos.add(new Comidas(CategoriaProduto.DOCES,"Cherry Luxe",15.0f,"Torta de base amanteigada crocante, recheio de creme pâtissier de baunilha bourbon " +
+                "e uma camada generosa de cerejas frescas mergulhadas em glaçagem espelhada de cereja. " +
+                "Um clássico francês com um toque contemporâneo, perfeito para acompanhar um café especial.","nenhum","1 FATIA MÉDIA"));
+        produtos.add(new Comidas(CategoriaProduto.DOCES,"Apple Dream",17.0f,"Torta de massa amanteigada crocante," +
+                " recheio de creme de amêndoas delicado, fatias de maçã levemente caramelizadas e " +
+                "finalizada com fios de caramelo artesanal e toque de canela. Uma torta que abraça, perfuma o ambiente e combina perfeitamente com café especial ou chá.",
+                "nenhum","1 FATIA MEDIA"));
+    
 }
     public List<Produto> getProdutos() {
         return produtos;
