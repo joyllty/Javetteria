@@ -14,6 +14,10 @@ public class Cliente extends Pessoa implements ContaUsuario{
         return endereco;
     }
 
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
 
     @Override
     public String getTipoPessoa(){

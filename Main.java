@@ -1,17 +1,22 @@
-import controller.LoginController;
-import controller.UsuarioController;
-import model.Cliente;
-import model.Funcionario;
-import model.Gerente;
-import model.Pessoa;
-import view.Menu;
-
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import controller.*;
+import model.*;
+import view.*;
+
 
 public class Main {
 
     public static void main(String[] args) {
+
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        ArrayList<Funcionario> funcionarios = new ArrayList<>();
+        ArrayList<Gerente> gerentes = new ArrayList<>();
+
+        UsuarioController usuarioController = new UsuarioController(clientes, funcionarios, gerentes);
+        Acessar acessar = new Acessar(usuarioController);
 
         model.Estoque.inicializarEstoque();
 
@@ -21,62 +26,4 @@ public class Main {
 
     }
 
-    public static void coisa() {
-        ArrayList<Cliente> clientes = new ArrayList<>();
-        ArrayList<Funcionario> funcionarios = new ArrayList<>();
-        ArrayList<Gerente> gerentes = new ArrayList<>();
-
-        UsuarioController usuarioController = new UsuarioController(clientes, funcionarios, gerentes);
-        Menu menu = new Menu(usuarioController);
-        Scanner scanner = new Scanner(System.in);
-
-//        clientes.add(new Cliente("Letícia", "let", "123456789", "123"));
-//        funcionarios.add(new Funcionario("Carlos", "car", "987654321", "Atendente", "Noite", "123"));
-//        gerentes.add(new Gerente("Marina", "mar", "112233445", "Gerente Geral", "Manhã", "123"));
-
-        while (true) {
-            System.out.println("\n=== Javetteria ===");
-            System.out.println(" ╔════════════════════════════════╗");
-            System.out.println(" ║                                ║");
-            System.out.println(" ║ [1] Cadastrar                  ║");
-            System.out.println(" ║ [2] Login                      ║");
-            System.out.println(" ║ [0] Sair                       ║");
-            System.out.println(" ║                                ║");
-            System.out.println(" ╚════════════════════════════════╝");
-
-            System.out.print("Escolha uma opção: ");
-            String opcao = scanner.nextLine();
-
-            switch (opcao) {
-                case "1":
-                    menu.exibirCadastro();
-                    break;
-
-                case "2":
-                    System.out.print("Login: ");
-                    String login = scanner.nextLine();
-                    System.out.print("Senha: ");
-                    String senha = scanner.nextLine();
-
-                    LoginController loginController = new LoginController(clientes, funcionarios, gerentes);
-                    Pessoa pessoaLogada = loginController.autenticar(login, senha);
-
-                    if (pessoaLogada != null) {
-                        System.out.println("\nLogin bem-sucedido!");
-                        menu.exibirMenu(pessoaLogada);
-                    } else {
-                        System.out.println("Login inválido.");
-                    }
-                    break;
-
-                case "3":
-                    System.out.println("Saindo do sistema...");
-                    return;
-
-                default:
-                    System.out.println("Opção inválida.");
-            }
-        }
-    }
 }
-

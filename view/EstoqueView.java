@@ -18,7 +18,7 @@ public class EstoqueView implements Menu {
             opEstoque = InputHelper.lerInt();
             verificarOp(opEstoque);
 
-        } while (opEstoque != 6);
+        } while (opEstoque != 0);
     }
 
     // ler opção do menu
@@ -30,7 +30,7 @@ public class EstoqueView implements Menu {
             case 3 -> removerItem();
             case 4 -> editarItem();
             case 5 -> EstoqueController.exportarEstoque();
-            case 6 -> System.out.println("\nVoltando...");
+            case 0 -> System.out.println("\nVoltando...");
             default -> System.out.print("\n" + (Cores.LAVENDER + ">>" + Cores.RESET) + Cores.CREME + " Opção inválida! " +
                     "Digite novamente: \n");
         }

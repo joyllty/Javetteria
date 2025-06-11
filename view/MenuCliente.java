@@ -1,49 +1,41 @@
 package view;
 
+import model.Cliente;
 import model.Menu;
+import utils.Cores;
 import utils.InputHelper;
 
-public class MenuCliente implements Menu {
-    //#---------------- CORES ----------------#
-    public static final String LAVENDER = "\u001B[38;5;183m";
-    public static final String CREME = "\u001B[38;5;229m";
-    public static final String BROWN = "\u001B[38;5;130m";
-    public static final String RESET = "\u001B[0m";
-    //---------------------------#--------------------------//
+public class MenuCliente{
 
     // função principal do menu cliente - sobrescrita
-    @Override
-    public void executar() {
-        int opCliente = 0;
-        do {
-            menuCliente();
-            opCliente= InputHelper.lerInt();
-            verificarOp(opCliente);
 
-        } while (opCliente != 3);
-    }
-
-    // ler opção do menu cliente
-    public void verificarOp(int op){
-
-        switch (op) {
-            case 1 -> System.out.println("CARDÁPIO");
-            case 2 -> System.out.println("CHAMANDO ATENDENTE");
-            case 3 -> System.out.println("\nVoltando...");
-            default -> System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + "Opção inválida!");
-        }
-    }
 
     // view menu cliente
-    public static void menuCliente(){
-        System.out.println("\n ╔═════════════════════════╗");
-        System.out.println(" ║                         ║");
-        System.out.println(" ║ [1] ABRIR CARDÁPIO      ║");
-        System.out.println(" ║ [2] FAZER PEDIDO        ║");
-        System.out.println(" ║ [3] VOLTAR              ║");
-        System.out.println(" ║                         ║");
-        System.out.println(" ╚═════════════════════════╝");
+    public static void menuCliente(Cliente cliente){
+        int opCliente = 0;
+        do {
+            System.out.println("\n ╔═════════════════════════╗");
+            System.out.println(" ║                         ║");
+            System.out.println(" ║ [1] ABRIR CARDÁPIO      ║");
+            System.out.println(" ║ [2] FAZER PEDIDO        ║");
+            System.out.println(" ║ [3] VER MEUS DADOS      ║");
+            System.out.println(" ║ [4] ALTERAR ENDEREÇO    ║");
+            System.out.println(" ║ [0] VOLTAR              ║");
+            System.out.println(" ║                         ║");
+            System.out.println(" ╚═════════════════════════╝");
 
-        System.out.print("\n" + (LAVENDER + ">>" + RESET) + CREME + " Selecione uma opção: ");
+            System.out.print("\n" + (Cores.LAVENDER + ">>" + Cores.RESET) + Cores.CREME + " Selecione uma opção: ");
+            opCliente = InputHelper.lerInt();
+
+            switch (opCliente) {
+                case 1 -> System.out.println("CARDÁPIO");
+                case 2 -> System.out.println("CHAMANDO ATENDENTE");
+                case 3 -> Acessar.verDadosCliente(cliente);
+                case 4 -> Acessar.alterarEnderecoCliente(cliente);
+                case 0 -> System.out.println("\nVoltando...");
+                default ->
+                        System.out.print("\n" + (Cores.LAVENDER + ">>" + Cores.RESET) + Cores.CREME + "Opção inválida!");
+            }
+        } while(opCliente != 0);
     }
 }
