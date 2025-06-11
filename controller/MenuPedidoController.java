@@ -1,6 +1,7 @@
 package controller;
 
 import model.Pedido;
+import model.ItemPedido;
 import view.MenuPedido;
 import utils.InputHelper;
 import java.util.List;
@@ -34,13 +35,37 @@ public class MenuPedidoController {
     }
 
     private void registrarPedido(String usuario) {
-        view.exibirPrompt("Nome do produto: ");
-        String nomeProduto = InputHelper.lerString();
-        view.exibirPrompt("Quantidade: ");
-        int quantidade = InputHelper.lerInt();
+        Pedido pedido = pedidoController.criarPedido(usuario);
+        boolean continuar = true;
         
-        pedidoController.registrarNovoPedido(usuario, nomeProduto, quantidade);
-        view.exibirMensagem("Pedido registrado!", MenuPedido.CREME);
+        while (continuar) {
+            boolean produtoValido = false;
+            String nomeProduto = "";
+            int quantidade = 0;
+            
+            while (!produtoValido) {
+                view.exibirPrompt("\nNome do produto: ");
+                nomeProduto = InputHelper.lerString();
+                try {
+                    view.exibirPrompt("Quantidade: ");
+                    quantidade = InputHelper.lerInt();
+                    
+                    ItemPedido item = pedidoController.criarItemPedido(nomeProduto, quantidade);
+                    pedidoController.adicionarItem(pedido, item);
+                    view.exibirMensagem("Item adicionado ao pedido!", MenuPedido.CREME);
+                    produtoValido = true;
+                } catch (IllegalArgumentException e) {
+                    view.exibirMensagem("\nProduto não encontrado: " + nomeProduto, MenuPedido.BROWN);
+                    view.exibirMensagem("Por favor, verifique o nome do produto e tente novamente.", MenuPedido.BROWN);
+                }
+            }
+            
+            view.exibirPrompt("\nDeseja adicionar mais um item? (1 - Sim / 2 - Não): ");
+            int opcao = InputHelper.lerInt();
+            continuar = (opcao == 1);
+        }
+        
+        view.exibirMensagem("\nPedido registrado com sucesso!", MenuPedido.CREME);
     }
 
     private void acompanharPedidos(String usuario) {
@@ -126,6 +151,7 @@ public class MenuPedidoController {
                 (float)pedidoPagar.getValorTotal()
             );
             view.exibirInformacoesPagamento(infoPagamento);
+            pedidoController.salvarPedidos();
         } else {
             view.exibirMensagem("Falha no pagamento.", MenuPedido.BROWN);
         }

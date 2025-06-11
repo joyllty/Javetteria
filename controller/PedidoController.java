@@ -7,15 +7,18 @@ import java.util.List;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
+import java.text.Normalizer;
 
 public class PedidoController {
     private List<Pedido> pedidos;
     private static final String ARQUIVO_PEDIDOS = "data/pedidos.txt";
     private static final NumberFormat numberFormat = NumberFormat.getInstance(Locale.of("pt", "BR"));
     private int proximoNumeroPedido;
+    private final Cardapio cardapio;
 
     public PedidoController() {
         this.pedidos = new ArrayList<>();
+        this.cardapio = new Cardapio();
         this.proximoNumeroPedido = 1;
         carregarPedidos();
     }
@@ -27,12 +30,16 @@ public class PedidoController {
         return pedido;
     }
 
+    // Adiciona item ao pedido
     public void adicionarItem(Pedido pedido, ItemPedido item) {
         pedido.adicionarItem(item);
+        salvarPedidos();
     }
 
+    // Remove item do pedido
     public void removerItem(Pedido pedido, ItemPedido item) {
         pedido.removerItem(item);
+        salvarPedidos();
     }
 
     // Processa pagamento e salva pedidos se sucesso
@@ -83,17 +90,27 @@ public class PedidoController {
         return false;
     }
 
+    private String normalizarTexto(String texto) {
+        return Normalizer.normalize(texto.toLowerCase(), Normalizer.Form.NFD)
+                .replaceAll("\\p{M}", "");
+    }
+
     // Cria um novo item de pedido
     public ItemPedido criarItemPedido(String nomeProduto, int quantidade) {
-        Cafe cafe = new Cafe(nomeProduto, 5.0f, "Produto temporário");
-        return new ItemPedido(cafe, quantidade);
+        String nomeNormalizado = normalizarTexto(nomeProduto);
+        Produto produto = cardapio.getProdutos().stream()
+            .filter(p -> normalizarTexto(p.getNome()).equals(nomeNormalizado))
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado: " + nomeProduto));
+        return new ItemPedido(produto, quantidade);
     }
 
     // Salva pedidos no arquivo mantendo os números originais
-    private void salvarPedidos() {
+    public void salvarPedidos() {
         try (PrintWriter writer = new PrintWriter(new FileWriter(ARQUIVO_PEDIDOS))) {
             for (Pedido pedido : pedidos) {
                 if (pedido.getItens().size() > 0) {
+                    String status = pedido.isPago() ? "[PAGO]" : "[PENDENTE]";
                     writer.println(pedido.resumoPedido());
                 }
             }
@@ -107,33 +124,23 @@ public class PedidoController {
         try (BufferedReader reader = new BufferedReader(new FileReader(ARQUIVO_PEDIDOS))) {
             String linha;
             Pedido pedidoAtual = null;
-            List<String> linhasPedido = new ArrayList<>();
-            
             while ((linha = reader.readLine()) != null) {
-                if (linha.trim().isEmpty()) continue;
-                
                 // Checa se foi pago
                 boolean isPago = linha.startsWith("[PAGO]");
                 if (linha.startsWith("[PAGO]") || linha.startsWith("[PENDENTE]")) {
                     linha = linha.substring(linha.indexOf("]") + 1).trim();
                 }
-                
+
                 if (linha.startsWith("Pedido #")) {
-                    if (pedidoAtual != null) {
-                        pedidos.add(pedidoAtual);
-                    }
-                    
-                    String[] partes = linha.split("\\|");
+                    String[] partes = linha.split(" - ");
                     if (partes.length >= 2) {
-                        String usuario = partes[1].trim().replace("Usuário: ", "");
-                        // Extrai o número do pedido do texto
-                        int numeroPedido = Integer.parseInt(linha.split("#")[1].split("\\|")[0].trim());
+                        int numeroPedido = Integer.parseInt(partes[0].substring(8));
+                        String usuario = partes[1].trim();
                         pedidoAtual = new Pedido(usuario, numeroPedido);
-                        // Atualiza o próximo número de pedido
+                        pedidos.add(pedidoAtual);
                         if (numeroPedido >= proximoNumeroPedido) {
                             proximoNumeroPedido = numeroPedido + 1;
                         }
-                        linhasPedido.clear();
                     }
                 } else if (pedidoAtual != null && linha.startsWith("- ")) {
                     String[] partes = linha.substring(2).split(" x");
@@ -144,8 +151,12 @@ public class PedidoController {
                             int quantidade = Integer.parseInt(quantidadePreco[0].trim());
                             try {
                                 float preco = numberFormat.parse(quantidadePreco[1].trim()).floatValue();
-                                Cafe cafe = new Cafe(nome, preco, "Café expresso tradicional");
-                                ItemPedido item = new ItemPedido(cafe, quantidade);
+                                String nomeNormalizado = normalizarTexto(nome);
+                                Produto produto = cardapio.getProdutos().stream()
+                                    .filter(p -> normalizarTexto(p.getNome()).equals(nomeNormalizado))
+                                    .findFirst()
+                                    .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado: " + nome));
+                                ItemPedido item = new ItemPedido(produto, quantidade);
                                 pedidoAtual.adicionarItem(item);
                             } catch (ParseException e) {
                                 System.err.println("Erro ao processar preço: " + e.getMessage());
@@ -167,10 +178,6 @@ public class PedidoController {
                         }
                     }
                 }
-            }
-            
-            if (pedidoAtual != null) {
-                pedidos.add(pedidoAtual);
             }
         } catch (IOException e) {
             System.err.println("Erro ao carregar pedidos: " + e.getMessage());

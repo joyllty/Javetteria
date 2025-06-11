@@ -1,19 +1,20 @@
 package model;
 
-import java.util.List;
 
 public abstract class  Produto {
 
     private String nome;
     private float preco;
     private String descricao;
+    protected CategoriaProduto categoria;
 
-    private List<CategoriaProduto> produtos;
 
-    public Produto(String nome,float preco, String descricao) {
+    public Produto(CategoriaProduto categoria,String nome,float preco, String descricao) {
+        this.categoria = categoria;
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
+
     }
 
     public String getNome() {
@@ -28,6 +29,9 @@ public abstract class  Produto {
         return descricao;
     }
 
+    public CategoriaProduto getCategoria() { // Getter na classe mãe
+        return categoria;
+    }
    public abstract String descricaoDetalhada(); //cada produto precisa ter sua propria descrição detalhada
 
 }

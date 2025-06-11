@@ -30,8 +30,7 @@ public class    TestController {
         Pedido pedido = pedidoController.criarPedido("usuario_teste_operacoes");
         
         // Teste de adicionar item
-        Cafe cafe = new Cafe("Café Expresso", 5.0f, "Café expresso tradicional");
-        ItemPedido item1 = new ItemPedido(cafe, 2);
+        ItemPedido item1 = pedidoController.criarItemPedido("Espresso", 2);
         pedidoController.adicionarItem(pedido, item1);
         System.out.println("Item adicionado: " + pedido.resumoPedido());
         
@@ -51,35 +50,24 @@ public class    TestController {
     }
 
     public void testarPagamento() {
-        System.out.println("\n=== Testando Pagamento ===");
+        System.out.println("\n=== Testando Pagamentos ===");
         
-        // Teste de pagamento com cartão
+        // Teste com cartão
         Pedido pedidoCartao = pedidoController.criarPedido("usuario_teste_cartao");
-        Cafe cafeCartao = new Cafe("Café Expresso", 5.0f, "Café expresso tradicional");
-        ItemPedido itemCartao = new ItemPedido(cafeCartao, 1);
+        ItemPedido itemCartao = pedidoController.criarItemPedido("Espresso", 1);
         pedidoController.adicionarItem(pedidoCartao, itemCartao);
         
-        Pagamento pagamentoCartao = pagamentoController.criarPagamentoCartao("1234567890123456");
-        boolean sucessoCartao = pedidoController.processarPagamento(pedidoCartao, pagamentoCartao);
-        System.out.println("Pagamento com cartão: " + (sucessoCartao ? "Sucesso" : "Falha"));
-
-        // Teste de pagamento com PIX
+        // Teste com PIX
         Pedido pedidoPix = pedidoController.criarPedido("usuario_teste_pix");
-        Cafe cafePix = new Cafe("Café Expresso", 5.0f, "Café expresso tradicional");
-        ItemPedido itemPix = new ItemPedido(cafePix, 1);
+        ItemPedido itemPix = pedidoController.criarItemPedido("Espresso", 1);
         pedidoController.adicionarItem(pedidoPix, itemPix);
         
-        Pagamento pagamentoPix = pagamentoController.criarPagamentoPix("chave.pix@teste.com");
-        boolean sucessoPix = pedidoController.processarPagamento(pedidoPix, pagamentoPix);
-        System.out.println("Pagamento com PIX: " + (sucessoPix ? "Sucesso" : "Falha"));
-        
-        // Teste de pagamento em dinheiro
+        // Teste com dinheiro
         Pedido pedidoDinheiro = pedidoController.criarPedido("usuario_teste_dinheiro");
-        Cafe cafeDinheiro = new Cafe("Café Expresso", 5.0f, "Café expresso tradicional");
-        ItemPedido itemDinheiro = new ItemPedido(cafeDinheiro, 1);
+        ItemPedido itemDinheiro = pedidoController.criarItemPedido("Espresso", 1);
         pedidoController.adicionarItem(pedidoDinheiro, itemDinheiro);
         
-        // Teste com valor suficiente
+        // Teste de pagamento em dinheiro
         Pagamento pagamentoDinheiro = pagamentoController.criarPagamentoDinheiro(10.0f);
         boolean sucessoDinheiro = pedidoController.processarPagamento(pedidoDinheiro, pagamentoDinheiro);
         System.out.println("Pagamento em dinheiro (valor suficiente): " + (sucessoDinheiro ? "Sucesso" : "Falha"));

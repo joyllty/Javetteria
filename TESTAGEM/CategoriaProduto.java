@@ -1,0 +1,7 @@
+//enum
+package model;
+
+public enum CategoriaProduto {
+  BEBIDAS_FRIAS, DRINKS_ALCOOLICOS, DRINKS_NAO_ALCOOLICOS,
+    DOCES, SALGADOS, FRIOS,CAFES,CAFES_GELADOS,CHAS
+}
