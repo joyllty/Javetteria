@@ -3,7 +3,7 @@ package view;
 import controller.CardapioController;
 import model.Produto;
 import model.CategoriaProduto;
-import utils.InputHelper; // Importa a classe InputHelper
+import utils.InputHelper;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -21,8 +21,8 @@ public class CardapioView {
         int opcao;
         do {
             exibirMenuPrincipal();
-            System.out.print("Escolha uma opção: "); // Imprime o prompt ANTES
-            opcao = InputHelper.lerInt(); // Chama lerInt sem argumentos
+            System.out.print("Escolha uma opção: ");
+            opcao = InputHelper.lerInt();
 
             switch (opcao) {
                 case 1:
@@ -61,8 +61,8 @@ public class CardapioView {
         if (produtos.isEmpty()) {
             System.out.println("\nO cardápio está vazio no momento.");
             System.out.println("------------------------------------------");
-            System.out.print("Pressione Enter para continuar..."); // Imprime o prompt ANTES
-            InputHelper.lerString(); // Chama lerString sem argumentos
+            System.out.print("Pressione Enter para continuar...");
+            InputHelper.lerString();
             return;
         }
 
@@ -87,8 +87,8 @@ public class CardapioView {
         }
         System.out.println("\n--- FIM DO CARDÁPIO ---");
         System.out.println("==========================================");
-        System.out.print("Pressione Enter para continuar..."); // Imprime o prompt ANTES
-        InputHelper.lerString(); // Chama lerString sem argumentos
+        System.out.print("Pressione Enter para continuar...");
+        InputHelper.lerString();
     }
 
     private void buscarProdutosPorCategoria() {
@@ -100,15 +100,15 @@ public class CardapioView {
             System.out.println((i + 1) + ". " + categorias[i].name().replace("_", " "));
         }
 
-        System.out.print("Escolha o número da categoria: "); // Imprime o prompt ANTES
-        int escolhaCategoriaNum = InputHelper.lerInt(); // Chama lerInt sem argumentos
+        System.out.print("Escolha o número da categoria: ");
+        int escolhaCategoriaNum = InputHelper.lerInt();
 
 
 
         if (escolhaCategoriaNum < 1 || escolhaCategoriaNum > categorias.length) {
             System.out.println("Número de categoria inválido.");
-            System.out.print("Pressione Enter para continuar..."); // Imprime o prompt ANTES
-            InputHelper.lerString(); // Chama lerString sem argumentos
+            System.out.print("Pressione Enter para continuar...");
+            InputHelper.lerString();
             return;
         }
 

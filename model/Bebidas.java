@@ -12,6 +12,14 @@ public class Bebidas extends Produto {
 
     }
 
+    public String getTamanho() {
+        return tamanho;
+    }
+
+    public String getTemperatura() {
+        return temperatura;
+    }
+
     @Override
     public String descricaoDetalhada(){
 

@@ -1,4 +1,4 @@
-//enum
+
 package model;
 
 public enum CategoriaProduto {
