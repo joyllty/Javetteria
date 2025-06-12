@@ -2,9 +2,9 @@ package controller;
 
 import model.Cardapio; // Importa a classe Cardapio (o Model)
 import model.Produto; // Importa a classe Produto
-//import model.CategoriaProduto; comentei pq aqui é exclusivo de busca
+import model.CategoriaProduto; //exclusivo para busca
 import java.util.List;
-//import java.util.stream.Collectors; // mesma coisa aqui
+import java.util.stream.Collectors; // mesma coisa aqui
 
 public class CardapioController {
 
@@ -21,20 +21,11 @@ public class CardapioController {
         return cardapio.getProdutos(); // Bucetudo qye Delega a responsabilidade de obter a lista
     }
 
-    /* Metodo para buscar produtos por categoria (funcionalidade futura)
     public List<Produto> buscarPorCategoria(CategoriaProduto categoria) {
         // Usa Stream API para filtrar os produtos pela categoria desejada
         return cardapio.getProdutos().stream()
                 .filter(produto -> produto.getCategoria() == categoria)
                 .collect(Collectors.toList());
     }
-
-    Metodo para buscar produtos por nome (funcionalidade futura que ainda to terminando)
-   public List<Produto> buscarPorNome(String nomeBusca) {
-        String nomeBuscaLowerCase = nomeBusca.toLowerCase(); // Para busca sem distinção de maiúsculas/minúsculas
-        return cardapio.getProdutos().stream()
-                .filter(produto -> produto.getNome().toLowerCase().contains(nomeBuscaLowerCase))
-                .collect(Collectors.toList());
-    }*/
 
 }
