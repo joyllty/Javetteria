@@ -1,23 +1,21 @@
 package view;
 
 import model.Funcionario;
-import model.Gerente;
-import model.Menu;
 import utils.Cores;
 import utils.InputHelper;
-import controller.MenuPedidoGerenteController;
+import controller.MenuPedidoController;
 import controller.PedidoController;
 import controller.PagamentoController;
 
 public class MenuFuncionario {
 
-    private static final MenuPedidoGerenteController menuPedidoGerenteController;
+    private static final MenuPedidoController menuPedidoController;
     private static Funcionario funcionarioAtual;
 
     static {
         PedidoController pedidoController = new PedidoController();
         PagamentoController pagamentoController = new PagamentoController();
-        menuPedidoGerenteController = new MenuPedidoGerenteController(pedidoController, pagamentoController);
+        menuPedidoController = new MenuPedidoController(pedidoController, pagamentoController);
     }
 
     public static void menuFuncionario(Funcionario funcionario){
@@ -41,9 +39,9 @@ public class MenuFuncionario {
             opFuncionario = InputHelper.lerInt();
 
             switch (opFuncionario) {
-                case 1 -> menuPedidoGerenteController.registrarPedido(funcionarioAtual.getLogin());
-                case 2 -> menuPedidoGerenteController.listarPedidosPendentes();
-                case 3 -> menuPedidoGerenteController.pagamentoPedido();
+                case 1 -> menuPedidoController.registrarPedido(funcionarioAtual.getLogin());
+                case 2 -> menuPedidoController.listarPedidosPendentesGlobal();
+                case 3 -> menuPedidoController.pagamentoPedidoGlobal();
                 case 0 -> System.out.println("\nVoltando para o menu principal...");
                 default -> System.out.print(Cores.LAVENDER + "\n>>" + Cores.RESET + Cores.CREME + "Opção inválida!");
             }

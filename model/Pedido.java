@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.StatusPedido;
+
 public class Pedido {
     private int numeroPedido;
     private List<ItemPedido> itens;
@@ -56,9 +58,13 @@ public class Pedido {
         return formaPagamento != null;
     }
 
+    public StatusPedido getStatus() {
+        return formaPagamento != null ? StatusPedido.PAGO : StatusPedido.PENDENTE;
+    }
+
     public String resumoPedido() {
         StringBuilder resumo = new StringBuilder();
-        String status = formaPagamento != null ? "[PAGO]" : "[PENDENTE]";
+        String status = getStatus().getTag();
         resumo.append(status)
               .append(" Pedido #").append(numeroPedido)
               .append(" | Usuário: ").append(usuario)

@@ -1,23 +1,21 @@
 package view;
 
-import model.Cliente;
 import model.Gerente;
-import model.Menu;
 import utils.Cores;
 import utils.InputHelper;
-import controller.MenuPedidoGerenteController;
+import controller.MenuPedidoController;
 import controller.PedidoController;
 import controller.PagamentoController;
 
 public class MenuGerente{
 
-    private static final MenuPedidoGerenteController menuPedidoGerenteController;
+    private static final MenuPedidoController menuPedidoController;
     private static Gerente gerenteAtual;
 
     static {
         PedidoController pedidoController = new PedidoController();
         PagamentoController pagamentoController = new PagamentoController();
-        menuPedidoGerenteController = new MenuPedidoGerenteController(pedidoController, pagamentoController);
+        menuPedidoController = new MenuPedidoController(pedidoController, pagamentoController);
     }
 
     public static void menuGerente(Gerente gerente){
@@ -64,10 +62,10 @@ public class MenuGerente{
             opPedidosG = InputHelper.lerInt();
 
             switch (opPedidosG) {
-                case 1 -> menuPedidoGerenteController.registrarPedido(gerenteAtual.getLogin());
-                case 2 -> menuPedidoGerenteController.listarPedidosPendentes();
-                case 3 -> menuPedidoGerenteController.removerPedido();
-                case 4 -> menuPedidoGerenteController.pagamentoPedido();
+                case 1 -> menuPedidoController.registrarPedido(gerenteAtual.getLogin());
+                case 2 -> menuPedidoController.listarPedidosPendentesGlobal();
+                case 3 -> menuPedidoController.removerPedidoGlobal();
+                case 4 -> menuPedidoController.pagamentoPedidoGlobal();
                 case 0 -> System.out.println("\nVoltando...");
                 default -> System.out.print("\n" + (Cores.LAVENDER + ">>" + Cores.RESET) + Cores.CREME + " Opção inválida!");
             }
@@ -100,7 +98,7 @@ public class MenuGerente{
                 case 3 -> Acessar.cadastrarNovoFuncionarioGerente();
                 case 4 -> Acessar.removerFuncionarioGerente();
                 case 5 -> Acessar.alterarSenhaUsuarioGerente();
-                case 6 -> menuPedidoGerenteController.listarTodosPedidos();
+                case 6 -> menuPedidoController.listarTodosPedidos();
                 case 0 -> System.out.println("\nVoltando...");
             }
         } while (opGerencia != 0);

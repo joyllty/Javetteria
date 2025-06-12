@@ -8,6 +8,7 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
 import utils.Utils;
+import model.StatusPedido;
 
 public class PedidoController {
     private List<Pedido> pedidos;
@@ -95,7 +96,6 @@ public class PedidoController {
         try (PrintWriter writer = new PrintWriter(new FileWriter(ARQUIVO_PEDIDOS))) {
             for (Pedido pedido : pedidos) {
                 if (pedido.getItens().size() > 0) {
-                    String status = pedido.isPago() ? "[PAGO]" : "[PENDENTE]";
                     writer.println(pedido.resumoPedido());
                 }
             }
@@ -109,8 +109,8 @@ public class PedidoController {
             String linha;
             Pedido pedidoAtual = null;
             while ((linha = reader.readLine()) != null) {
-                boolean isPago = linha.startsWith("[PAGO]");
-                if (linha.startsWith("[PAGO]") || linha.startsWith("[PENDENTE]")) {
+                boolean isPago = linha.startsWith(StatusPedido.PAGO.getTag());
+                if (linha.startsWith(StatusPedido.PAGO.getTag()) || linha.startsWith(StatusPedido.PENDENTE.getTag())) {
                     linha = linha.substring(linha.indexOf("]") + 1).trim();
                 }
 
@@ -164,12 +164,6 @@ public class PedidoController {
         } catch (IOException e) {
             System.err.println("Erro ao carregar pedidos: " + e.getMessage());
         }
-    }
-
-    public void registrarNovoPedido(String usuario, String nomeProduto, int quantidade) {
-        Pedido pedido = criarPedido(usuario);
-        ItemPedido item = criarItemPedido(nomeProduto, quantidade);
-        adicionarItem(pedido, item);
     }
 
     public List<Pedido> listarPedidosUsuario(String usuario) {
