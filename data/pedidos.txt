@@ -1,0 +1,23 @@
+[PENDENTE] Pedido #3 | Usuário: usuario_teste_cartao
+Itens:
+- Espresso x1 - R$ 7,00
+Total: R$ 7,00
+[PENDENTE] Pedido #4 | Usuário: usuario_teste_pix
+Itens:
+- Espresso x1 - R$ 7,00
+Total: R$ 7,00
+[PAGO] Pedido #5 | Usuário: usuario_teste_dinheiro
+Itens:
+- Espresso x1 - R$ 7,00
+Total: R$ 7,00
+Forma de Pagamento: Dinheiro
+[PAGO] Pedido #6 | Usuário: usuario_teste_dinheiro_insuficiente
+Itens:
+- Espresso x1 - R$ 7,00
+Total: R$ 7,00
+Forma de Pagamento: Dinheiro
+[PAGO] Pedido #9 | Usuário: usuario_teste_menu
+Itens:
+- Corn Dog x2 - R$ 25,00
+Total: R$ 25,00
+Forma de Pagamento: Dinheiro
