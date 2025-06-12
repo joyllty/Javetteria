@@ -18,6 +18,13 @@ public class Main {
         UsuarioController usuarioController = new UsuarioController(clientes, funcionarios, gerentes);
         Acessar acessar = new Acessar(usuarioController);
 
+        Cardapio cardapioModel = new Cardapio();
+
+        CardapioController cardapioController = new CardapioController(cardapioModel);
+
+        CardapioView cardapioView = new CardapioView(cardapioController);
+
+
         model.Estoque.inicializarEstoque();
 
         view.MenuInterativo.arteInicial();

@@ -2,29 +2,21 @@ package model;
 
 public class Gerente extends Pessoa implements ContaUsuario{
 
-    private String cargo;
     private String turno;
 
 
-    public Gerente(String nome, String login, String cpf, String cargo, String turno, String senha){
+    public Gerente(String nome, String login, String cpf, String turno, String senha){
         super(nome, login, cpf, senha);
-        this.cargo = cargo;
         this.turno = turno;
     }
 
     //sets
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
 
     public void setTurno(String turno) {
         this.turno = turno;
     }
 
     //gets
-    public String getCargo() {
-        return cargo;
-    }
 
     public String getTurno() {
         return turno;

@@ -31,13 +31,13 @@ public class MenuInterativo {
         int opPrincipal;
         do{
 
-            System.out.println(Cores.CREME + "\n ╔═══════════════════════╗ ");
-            System.out.println(" ║                       ║");
-            System.out.println(" ║ [1] LOGIN             ║");
-            System.out.println(" ║ [2] CADASTRO          ║");
-            System.out.println(" ║ [0] SAIR              ║");
-            System.out.println(" ║                       ║");
-            System.out.println(" ╚═══════════════════════╝ ");
+            System.out.println(Cores.CREME + "\n ╔════════════════════════╗ ");
+            System.out.println(" ║                        ║");
+            System.out.println(" ║ [1] LOGIN              ║");
+            System.out.println(" ║ [2] CADASTRO           ║");
+            System.out.println(" ║ [0] SAIR               ║");
+            System.out.println(" ║                        ║");
+            System.out.println(" ╚════════════════════════╝ ");
 
             System.out.print("\n" + (Cores.LAVENDER + ">>" + Cores.RESET) + Cores.CREME + " Selecione uma opção: ");
             opPrincipal = InputHelper.lerInt();
@@ -60,14 +60,14 @@ public class MenuInterativo {
     public static void menuCadastro() {
         int opCadastro;
 
-            System.out.println(Cores.CREME + "\n ╔═══════════════════════╗ ");
-            System.out.println(" ║                       ║");
-            System.out.println(" ║ [1] CLIENTE           ║");
-            System.out.println(" ║ [2] FUNCIONÁRIO       ║");
-            System.out.println(" ║ [3] GERENTE           ║");
-            System.out.println(" ║ [0] SAIR              ║");
-            System.out.println(" ║                       ║");
-            System.out.println(" ╚═══════════════════════╝ ");
+            System.out.println(Cores.CREME + "\n ╔════════════════════════╗ ");
+            System.out.println(" ║                        ║");
+            System.out.println(" ║ [1] CLIENTE            ║");
+            System.out.println(" ║ [2] FUNCIONÁRIO        ║");
+            System.out.println(" ║ [3] GERENTE            ║");
+            System.out.println(" ║ [0] SAIR               ║");
+            System.out.println(" ║                        ║");
+            System.out.println(" ╚════════════════════════╝ ");
 
             System.out.print("\n" + (Cores.LAVENDER + ">>" + Cores.RESET) + Cores.CREME + " Selecione quem deseja cadastrar: ");
             opCadastro = InputHelper.lerInt();

@@ -9,40 +9,29 @@ public class InputHelper {
     public static int lerInt() {
         while (true) {
             try {
-                String entrada = input.nextLine().trim();
-                if (entrada.isEmpty()) {
-                    System.out.println("Erro: Entrada vazia. Por favor, digite um número.");
-                    continue;
-                }
-                return Integer.parseInt(entrada);
+                return Integer.parseInt(input.nextLine().trim());
             } catch (NumberFormatException e) {
-                System.out.println("Erro: Por favor, digite um número válido.");
+                System.out.println("\n\u001B[38;5;130mEntrada inválida! Por favor, digite um número inteiro.\u001B[0m" +
+                        Cores.CREME);
             }
         }
     }
-
     public static String lerString() {
-        while (true) {
-            String entrada = input.nextLine().trim();
-            if (entrada.isEmpty()) {
-                System.out.println("Erro: Entrada vazia. Por favor, digite um texto.");
-                continue;
-            }
-            return entrada;
+        String entrada = input.nextLine().trim();
+        while (entrada.isEmpty()) {
+            System.out.println("\n\u001B[38;5;130mEntrada inválida! Por favor, digite um texto.\u001B[0m" +
+                    Cores.CREME);
+            entrada = input.nextLine().trim();
         }
+        return entrada;
     }
-
     public static float lerFloat() {
         while (true) {
             try {
-                String entrada = input.nextLine().trim();
-                if (entrada.isEmpty()) {
-                    System.out.println("Erro: Entrada vazia. Por favor, digite um número decimal.");
-                    continue;
-                }
-                return Float.parseFloat(entrada.replace(",", "."));
+                return Float.parseFloat(input.nextLine().trim().replace(",", "."));
             } catch (NumberFormatException e) {
-                System.out.println("Erro: Por favor, digite um número decimal válido.");
+                System.out.println("\n\u001B[38;5;130mEntrada inválida! Por favor, digite um número decimal.\u001B[0m" +
+                        Cores.CREME);
             }
         }
     }

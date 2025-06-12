@@ -46,7 +46,7 @@ public class EstoqueView implements Menu {
         System.out.println(" ║ [3] REMOVER ITENS         ║");
         System.out.println(" ║ [4] ATUALIZAR QUANTIDADES ║");
         System.out.println(" ║ [5] EXPORTAR ESTOQUE      ║");
-        System.out.println(" ║ [6] VOLTAR                ║");
+        System.out.println(" ║ [0] VOLTAR                ║");
         System.out.println(" ║                           ║");
         System.out.println(" ╚═══════════════════════════╝ ");
 

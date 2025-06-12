@@ -10,29 +10,40 @@ public class Estoque{
 
     public static void inicializarEstoque() {
         adicionar(new Ingrediente(1, "Café", 20, "1Kg"));
-        adicionar(new Ingrediente(2, "Leite", 48, "1L"));
-        adicionar(new Ingrediente(3, "Leite Zero Lactose", 26, "1L"));
-        adicionar(new Ingrediente(4, "Leite Vegetal", 10, "1L"));
-        adicionar(new Ingrediente(5, "Xarope de Limão",20, "700mL"));
-        adicionar(new Ingrediente(6, "Xarope de Morango",23, "700mL"));
-        adicionar(new Ingrediente(8, "Xarope de Pêssego",25, "700mL"));
-        adicionar(new Ingrediente(9, "Xarope de Baunilha",25, "700mL"));
-        adicionar(new Ingrediente(10, "Xarope de Cramberry",21, "700mL"));
+        adicionar(new Ingrediente(2, "Matchá", 10, "1Kg"));
+        adicionar(new Ingrediente(3, "Leite", 48, "1L"));
+        adicionar(new Ingrediente(4, "Leite Zero Lactose", 26, "1L"));
+        adicionar(new Ingrediente(5, "Leite Vegetal", 10, "1L"));
+        adicionar(new Ingrediente(6, "Xarope de Limão",20, "700ml"));
+        adicionar(new Ingrediente(7, "Xarope de Morango",23, "700ml"));
+        adicionar(new Ingrediente(8, "Xarope de Pêssego",25, "700ml"));
+        adicionar(new Ingrediente(9, "Xarope de Baunilha",25, "700ml"));
+        adicionar(new Ingrediente(10, "Xarope de Cranberry",21, "700ml"));
         adicionar(new Ingrediente(11, "Calda de Caramelo",20, "1,3Kg"));
         adicionar(new Ingrediente(12, "Calda de Chocolate",20, "1,3Kg"));
-        adicionar(new Ingrediente(13, "Chá Matte",2, "20un"));
-        adicionar(new Ingrediente(14, "Polpa de Morango",20,"100g"));
-        adicionar(new Ingrediente(15, "Polpa de Pêssego",20,"100g"));
-        adicionar(new Ingrediente(16, "Laranja",52,"unidade"));
-        adicionar(new Ingrediente(17, "Sprite",30,"350mL"));
-        adicionar(new Ingrediente(18, "Coca-Cola",45,"350mL"));
-        adicionar(new Ingrediente(19, "Guaraná",43,"350mL"));
-        adicionar(new Ingrediente(20, "Monster",30,"473mL"));
-        adicionar(new Ingrediente(21, "Red Bull",34,"250mL"));
-        adicionar(new Ingrediente(22, "Canela",1,"5Kg"));
-        adicionar(new Ingrediente(23, "Açúcar",5, "10Kg"));
-        adicionar(new Ingrediente(24, "Ovo",95, "unidade"));
-        adicionar(new Ingrediente(25, "Chocolate",10, "1Kg"));
+        adicionar(new Ingrediente(13, "Essência de Baunilha",4, "960ml"));
+        adicionar(new Ingrediente(14, "Chá Matte",2, "20un"));
+        adicionar(new Ingrediente(15, "Polpa de Morango",20,"100g"));
+        adicionar(new Ingrediente(16, "Polpa de Pêssego",20,"100g"));
+        adicionar(new Ingrediente(17, "Laranja",52,"unidade"));
+        adicionar(new Ingrediente(18, "Limão",20,"unidade"));
+        adicionar(new Ingrediente(19, "Canela",1,"5Kg"));
+        adicionar(new Ingrediente(20, "Açúcar",5, "10Kg"));
+        adicionar(new Ingrediente(21, "Ovo",95, "unidade"));
+        adicionar(new Ingrediente(22, "Chocolate ao Leite",10, "1Kg"));
+        adicionar(new Ingrediente(23, "Chocolate Branco",7, "1Kg"));
+        adicionar(new Ingrediente(24, "Chocolate Meio Amargo",7, "1Kg"));
+        adicionar(new Ingrediente(25, "Leite Condensado",40, "395g"));
+        adicionar(new Ingrediente(26, "Manteiga",10, "5Kg"));
+        adicionar(new Ingrediente(27, "Sprite",30,"300mL"));
+        adicionar(new Ingrediente(28, "Coca-Cola",45,"300mL"));
+        adicionar(new Ingrediente(29, "Água sem gás",50,"520ml"));
+        adicionar(new Ingrediente(30, "Água com gás",34,"520ml"));
+        adicionar(new Ingrediente(31, "Vodka",2,"1L"));
+        adicionar(new Ingrediente(32, "Whisky",2,"750ml"));
+        adicionar(new Ingrediente(33, "Soju Tradicional",3,"360ml"));
+        adicionar(new Ingrediente(34, "Soju de Yakult",5,"360ml"));
+        adicionar(new Ingrediente(35, "Licor de Café",2,"720ml"));
     }
 
     public static void adicionar(Ingrediente ingrediente) {

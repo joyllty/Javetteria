@@ -1,0 +1,2 @@
+brubs;123;Funcionário;bru;12312321;barista;noite
+acenak;123;Funcionário;matheus;12124123;barista;noite
