@@ -11,6 +11,14 @@ public class Bebidas extends Produto {
         this.temperatura = temperatura;
     }
 
+    public String getTamanho() {
+        return tamanho;
+    }
+
+    public String getTemperatura() {
+        return temperatura;
+    }
+
     @Override
     public String descricaoDetalhada(){
      return  "Categoria >> " + getCategoria().name() + "\n"+
