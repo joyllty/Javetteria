@@ -5,11 +5,23 @@ import model.Gerente;
 import model.Menu;
 import utils.Cores;
 import utils.InputHelper;
+import controller.MenuPedidoGerenteController;
+import controller.PedidoController;
+import controller.PagamentoController;
 
 public class MenuGerente{
 
-    // view menu gerente
+    private static final MenuPedidoGerenteController menuPedidoGerenteController;
+    private static Gerente gerenteAtual;
+
+    static {
+        PedidoController pedidoController = new PedidoController();
+        PagamentoController pagamentoController = new PagamentoController();
+        menuPedidoGerenteController = new MenuPedidoGerenteController(pedidoController, pagamentoController);
+    }
+
     public static void menuGerente(Gerente gerente){
+        gerenteAtual = gerente;
         int opGerente = 0;
         do {
             System.out.println("\n ╔══════════════════════════╗");
@@ -35,7 +47,6 @@ public class MenuGerente{
         } while(opGerente != 0);
     }
 
-    // view menu gerência - pedidos
     public static void menuGerentePedidos() {
         int opPedidosG;
         do {
@@ -53,29 +64,18 @@ public class MenuGerente{
             opPedidosG = InputHelper.lerInt();
 
             switch (opPedidosG) {
-                case 1:
-                    System.out.println("Registrando pedido......");
-                    break;
-                case 2:
-                    System.out.println("Exibir fila de pedidos.....");
-                    break;
-                case 3:
-                    System.out.println("Buscar pedido por numero e remover");
-                    break;
-                case 4:
-                    System.out.println("[1] CARTÃO\n[2] DINHEIRO\n[3]PIX");
-                    break;
-                case 0:
-                    System.out.println("\nVoltando...");
-                    break;
-                default:
-                    System.out.print("\n" + (Cores.LAVENDER + ">>" + Cores.RESET) + Cores.CREME + " Opção inválida!");
+                case 1 -> menuPedidoGerenteController.registrarPedido(gerenteAtual.getLogin());
+                case 2 -> menuPedidoGerenteController.listarPedidosPendentes();
+                case 3 -> menuPedidoGerenteController.removerPedido();
+                case 4 -> menuPedidoGerenteController.pagamentoPedido();
+                case 0 -> System.out.println("\nVoltando...");
+                default -> System.out.print("\n" + (Cores.LAVENDER + ">>" + Cores.RESET) + Cores.CREME + " Opção inválida!");
             }
 
         } while (opPedidosG != 0);
     }
 
-    // view menu gerência - gerenciamento
+
     public static void menuGerenteGerenciamento () {
         int opGerencia;
         do {
@@ -100,7 +100,7 @@ public class MenuGerente{
                 case 3 -> Acessar.cadastrarNovoFuncionarioGerente();
                 case 4 -> Acessar.removerFuncionarioGerente();
                 case 5 -> Acessar.alterarSenhaUsuarioGerente();
-                // ESPERANDO ARTHUR case 6 -> Acessar.
+                case 6 -> menuPedidoGerenteController.listarTodosPedidos();
                 case 0 -> System.out.println("\nVoltando...");
             }
         } while (opGerencia != 0);

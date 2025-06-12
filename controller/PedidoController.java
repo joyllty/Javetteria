@@ -7,7 +7,7 @@ import java.util.List;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
-import java.text.Normalizer;
+import utils.Utils;
 
 public class PedidoController {
     private List<Pedido> pedidos;
@@ -23,26 +23,22 @@ public class PedidoController {
         carregarPedidos();
     }
 
-    // Cria novo pedido e adiciona à lista
     public Pedido criarPedido(String usuario) {
         Pedido pedido = new Pedido(usuario, proximoNumeroPedido++);
         pedidos.add(pedido);
         return pedido;
     }
 
-    // Adiciona item ao pedido
     public void adicionarItem(Pedido pedido, ItemPedido item) {
         pedido.adicionarItem(item);
         salvarPedidos();
     }
 
-    // Remove item do pedido
     public void removerItem(Pedido pedido, ItemPedido item) {
         pedido.removerItem(item);
         salvarPedidos();
     }
 
-    // Processa pagamento e salva pedidos se sucesso
     public boolean processarPagamento(Pedido pedido, Pagamento pagamento) {
         if (pedido == null || pedido.isPago()) {
             return false;
@@ -54,7 +50,6 @@ public class PedidoController {
         return sucesso;
     }
 
-    // Busca pedido pelo número
     public Pedido buscarPedido(int numeroPedido) {
         for (Pedido pedido : pedidos) {
             if (pedido.getNumeroPedido() == numeroPedido) {
@@ -64,12 +59,10 @@ public class PedidoController {
         return null;
     }
 
-    // Retorna cópia da lista para evitar modificações externas
     public List<Pedido> listarPedidos() {
         return new ArrayList<>(pedidos);
     }
 
-    // Retorna lista de pedidos pendentes do usuário
     public List<Pedido> listarPedidosPendentes(String usuario) {
         List<Pedido> pedidosPendentes = new ArrayList<>();
         for (Pedido pedido : pedidos) {
@@ -80,7 +73,6 @@ public class PedidoController {
         return pedidosPendentes;
     }
 
-    // Remove um pedido da lista
     public boolean removerPedido(int numeroPedido) {
         Pedido pedido = buscarPedido(numeroPedido);
         if (pedido != null && !pedido.isPago()) {
@@ -90,22 +82,15 @@ public class PedidoController {
         return false;
     }
 
-    private String normalizarTexto(String texto) {
-        return Normalizer.normalize(texto.toLowerCase(), Normalizer.Form.NFD)
-                .replaceAll("\\p{M}", "");
-    }
-
-    // Cria um novo item de pedido
     public ItemPedido criarItemPedido(String nomeProduto, int quantidade) {
-        String nomeNormalizado = normalizarTexto(nomeProduto);
+        String nomeNormalizado = Utils.normalizarTexto(nomeProduto);
         Produto produto = cardapio.getProdutos().stream()
-            .filter(p -> normalizarTexto(p.getNome()).equals(nomeNormalizado))
+            .filter(p -> Utils.normalizarTexto(p.getNome()).equals(nomeNormalizado))
             .findFirst()
             .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado: " + nomeProduto));
         return new ItemPedido(produto, quantidade);
     }
 
-    // Salva pedidos no arquivo mantendo os números originais
     public void salvarPedidos() {
         try (PrintWriter writer = new PrintWriter(new FileWriter(ARQUIVO_PEDIDOS))) {
             for (Pedido pedido : pedidos) {
@@ -119,13 +104,11 @@ public class PedidoController {
         }   
     }
 
-    // Carrega pedidos do arquivo e recria objetos
     private void carregarPedidos() {
         try (BufferedReader reader = new BufferedReader(new FileReader(ARQUIVO_PEDIDOS))) {
             String linha;
             Pedido pedidoAtual = null;
             while ((linha = reader.readLine()) != null) {
-                // Checa se foi pago
                 boolean isPago = linha.startsWith("[PAGO]");
                 if (linha.startsWith("[PAGO]") || linha.startsWith("[PENDENTE]")) {
                     linha = linha.substring(linha.indexOf("]") + 1).trim();
@@ -151,9 +134,9 @@ public class PedidoController {
                             int quantidade = Integer.parseInt(quantidadePreco[0].trim());
                             try {
                                 float preco = numberFormat.parse(quantidadePreco[1].trim()).floatValue();
-                                String nomeNormalizado = normalizarTexto(nome);
+                                String nomeNormalizado = Utils.normalizarTexto(nome);
                                 Produto produto = cardapio.getProdutos().stream()
-                                    .filter(p -> normalizarTexto(p.getNome()).equals(nomeNormalizado))
+                                    .filter(p -> Utils.normalizarTexto(p.getNome()).equals(nomeNormalizado))
                                     .findFirst()
                                     .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado: " + nome));
                                 ItemPedido item = new ItemPedido(produto, quantidade);
@@ -164,7 +147,6 @@ public class PedidoController {
                         }
                     }
                 } else if (pedidoAtual != null && linha.startsWith("Forma de Pagamento: ")) {
-                    // Se o pedido foi pago, cria um pagamento
                     if (isPago) {
                         String formaPagamento = linha.replace("Forma de Pagamento: ", "").trim();
                         Pagamento pagamento = null;
@@ -184,14 +166,12 @@ public class PedidoController {
         }
     }
 
-    // Registra um novo pedido com item
     public void registrarNovoPedido(String usuario, String nomeProduto, int quantidade) {
         Pedido pedido = criarPedido(usuario);
         ItemPedido item = criarItemPedido(nomeProduto, quantidade);
         adicionarItem(pedido, item);
     }
 
-    // Lista todos os pedidos de um usuário
     public List<Pedido> listarPedidosUsuario(String usuario) {
         List<Pedido> pedidosUsuario = new ArrayList<>();
         for (Pedido pedido : pedidos) {
@@ -200,5 +180,15 @@ public class PedidoController {
             }
         }
         return pedidosUsuario;
+    }
+
+    public List<Pedido> listarPedidosPendentesGlobal() {
+        List<Pedido> pendentes = new ArrayList<>();
+        for (Pedido pedido : pedidos) {
+            if (!pedido.isPago()) {
+                pendentes.add(pedido);
+            }
+        }
+        return pendentes;
     }
 }

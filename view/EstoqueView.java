@@ -6,10 +6,8 @@ import utils.Cores;
 import utils.InputHelper;
 import java.util.List;
 
-
 public class EstoqueView implements Menu {
 
-    // função principal do menu estoque - sobrescrita
     @Override
     public void executar() {
         int opEstoque = 0;
@@ -21,9 +19,7 @@ public class EstoqueView implements Menu {
         } while (opEstoque != 0);
     }
 
-    // ler opção do menu
     public void verificarOp(int op){
-
         switch (op) {
             case 1 -> listarItens();
             case 2 -> adicionarItem();
@@ -36,7 +32,6 @@ public class EstoqueView implements Menu {
         }
     }
 
-    // view menu estoque
     public static void menuEstoque(){
         System.out.println("\n  =========" + (Cores.LAVENDER +  " ESTOQUE " + Cores.RESET) + Cores.CREME +  "=========");
         System.out.println(" ╔═══════════════════════════╗");
@@ -53,9 +48,8 @@ public class EstoqueView implements Menu {
         System.out.print("\n" + (Cores.LAVENDER + ">>" + Cores.RESET) + Cores.CREME + " Selecione uma opção: ");
     }
 
-    // listar os itens do estoque
     private void listarItens() {
-        List<Ingrediente> lista = EstoqueController.listarItens(); //cria uma lista pegando a lista do estoque
+        List<Ingrediente> lista = EstoqueController.listarItens();
 
         System.out.println("\n╔════╦════════════════════════╦══════════════╦════════════╗");
         System.out.printf("║ %-2s ║ %-22s ║ %-12s ║ %-10s ║\n", "ID", "Nome", "Quantidade", "Unidade");
@@ -69,7 +63,6 @@ public class EstoqueView implements Menu {
         System.out.println("╚════╩════════════════════════╩══════════════╩════════════╝");
     }
 
-    // adicionar itens ao estoque
     public static void adicionarItem() {
         System.out.println("\n============" + (Cores.LAVENDER + " ADICIONAR ITEM " + Cores.RESET) + Cores.CREME + "============");
         System.out.println("\nDigite os dados do item a ser adicionado: ");
@@ -86,12 +79,11 @@ public class EstoqueView implements Menu {
         String unidade = InputHelper.lerString();
 
         EstoqueController.adicionarItem(id, nome, quantidade, unidade);
-        EstoqueController.exportarEstoque(); // adiciona estoque atualizado no arquivo estoque.txt
+        EstoqueController.exportarEstoque();
         System.out.println("\nItem adicionado com sucesso!");
         System.out.println("=========================================");
     }
 
-    // remover itens do estoque
     public static void removerItem(){
         System.out.println("\n============" + (Cores.LAVENDER + " REMOVER ITEM " + Cores.RESET) + Cores.CREME + "============");
         System.out.print("\nDigite o id do item a ser removido: ");
@@ -99,7 +91,7 @@ public class EstoqueView implements Menu {
 
         if(EstoqueController.removerItem(id)){
             System.out.println((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Item removido!");
-            EstoqueController.exportarEstoque(); // adiciona estoque atualizado no arquivo estoque.txt
+            EstoqueController.exportarEstoque();
         } else {
             System.out.println((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Item não encontrado!");
         }
@@ -107,7 +99,6 @@ public class EstoqueView implements Menu {
         System.out.println("======================================");
     }
 
-    // editar quantidade dos itens do estoque
     public static void editarItem() {
         System.out.println("\n============" + (Cores.LAVENDER + " EDITAR ITEM " + Cores.RESET) + Cores.CREME + "============");
         System.out.println("\nDigite o ID do item a ser alterado: ");
@@ -124,11 +115,7 @@ public class EstoqueView implements Menu {
         System.out.println("=====================================");
     }
 
-    // mostrar a mensagem de sucesso da exportação do estoque
     public static void mostrarMensagem(String msg) {
-        // mostrar a mensagem da exportação do estoque
         System.out.println(msg);
     }
-
-
 }

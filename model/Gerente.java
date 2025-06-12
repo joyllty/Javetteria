@@ -4,19 +4,14 @@ public class Gerente extends Pessoa implements ContaUsuario{
 
     private String turno;
 
-
     public Gerente(String nome, String login, String cpf, String turno, String senha){
         super(nome, login, cpf, senha);
         this.turno = turno;
     }
 
-    //sets
-
     public void setTurno(String turno) {
         this.turno = turno;
     }
-
-    //gets
 
     public String getTurno() {
         return turno;
@@ -39,6 +34,4 @@ public class Gerente extends Pessoa implements ContaUsuario{
     public void alterarSenha(String novaSenha) {
         this.setSenha(novaSenha);
     }
-
-
 }

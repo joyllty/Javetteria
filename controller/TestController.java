@@ -20,7 +20,6 @@ public class    TestController {
         Pedido pedido = pedidoController.criarPedido("teste_usuario");
         System.out.println("Pedido criado: " + pedido.resumoPedido());
         
-        // Teste de busca do pedido criado
         Pedido pedidoEncontrado = pedidoController.buscarPedido(pedido.getNumeroPedido());
         System.out.println("Pedido encontrado: " + (pedidoEncontrado != null ? "Sucesso" : "Falha"));
     }
@@ -29,12 +28,10 @@ public class    TestController {
         System.out.println("\n=== Testando Operações de Pedido ===");
         Pedido pedido = pedidoController.criarPedido("usuario_teste_operacoes");
         
-        // Teste de adicionar item
         ItemPedido item1 = pedidoController.criarItemPedido("Espresso", 2);
         pedidoController.adicionarItem(pedido, item1);
         System.out.println("Item adicionado: " + pedido.resumoPedido());
         
-        // Teste de remover item
         pedidoController.removerItem(pedido, item1);
         System.out.println("Item removido: " + pedido.resumoPedido());
     }
@@ -52,22 +49,18 @@ public class    TestController {
     public void testarPagamento() {
         System.out.println("\n=== Testando Pagamentos ===");
         
-        // Teste com cartão
         Pedido pedidoCartao = pedidoController.criarPedido("usuario_teste_cartao");
         ItemPedido itemCartao = pedidoController.criarItemPedido("Espresso", 1);
         pedidoController.adicionarItem(pedidoCartao, itemCartao);
         
-        // Teste com PIX
         Pedido pedidoPix = pedidoController.criarPedido("usuario_teste_pix");
         ItemPedido itemPix = pedidoController.criarItemPedido("Espresso", 1);
         pedidoController.adicionarItem(pedidoPix, itemPix);
         
-        // Teste com dinheiro
         Pedido pedidoDinheiro = pedidoController.criarPedido("usuario_teste_dinheiro");
         ItemPedido itemDinheiro = pedidoController.criarItemPedido("Espresso", 1);
         pedidoController.adicionarItem(pedidoDinheiro, itemDinheiro);
         
-        // Teste de pagamento em dinheiro
         Pagamento pagamentoDinheiro = pagamentoController.criarPagamentoDinheiro(10.0f);
         boolean sucessoDinheiro = pedidoController.processarPagamento(pedidoDinheiro, pagamentoDinheiro);
         System.out.println("Pagamento em dinheiro (valor suficiente): " + (sucessoDinheiro ? "Sucesso" : "Falha"));
@@ -75,14 +68,12 @@ public class    TestController {
             System.out.println("Troco: R$ " + ((PagamentoDinheiro)pagamentoDinheiro).getTroco());
         }
         
-        // Teste com valor insuficiente
         Pedido pedidoDinheiroInsuficiente = pedidoController.criarPedido("usuario_teste_dinheiro_insuficiente");
         pedidoController.adicionarItem(pedidoDinheiroInsuficiente, itemDinheiro);
         Pagamento pagamentoDinheiroInsuficiente = pagamentoController.criarPagamentoDinheiro(3.0f);
         boolean sucessoDinheiroInsuficiente = pedidoController.processarPagamento(pedidoDinheiroInsuficiente, pagamentoDinheiroInsuficiente);
         System.out.println("Pagamento em dinheiro (valor insuficiente): " + (sucessoDinheiroInsuficiente ? "Sucesso" : "Falha"));
         
-        // Teste de pagamento inválido
         try {
             Pedido pedidoInvalido = pedidoController.criarPedido("usuario_teste_invalido");
             boolean sucessoInvalido = pedidoController.processarPagamento(pedidoInvalido, null);
@@ -95,12 +86,10 @@ public class    TestController {
     public void testarBuscaPedido() {
         System.out.println("\n=== Testando Busca de Pedido ===");
         
-        // Teste de busca de pedido existente
         Pedido pedido = pedidoController.criarPedido("usuario_teste_busca");
         Pedido pedidoEncontrado = pedidoController.buscarPedido(pedido.getNumeroPedido());
         System.out.println("Busca de pedido existente: " + (pedidoEncontrado != null ? "Sucesso" : "Falha"));
         
-        // Teste de busca de pedido inexistente
         Pedido pedidoInexistente = pedidoController.buscarPedido(999999);
         System.out.println("Busca de pedido inexistente: " + (pedidoInexistente == null ? "Sucesso" : "Falha"));
     }
@@ -108,11 +97,9 @@ public class    TestController {
     public void testarMenuPedido() {
         System.out.println("\n=== Testando Menu de Pedidos ===");
         
-        // Teste de registro de pedido
         System.out.println("\nTestando registro de pedido:");
         menuPedidoController.iniciar("usuario_teste_menu");
         
-        // Verificar se o pedido foi criado
         List<Pedido> pedidos = pedidoController.listarPedidos();
         boolean pedidoCriado = pedidos.stream()
             .anyMatch(p -> p.getUsuario().equals("usuario_teste_menu"));

@@ -15,23 +15,19 @@ public class Pedido {
         this.usuario = usuario;
     }
 
-    // Adiciona item ao pedido e atualiza o total
     public void adicionarItem(ItemPedido item) {
         itens.add(item);
     }
 
-    // Remove item do pedido e atualiza o total
     public void removerItem(ItemPedido item) {
         itens.remove(item);
     }
 
-    // Processa pagamento e armazena forma de pagamento se sucesso
     public boolean processarPagamento(Pagamento pagamento) {
         this.formaPagamento = pagamento;
         return pagamento.processarPagamento(getValorTotal());
     }
 
-    // Calcula valor total do pedido somando subtotal de cada item
     public float getValorTotal() {
         float total = 0.0f;
         for (ItemPedido item : itens) {
@@ -44,7 +40,6 @@ public class Pedido {
         return numeroPedido;
     }
 
-    // Retorna cópia da lista para evitar modificações externas
     public List<ItemPedido> getItens() {
         return new ArrayList<>(itens);
     }
@@ -57,12 +52,10 @@ public class Pedido {
         return usuario;
     }
 
-    // Verifica se o pedido já foi pago
     public boolean isPago() {
         return formaPagamento != null;
     }
 
-    // Gera resumo formatado do pedido com número, usuário, itens e total
     public String resumoPedido() {
         StringBuilder resumo = new StringBuilder();
         String status = formaPagamento != null ? "[PAGO]" : "[PENDENTE]";

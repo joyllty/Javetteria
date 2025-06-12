@@ -6,15 +6,12 @@ import controller.LoginController;
 import utils.Cores;
 import utils.InputHelper;
 
-import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Acessar {
 
-    public static Scanner scanner = new Scanner(System.in);
     private static UsuarioController usuarioController;
     private static LoginController loginController;
-
 
     public Acessar(UsuarioController usuarioController) {
         this.usuarioController = usuarioController;
@@ -25,15 +22,11 @@ public class Acessar {
         );
     }
 
+    private static String pedirInput(String prompt) {
+        System.out.print(prompt);
+        return InputHelper.lerString();
+    }
 
-//    INPPUT
-private static String pedirInput(String prompt) {
-    System.out.print(prompt);
-    return scanner.nextLine();
-}
-
-
-    // novo metodo de login
     public static void realizarLogin() {
         System.out.println("\n==========" + (Cores.LAVENDER +  " LOGIN " + Cores.RESET) + Cores.CREME +  "==========");
 
@@ -52,9 +45,7 @@ private static String pedirInput(String prompt) {
             System.out.println("\nLogin inválido.");
             System.out.println("===========================");
         }
-
     }
-
 
     public static void exibirCadastro(int tipo) {
         if (tipo == 0) {
@@ -86,7 +77,6 @@ private static String pedirInput(String prompt) {
     private static void cadastrarCliente(String nome, String login, String cpf, String senha) {
         Cliente novoCliente = new Cliente(nome, login, cpf, senha);
 
-        //endereco
         System.out.println("\nEndereço");
         String rua = pedirInput((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Rua: ");
         String numero = pedirInput((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Número: ");
@@ -104,7 +94,6 @@ private static String pedirInput(String prompt) {
         usuarioController.adicionarCliente(novoCliente);
         System.out.println("\nCliente cadastrado com sucesso!");
         System.out.println("================================");
-
     }
 
     private static void cadastrarFuncionario(String nome, String login, String cpf, String senha) {
@@ -123,7 +112,6 @@ private static String pedirInput(String prompt) {
         System.out.println("\nGerente cadastrado com sucesso!");
         System.out.println("================================");
     }
-
 
     public static void exibirMenu(Pessoa pessoaLogada) {
         String tipo = pessoaLogada.getTipoPessoa();
@@ -147,14 +135,13 @@ private static String pedirInput(String prompt) {
         System.out.println("\n==========" + (Cores.LAVENDER +  " MEUS DADOS " + Cores.RESET) + Cores.CREME +  "==========");
         System.out.println((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Nome: " + cliente.getNome());
         System.out.println((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " CPF: " + cliente.getCpf());
-        // cerificação para Endereco não ser nulo
-        if (cliente.getEndereco() != null && cliente.getEndereco().getRua() != null && !cliente.getEndereco().getRua().isEmpty()) { //
+        if (cliente.getEndereco() != null && cliente.getEndereco().getRua() != null && !cliente.getEndereco().getRua().isEmpty()) {
             System.out.println((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Endereço: " + cliente.getEndereco().getRua() + ", " +
                     cliente.getEndereco().getNumero() + " - " + cliente.getEndereco().getBairro() +
                     ", " + cliente.getEndereco().getCidade());
             System.out.println("================================");
         } else {
-            System.out.println((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + "\nEndereço: Não cadastrado."); //
+            System.out.println((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + "\nEndereço: Não cadastrado.");
             System.out.println("================================");
         }
     }
@@ -184,9 +171,8 @@ private static String pedirInput(String prompt) {
         System.out.println((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Nome: " + funcionario.getNome());
         System.out.println((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Cargo: " + funcionario.getCargo());
         System.out.println((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Turno: " + funcionario.getTurno());
-        pedirInput("\nPressione Enter para prosseguir"); // Para dar tempo de ler as informações
+        InputHelper.lerString();
         System.out.println("================================");
-
     }
 
     public static void listarFuncionariosGerente() {
@@ -195,7 +181,6 @@ private static String pedirInput(String prompt) {
             System.out.println("Nome: " + f.getNome() + " | Cargo: " + f.getCargo() + " | Login: " + f.getLogin());
         }
     }
-
 
     public static void listarClientesGerente() {
         System.out.println("\n======" + (Cores.LAVENDER +  " LISTA CLIENTES " + Cores.RESET) + Cores.CREME +  "======");
@@ -208,7 +193,6 @@ private static String pedirInput(String prompt) {
             }
         }
     }
-
 
     public static void cadastrarNovoFuncionarioGerente() {
         System.out.println("\n=====" + (Cores.LAVENDER +  " CADASTRAR FUNCIONÁRIO " + Cores.RESET) + Cores.CREME +  "=====");
@@ -223,12 +207,11 @@ private static String pedirInput(String prompt) {
         System.out.println("==============================");
     }
 
-
     public static void removerFuncionarioGerente() {
         System.out.println("\n==========" + (Cores.LAVENDER +  " REMOVER FUNCIONÁRIO " + Cores.RESET) + Cores.CREME +
                 "==========");
         System.out.print((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Login do funcionário a remover: ");
-        String loginRemover = scanner.nextLine();
+        String loginRemover = InputHelper.lerString();
         if (usuarioController.removerFuncionario(loginRemover)) {
             System.out.println("\nFuncionário removido com sucesso.");
             System.out.println("===================================");
@@ -238,21 +221,15 @@ private static String pedirInput(String prompt) {
         }
     }
 
-
     public static void alterarSenhaUsuarioGerente() {
         System.out.println("\n=====" + (Cores.LAVENDER +  " ALTERAR SENHA " + Cores.RESET) + Cores.CREME +  "=====");
         System.out.print((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Login do usuário: ");
-        String loginAlt = scanner.nextLine();
+        String loginAlt = InputHelper.lerString();
         System.out.print((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Nova senha: ");
-        String novaSenha = scanner.nextLine();
+        String novaSenha = InputHelper.lerString();
 
         if (usuarioController.alterarSenha(loginAlt, novaSenha)) {
             System.out.println("\nSenha alterada.");
-            System.out.println("==============================");
-        } else {
-            System.out.println("\nUsuário não encontrado.");
-            System.out.println("==============================");
         }
     }
-
 }

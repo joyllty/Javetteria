@@ -1,6 +1,5 @@
 package model;
 
-
 public abstract class  Produto {
 
     private String nome;
@@ -8,13 +7,11 @@ public abstract class  Produto {
     private String descricao;
     protected CategoriaProduto categoria;
 
-
     public Produto(CategoriaProduto categoria,String nome,float preco, String descricao) {
         this.categoria = categoria;
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
-
     }
 
     public String getNome() {
@@ -29,9 +26,9 @@ public abstract class  Produto {
         return descricao;
     }
 
-    public CategoriaProduto getCategoria() { // Getter na classe mãe
+    public CategoriaProduto getCategoria() {
         return categoria;
     }
-   public abstract String descricaoDetalhada(); //cada produto precisa ter sua propria descrição detalhada
-
+    
+    public abstract String descricaoDetalhada();
 }

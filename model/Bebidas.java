@@ -9,12 +9,10 @@ public class Bebidas extends Produto {
         super(categoria,nome,preco,descricao);
         this.tamanho = tamanho;
         this.temperatura = temperatura;
-
     }
 
     @Override
     public String descricaoDetalhada(){
-
      return  "Categoria >> " + getCategoria().name() + "\n"+
              "Nome da Bebida >> " + getNome() + "\n"
              + "Preço >> R$ " + getPreco() + "\n"

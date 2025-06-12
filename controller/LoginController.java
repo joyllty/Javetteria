@@ -12,7 +12,6 @@ public class LoginController {
         this.clientes = clientes;
         this.funcionarios = funcionarios;
         this.gerentes = gerentes;
-
     }
 
     public Pessoa autenticar(String login, String senha) {
@@ -31,7 +30,6 @@ public class LoginController {
             if (p != null) return p;
         }
 
-        return null; // Falha no login
+        return null;
     }
-
 }

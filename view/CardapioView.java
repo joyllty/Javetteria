@@ -4,13 +4,11 @@ import controller.CardapioController;
 import model.Produto;
 import model.CategoriaProduto;
 import utils.Cores;
-import utils.InputHelper; // Importa a classe InputHelper
+import utils.InputHelper;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.Comparator;
-
-import static view.Acessar.scanner;
 
 public class CardapioView {
 
@@ -20,13 +18,11 @@ public class CardapioView {
         this.controller = controller;
     }
 
-    // METODO QUE O MATHEUS FEZ PRA LER O ENTER
     private static String pedirInput(String prompt) {
         System.out.print(prompt);
-        return scanner.nextLine();
+        return InputHelper.lerString();
     }
 
-    // METODO PRA USAR O SLEEP
     private static void sleep(long millis) {
         try {
             Thread.sleep(millis);
@@ -48,7 +44,7 @@ public class CardapioView {
         if (produtos.isEmpty()) {
             System.out.println("\nO cardápio está vazio no momento.");
             System.out.println("------------------------------------------");
-            pedirInput("\nPressione Enter para continuar..."); //função do matheus, ta no topo dessa classe
+            pedirInput("\nPressione Enter para continuar...");
 
             return;
         }
@@ -77,7 +73,7 @@ public class CardapioView {
         }
         System.out.println("\n>>>>> " + Cores.LAVENDER + "FIM DO CARDÁPIO" + Cores.RESET + Cores.CREME + " <<<<<" );
         System.out.println(Cores.CREME + "=============================================");
-        pedirInput("\nPressione Enter para prosseguir..."); //função do matheus, ta no topo dessa classe
+        pedirInput("\nPressione Enter para prosseguir...");
         System.out.println();
     }
 
@@ -92,10 +88,8 @@ public class CardapioView {
             System.out.println((i + 1) + ". " + categorias[i].name().replace("_", " "));
         }
 
-        System.out.print(Cores.LAVENDER + "\n>>" + Cores.RESET + Cores.CREME + " Escolha o número da categoria: "); // Imprime o prompt ANTES
-        int escolhaCategoriaNum = InputHelper.lerInt(); // Chama lerInt sem argumentos
-
-
+        System.out.print(Cores.LAVENDER + "\n>>" + Cores.RESET + Cores.CREME + " Escolha o número da categoria: ");
+        int escolhaCategoriaNum = InputHelper.lerInt();
 
         if (escolhaCategoriaNum < 1 || escolhaCategoriaNum > categorias.length) {
             System.out.println("\nNúmero de categoria inválido.");
@@ -123,8 +117,5 @@ public class CardapioView {
         }
 
         pedirInput("\nPressione Enter para continuar...");
-
-
-
     }
 }

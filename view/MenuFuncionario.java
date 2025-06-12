@@ -5,12 +5,23 @@ import model.Gerente;
 import model.Menu;
 import utils.Cores;
 import utils.InputHelper;
+import controller.MenuPedidoGerenteController;
+import controller.PedidoController;
+import controller.PagamentoController;
 
-import java.util.Scanner;
+public class MenuFuncionario {
 
-public class    MenuFuncionario {
+    private static final MenuPedidoGerenteController menuPedidoGerenteController;
+    private static Funcionario funcionarioAtual;
+
+    static {
+        PedidoController pedidoController = new PedidoController();
+        PagamentoController pagamentoController = new PagamentoController();
+        menuPedidoGerenteController = new MenuPedidoGerenteController(pedidoController, pagamentoController);
+    }
 
     public static void menuFuncionario(Funcionario funcionario){
+        funcionarioAtual = funcionario;
         Acessar.menuFuncionario(funcionario);
 
         int opFuncionario = 0;
@@ -30,14 +41,12 @@ public class    MenuFuncionario {
             opFuncionario = InputHelper.lerInt();
 
             switch (opFuncionario) {
-                case 1 -> System.out.println("Registrando pedido......");
-                case 2 -> System.out.println("Exibir fila de pedidos.....");
-                case 3 -> System.out.println("[1] CARTÃO\n[2] DINHEIRO\n[3]PIX");
+                case 1 -> menuPedidoGerenteController.registrarPedido(funcionarioAtual.getLogin());
+                case 2 -> menuPedidoGerenteController.listarPedidosPendentes();
+                case 3 -> menuPedidoGerenteController.pagamentoPedido();
                 case 0 -> System.out.println("\nVoltando para o menu principal...");
                 default -> System.out.print(Cores.LAVENDER + "\n>>" + Cores.RESET + Cores.CREME + "Opção inválida!");
             }
         } while(opFuncionario != 0);
     }
-
-
 }

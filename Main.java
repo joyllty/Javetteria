@@ -6,7 +6,6 @@ import controller.*;
 import model.*;
 import view.*;
 
-
 public class Main {
 
     public static void main(String[] args) {
@@ -23,7 +22,6 @@ public class Main {
         CardapioController cardapioController = new CardapioController(cardapioModel);
 
         CardapioView cardapioView = new CardapioView(cardapioController);
-
 
         model.Estoque.inicializarEstoque();
 

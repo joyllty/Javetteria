@@ -11,7 +11,8 @@ public class Cardapio {
         this.produtos = new ArrayList<>();
         cadastrarProdutos();
     }
-public void cadastrarProdutos(){
+
+    public void cadastrarProdutos(){
         produtos.add(new Comidas(CategoriaProduto.SALGADOS,"Pão de Queijo", 10.0f,
                 "pãozinho assado, feito à base de polvilho azedo e queijo",
                 "nenhum","1 UNIDADE GRANDE"));
@@ -76,52 +77,51 @@ public void cadastrarProdutos(){
         produtos.add(new Bebidas(CategoriaProduto.CAFES,"Cappuccino sem Leite",7.0f,"Capuccino identico a sua versão com Leite, porém substituido com água.","90ml","HOT"));
         produtos.add(new Bebidas(CategoriaProduto.CAFES_GELADOS,"Caramel Latte",20.0f,"Um café puro e frio misturado com xarope de caramelo cremoso","240ml","ICED"));
         produtos.add(new Bebidas(CategoriaProduto.CAFES,"Mocha Gourmet",22.0f,"A versão tradicional do mocha! É uma bebida quente, com café expresso, leite aquecido e chocolate.","250ml","HOT"));
-    produtos.add(new Bebidas(CategoriaProduto.CAFES,"Espresso Doppio",5.50f," Café espresso preparado com o dobro da quantidade de café e água," +
-            " resultando em uma bebida com o dobro da intensidade e volume de um expresso simples.","40ml","HOT"));
-    produtos.add(new Bebidas(CategoriaProduto.CAFES,"Flat White",10.50f,"É uma bebida de café com um sabor intenso de café, com um toque suave e aveludado. É preparado com dois shots de expresso e leite vaporizado, " +
-            "mas com menos espuma do que um cappuccino.","80ml","HOT"));
-    produtos.add(new Bebidas(CategoriaProduto.CAFES,"Macchiato",11.50f," Café expresso marcado com uma pequena quantidade de leite vaporizado," +
-            " geralmente com um toque de espuma.","180ml","HOT"));
-    produtos.add(new Bebidas(CategoriaProduto.CAFES,"Americano",8.50f,"Café espresso diluído em água quente, criando uma bebida suave e menos intensa do que o espresso tradicional","80ml","HOT"));
-    produtos.add(new Bebidas(CategoriaProduto.CAFES_GELADOS,"Iced Latte",13.50f,"Uma bebida refrescante e cremosa, com café espresso, leite gelado e gelo. " +
-            "Perfeita para os dias quentes ou para quem prefere um café mais suave.","300ml","ICED"));
-    produtos.add(new Bebidas(CategoriaProduto.CAFES_GELADOS,"Iced Mocha",16.50f,"Uma combinação refrescante de café, chocolate e leite, perfeita para um dia quente. " +
-            "A bebida ideal para quem busca um sabor intenso e revigorante, com um toque de doçura. Ideal para qualquer momento do dia.","320ml","ICED"));
-    produtos.add(new Bebidas(CategoriaProduto.CAFES_GELADOS,"Iced Vanilla",18.50f," Deliciosa combinação de café expresso, leite vaporizado, xarope de baunilha e gelo.","380ml","ICED"));
-    produtos.add(new Bebidas(CategoriaProduto.CAFES_GELADOS,"Iced Caramel",20.0f,"Um café expresso com leite, calda de baunilha e uma generosa camada de calda de caramelo," +
-            " servido sobre gelo para uma experiência refrescante e saborosa.","400ml","ICED"));
-    produtos.add(new Bebidas(CategoriaProduto.CAFES_GELADOS,"Matcha Latte Coconut Milk",22.50f," Uma bebida cremosa e energizante, feita com o chá verde matcha, misturado ao sabor tropical do leite de coco.","420ml","ICED"));
-    produtos.add(new Bebidas(CategoriaProduto.CAFES,"Cinnamon Coffee",16.0f,"Um delicioso café com a combinação perfeita do aroma aconchegante da canela e da cremosidade de um latte." +
-            " Uma opção quente e suave para os amantes de sabores especiados","300ML","HOT"));
-    produtos.add(new Bebidas(CategoriaProduto.BEBIDAS_FRIAS,"Suco de Morango",6.50f,"Suco de morango feito na hora com a polpa da fruta congelada para uma bebida deliciosa e refrescante!","250ml","ICED"));
-    produtos.add(new Bebidas(CategoriaProduto.BEBIDAS_FRIAS,"Suco de Laranja",5.50f,"Suco de laranja espremido na hora para uma bebida deliciosa e refrescante!","250ml","ICED"));
-    produtos.add(new Bebidas(CategoriaProduto.BEBIDAS_FRIAS,"Suco de Pêssego",7.0f,"Suco de pêssego feito na hora com a polpa da fruta congelada para uma bebida deliciosa e refrescante!","250ml","ICED"));
-    produtos.add(new Bebidas(CategoriaProduto.CHAS,"Chá mate de Limão",6.50f,"Bebida refrescante e saborosa que combina o sabor tradicional do chá mate com o toque cítrico e revigorante do limão","500ml","ICED"));
-    produtos.add(new Bebidas(CategoriaProduto.CHAS,"Chá mate de Pêssego",6.50f,"Bebida refrescante e saborosa, com um toque suave e doce do pêssego. É uma alternativa saudável e natural ao chá-mate tradicional, " +
-            "com benefícios como a capacidade de aumentar a energia e melhorar a concentração.","500ml","ICED"));
-    produtos.add(new Bebidas(CategoriaProduto.DRINKS_NAO_ALCOOLICOS,"Soda Italiana: LIMÃO",12.50f," É uma bebida preparada com água gaseificada, xarope natural de limão siciliano e muiito gelo!","250ml","ICED"));
-    produtos.add(new Bebidas(CategoriaProduto.DRINKS_NAO_ALCOOLICOS,"Soda Italiana: MORANGO",13.50f,"É uma bebida preparada com água gaseificada, xarope natural de morango e muiito gelo!","250ml","ICED"));
-    produtos.add(new Bebidas(CategoriaProduto.DRINKS_NAO_ALCOOLICOS,"Soda Italiana: CRANBERRY",12.50f,"É uma bebida preparada com água gaseificada, xarope natural de cranberry e muiito gelo!","250ml","ICED"));
-    produtos.add(new Bebidas(CategoriaProduto.DRINKS_NAO_ALCOOLICOS,"Soda Italiana: PÊSSEGO",12.00f,"É uma bebida preparada com água gaseificada, xarope natural de pêssego e muiito gelo!","250ml","ICED"));
-    produtos.add(new Bebidas(CategoriaProduto.DRINKS_ALCOOLICOS,"Espresso Martini",37.0f," Uma explosão de sabor com café expresso, vodka e licor de café." +
-            " Um drink gelado, cremoso e energizante, perfeito para qualquer ocasião.","100ml","ICED"));
-    produtos.add(new Bebidas(CategoriaProduto.DRINKS_ALCOOLICOS,"Irish Coffee",32.0f," Bebida alcoólica com cafeína, composta de uísque irlandês ," +
-            " café quente e açúcar , misturada e coberta com creme.","100ml","SURPRESA"));
-    produtos.add(new Bebidas(CategoriaProduto.DRINKS_ALCOOLICOS,"Soju de Yakult",29.90f,"Bebida alcoólica coreana muito popular, " +
-            "trata-se de uma destilado suave similar ao saquê com gostinho do famoso YAKULT mas com uma graduação alcoólica superior.","360ml","ICED"));
-    produtos.add(new Bebidas(CategoriaProduto.DRINKS_ALCOOLICOS,"Soju Tradicional",29.90f,"Bebida alcoólica coreana muito popular, " +
-            "trata-se de uma destilado suave similar ao saquê, mas com uma graduação alcoólica superior.","360ml","ICED"));
-    produtos.add(new Bebidas(CategoriaProduto.DRINKS_ALCOOLICOS,"Moscow Mule",31.0f,"Coquetel clássico e refrescante, geralmente preparado com vodka, suco de limão e ginger beer ou ginger ale.","90ml","ICED"));
+        produtos.add(new Bebidas(CategoriaProduto.CAFES,"Espresso Doppio",5.50f," Café espresso preparado com o dobro da quantidade de café e água," +
+                " resultando em uma bebida com o dobro da intensidade e volume de um expresso simples.","40ml","HOT"));
+        produtos.add(new Bebidas(CategoriaProduto.CAFES,"Flat White",10.50f,"É uma bebida de café com um sabor intenso de café, com um toque suave e aveludado. É preparado com dois shots de expresso e leite vaporizado, " +
+                "mas com menos espuma do que um cappuccino.","80ml","HOT"));
+        produtos.add(new Bebidas(CategoriaProduto.CAFES,"Macchiato",11.50f," Café expresso marcado com uma pequena quantidade de leite vaporizado," +
+                " geralmente com um toque de espuma.","180ml","HOT"));
+        produtos.add(new Bebidas(CategoriaProduto.CAFES,"Americano",8.50f,"Café espresso diluído em água quente, criando uma bebida suave e menos intensa do que o espresso tradicional","80ml","HOT"));
+        produtos.add(new Bebidas(CategoriaProduto.CAFES_GELADOS,"Iced Latte",13.50f,"Uma bebida refrescante e cremosa, com café espresso, leite gelado e gelo. " +
+                "Perfeita para os dias quentes ou para quem prefere um café mais suave.","300ml","ICED"));
+        produtos.add(new Bebidas(CategoriaProduto.CAFES_GELADOS,"Iced Mocha",16.50f,"Uma combinação refrescante de café, chocolate e leite, perfeita para um dia quente. " +
+                "A bebida ideal para quem busca um sabor intenso e revigorante, com um toque de doçura. Ideal para qualquer momento do dia.","320ml","ICED"));
+        produtos.add(new Bebidas(CategoriaProduto.CAFES_GELADOS,"Iced Vanilla",18.50f," Deliciosa combinação de café expresso, leite vaporizado, xarope de baunilha e gelo.","380ml","ICED"));
+        produtos.add(new Bebidas(CategoriaProduto.CAFES_GELADOS,"Iced Caramel",20.0f,"Um café expresso com leite, calda de baunilha e uma generosa camada de calda de caramelo," +
+                " servido sobre gelo para uma experiência refrescante e saborosa.","400ml","ICED"));
+        produtos.add(new Bebidas(CategoriaProduto.CAFES_GELADOS,"Matcha Latte Coconut Milk",22.50f," Uma bebida cremosa e energizante, feita com o chá verde matcha, misturado ao sabor tropical do leite de coco.","420ml","ICED"));
+        produtos.add(new Bebidas(CategoriaProduto.CAFES,"Cinnamon Coffee",16.0f,"Um delicioso café com a combinação perfeita do aroma aconchegante da canela e da cremosidade de um latte." +
+                " Uma opção quente e suave para os amantes de sabores especiados","300ML","HOT"));
+        produtos.add(new Bebidas(CategoriaProduto.BEBIDAS_FRIAS,"Suco de Morango",6.50f,"Suco de morango feito na hora com a polpa da fruta congelada para uma bebida deliciosa e refrescante!","250ml","ICED"));
+        produtos.add(new Bebidas(CategoriaProduto.BEBIDAS_FRIAS,"Suco de Laranja",5.50f,"Suco de laranja espremido na hora para uma bebida deliciosa e refrescante!","250ml","ICED"));
+        produtos.add(new Bebidas(CategoriaProduto.BEBIDAS_FRIAS,"Suco de Pêssego",7.0f,"Suco de pêssego feito na hora com a polpa da fruta congelada para uma bebida deliciosa e refrescante!","250ml","ICED"));
+        produtos.add(new Bebidas(CategoriaProduto.CHAS,"Chá mate de Limão",6.50f,"Bebida refrescante e saborosa que combina o sabor tradicional do chá mate com o toque cítrico e revigorante do limão","500ml","ICED"));
+        produtos.add(new Bebidas(CategoriaProduto.CHAS,"Chá mate de Pêssego",6.50f,"Bebida refrescante e saborosa, com um toque suave e doce do pêssego. É uma alternativa saudável e natural ao chá-mate tradicional, " +
+                "com benefícios como a capacidade de aumentar a energia e melhorar a concentração.","500ml","ICED"));
+        produtos.add(new Bebidas(CategoriaProduto.DRINKS_NAO_ALCOOLICOS,"Soda Italiana: LIMÃO",12.50f," É uma bebida preparada com água gaseificada, xarope natural de limão siciliano e muiito gelo!","250ml","ICED"));
+        produtos.add(new Bebidas(CategoriaProduto.DRINKS_NAO_ALCOOLICOS,"Soda Italiana: MORANGO",13.50f,"É uma bebida preparada com água gaseificada, xarope natural de morango e muiito gelo!","250ml","ICED"));
+        produtos.add(new Bebidas(CategoriaProduto.DRINKS_NAO_ALCOOLICOS,"Soda Italiana: CRANBERRY",12.50f,"É uma bebida preparada com água gaseificada, xarope natural de cranberry e muiito gelo!","250ml","ICED"));
+        produtos.add(new Bebidas(CategoriaProduto.DRINKS_NAO_ALCOOLICOS,"Soda Italiana: PÊSSEGO",12.00f,"É uma bebida preparada com água gaseificada, xarope natural de pêssego e muiito gelo!","250ml","ICED"));
+        produtos.add(new Bebidas(CategoriaProduto.DRINKS_ALCOOLICOS,"Espresso Martini",37.0f," Uma explosão de sabor com café expresso, vodka e licor de café." +
+                " Um drink gelado, cremoso e energizante, perfeito para qualquer ocasião.","100ml","ICED"));
+        produtos.add(new Bebidas(CategoriaProduto.DRINKS_ALCOOLICOS,"Irish Coffee",32.0f," Bebida alcoólica com cafeína, composta de uísque irlandês ," +
+                " café quente e açúcar , misturada e coberta com creme.","100ml","SURPRESA"));
+        produtos.add(new Bebidas(CategoriaProduto.DRINKS_ALCOOLICOS,"Soju de Yakult",29.90f,"Bebida alcoólica coreana muito popular, " +
+                "trata-se de uma destilado suave similar ao saquê com gostinho do famoso YAKULT mas com uma graduação alcoólica superior.","360ml","ICED"));
+        produtos.add(new Bebidas(CategoriaProduto.DRINKS_ALCOOLICOS,"Soju Tradicional",29.90f,"Bebida alcoólica coreana muito popular, " +
+                "trata-se de uma destilado suave similar ao saquê, mas com uma graduação alcoólica superior.","360ml","ICED"));
+        produtos.add(new Bebidas(CategoriaProduto.DRINKS_ALCOOLICOS,"Moscow Mule",31.0f,"Coquetel clássico e refrescante, geralmente preparado com vodka, suco de limão e ginger beer ou ginger ale.","90ml","ICED"));
 
-    produtos.add(new Bebidas(CategoriaProduto.BEBIDAS_FRIAS,"Água Mineral sem gás",4.0f,"--","520ml","ICED"));
-    produtos.add(new Bebidas(CategoriaProduto.BEBIDAS_FRIAS,"Água Mineral com gás",5.0f,"--","520ml","ICED"));
-    produtos.add(new Bebidas(CategoriaProduto.BEBIDAS_FRIAS,"Coca-Cola",5.0f,"--","300ml","ICED"));
-    produtos.add(new Bebidas(CategoriaProduto.BEBIDAS_FRIAS,"Sprite",5.50f,"--","300ml","ICED"));
-
-}
-    public List<Produto> getProdutos() {
-        return produtos; //get de produtos por ser private
+        produtos.add(new Bebidas(CategoriaProduto.BEBIDAS_FRIAS,"Água Mineral sem gás",4.0f,"--","520ml","ICED"));
+        produtos.add(new Bebidas(CategoriaProduto.BEBIDAS_FRIAS,"Água Mineral com gás",5.0f,"--","520ml","ICED"));
+        produtos.add(new Bebidas(CategoriaProduto.BEBIDAS_FRIAS,"Coca-Cola",5.0f,"--","300ml","ICED"));
+        produtos.add(new Bebidas(CategoriaProduto.BEBIDAS_FRIAS,"Sprite",5.50f,"--","300ml","ICED"));
     }
 
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
 }
 

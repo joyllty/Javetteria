@@ -7,9 +7,7 @@ import java.util.List;
 import model.Estoque;
 import model.Ingrediente;
 
-
 public class EstoqueController {
-
 
     public static List<Ingrediente> listarItens() {
         return Estoque.getIngredientes();
@@ -29,9 +27,7 @@ public class EstoqueController {
 
     public static void exportarEstoque() {
         List<Ingrediente> ingredientes = Estoque.getIngredientes();
-        // otimizar a escrita em arquivos
         try (BufferedWriter escritor = new BufferedWriter(new FileWriter("data/estoque.txt"))){
-            // filewriter sobrescreve o arquivo
             escritor.write("========== ESTOQUE ==========\n");
 
             for (Ingrediente i : ingredientes) {
@@ -45,13 +41,8 @@ public class EstoqueController {
             view.EstoqueView.mostrarMensagem((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Estoque exportado com sucesso!");
 
         } catch (IOException e){
-            // IOException -> erros de entrada e saida
             view.EstoqueView.mostrarMensagem((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME +
                     " Erro ao exportar o estoque: " + e.getMessage());
-            // getMessage -> mensagem descritiva do erro
-
         }
-        // escritor.close(); -> o try ja fecha o escritor
     }
-
 }

@@ -43,7 +43,6 @@ public class UsuarioController {
     public void adicionarCliente(Cliente cliente) {
         clientes.add(cliente);
         salvarEmArquivo("data" + File.separator + "clientes.txt", cliente);
-
     }
 
     public ArrayList<Cliente> listarClientes() {
@@ -69,25 +68,21 @@ public class UsuarioController {
         return false;
     }
 
-    public boolean atualizarCliente(String login, String novoNome, String novoCpf, String novaRua, String novoNumero, String novoBairro, String novaCidade) { // <--- NOVOS PARÂMETROS AQUI
+    public boolean atualizarCliente(String login, String novoNome, String novoCpf, String novaRua, String novoNumero, String novoBairro, String novaCidade) {
         Cliente cliente = buscarClientePorLogin(login);
         if (cliente != null) {
             cliente.setNome(novoNome);
             cliente.setCpf(novoCpf);
 
-
             if (cliente.getEndereco() == null) {
                 cliente.setEndereco(new Endereco());
             }
 
-            // 2
             cliente.getEndereco().setRua(novaRua);
             cliente.getEndereco().setNumero(novoNumero);
             cliente.getEndereco().setBairro(novoBairro);
             cliente.getEndereco().setCidade(novaCidade);
 
-            // 3
-            //
             salvarListaClientes();
 
             return true;
@@ -99,7 +94,6 @@ public class UsuarioController {
     public void adicionarFuncionario(Funcionario funcionario) {
         funcionarios.add(funcionario);
         salvarEmArquivo("data/funcionarios.txt", funcionario);
-
     }
 
     public ArrayList<Funcionario> listarFuncionarios() {
@@ -119,7 +113,7 @@ public class UsuarioController {
         Funcionario f = buscarFuncionarioPorLogin(login);
         if (f != null) {
             funcionarios.remove(f);
-            salvarListaFuncionarios(); // atualiza o arquivo
+            salvarListaFuncionarios();
             return true;
         }
         return false;
@@ -141,7 +135,6 @@ public class UsuarioController {
     public void adicionarGerente(Gerente gerente) {
         gerentes.add(gerente);
         salvarEmArquivo("data/gerentes.txt", gerente);
-
     }
 
     public ArrayList<Gerente> listarGerentes() {
@@ -161,7 +154,7 @@ public class UsuarioController {
         Gerente g = buscarGerentePorLogin(login);
         if (g != null) {
             gerentes.remove(g);
-            salvarListaGerentes(); // atualiza o arquivo
+            salvarListaGerentes();
             return true;
         }
         return false;
@@ -201,75 +194,28 @@ public class UsuarioController {
             return true;
         }
 
-        return false; // usuário não encontrado
+        return false;
     }
-
-
-
 
     //----------ARQUIVOS--------
 
     //CARREGAMENTO DE ARQUIVOS
 
     private void carregarDadosDosArquivos() {
-        carregarClientes("data" + File.separator + "clientes.txt"); //
-        carregarFuncionarios("data" + File.separator + "funcionarios.txt"); //
-        carregarGerentes("data" + File.separator + "gerentes.txt"); //
+        carregarClientes("data" + File.separator + "clientes.txt");
+        carregarFuncionarios("data" + File.separator + "funcionarios.txt");
+        carregarGerentes("data" + File.separator + "gerentes.txt");
     }
 
     private void carregarClientes(String nomeArquivo) {
-        File file = new File(nomeArquivo); //
-        if (!file.exists()) { //
-            System.out.println("Arquivo de clientes não encontrado, criando um novo: " + nomeArquivo); //
-            try { //
-                file.getParentFile().mkdirs(); //
-                file.createNewFile(); //
-            } catch (IOException e) { //
-                System.out.println("Erro ao criar arquivo de clientes: " + e.getMessage()); //
-            }
-            return; //
-        }
-
-        try (BufferedReader br = new BufferedReader(new FileReader(nomeArquivo))) { //
-            String linha; //
-            while ((linha = br.readLine()) != null) { //
-                String[] dados = linha.split(";"); //
-                if (dados.length >= 4) { // Certifica-se de que há dados suficientes para cliente base
-                    String login = dados[0]; //
-                    String senha = dados[1]; //
-                    String tipoPessoa = dados[2]; //
-                    String nome = dados[3]; //
-                    String cpf = dados[4]; //
-
-
-                    if ("Cliente".equals(tipoPessoa)) { //
-                        Cliente cliente = new Cliente(nome, login, cpf, senha); //
-                        if (dados.length >= 9) { // Verifica se há dados de endereço
-                            Endereco endereco = new Endereco(); //
-                            endereco.setRua(dados[5]); //
-                            endereco.setNumero(dados[6]); //
-                            endereco.setBairro(dados[7]); //
-                            endereco.setCidade(dados[8]); //
-                            cliente.setEndereco(endereco); //
-                        }
-                        clientes.add(cliente); //
-                    }
-                }
-            }
-        } catch (IOException e) { //
-            System.out.println("Erro ao carregar clientes do arquivo: " + e.getMessage()); //
-        }
-    }
-
-    private void carregarFuncionarios(String nomeArquivo) {
-        File file = new File(nomeArquivo); //
-        if (!file.exists()) { //
-            System.out.println("Arquivo de funcionários não encontrado, criando um novo: " + nomeArquivo); //
-            try { //
-                file.getParentFile().mkdirs(); //
-                file.createNewFile(); //
-            } catch (IOException e) { //
-                System.out.println("Erro ao criar arquivo de funcionários: " + e.getMessage()); //
+        File file = new File(nomeArquivo);
+        if (!file.exists()) {
+            System.out.println("Arquivo de clientes não encontrado, criando um novo: " + nomeArquivo);
+            try {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+            } catch (IOException e) {
+                System.out.println("Erro ao criar arquivo de clientes: " + e.getMessage());
             }
             return;
         }
@@ -278,7 +224,50 @@ public class UsuarioController {
             String linha;
             while ((linha = br.readLine()) != null) {
                 String[] dados = linha.split(";");
-                if (dados.length >= 6) { // login;senha;tipoPessoa;nome;cpf;cargo;turno
+                if (dados.length >= 4) {
+                    String login = dados[0];
+                    String senha = dados[1];
+                    String tipoPessoa = dados[2];
+                    String nome = dados[3];
+                    String cpf = dados[4];
+
+                    if ("Cliente".equals(tipoPessoa)) {
+                        Cliente cliente = new Cliente(nome, login, cpf, senha);
+                        if (dados.length >= 9) {
+                            Endereco endereco = new Endereco();
+                            endereco.setRua(dados[5]);
+                            endereco.setNumero(dados[6]);
+                            endereco.setBairro(dados[7]);
+                            endereco.setCidade(dados[8]);
+                            cliente.setEndereco(endereco);
+                        }
+                        clientes.add(cliente);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Erro ao ler arquivo de clientes: " + e.getMessage());
+        }
+    }
+
+    private void carregarFuncionarios(String nomeArquivo) {
+        File file = new File(nomeArquivo);
+        if (!file.exists()) {
+            System.out.println("Arquivo de funcionários não encontrado, criando um novo: " + nomeArquivo);
+            try {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+            } catch (IOException e) {
+                System.out.println("Erro ao criar arquivo de funcionários: " + e.getMessage());
+            }
+            return;
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(nomeArquivo))) {
+            String linha;
+            while ((linha = br.readLine()) != null) {
+                String[] dados = linha.split(";");
+                if (dados.length >= 6) {
                     String login = dados[0];
                     String senha = dados[1];
                     String tipoPessoa = dados[2];
@@ -287,14 +276,14 @@ public class UsuarioController {
                     String cargo = dados[5];
                     String turno = dados[6];
 
-
-                    if ("Funcionário".equals(tipoPessoa)) {
-                        funcionarios.add(new Funcionario(nome, login, cpf, cargo, turno, senha));
+                    if ("Funcionario".equals(tipoPessoa)) {
+                        Funcionario funcionario = new Funcionario(nome, login, cpf, senha, cargo, turno);
+                        funcionarios.add(funcionario);
                     }
                 }
             }
         } catch (IOException e) {
-            System.out.println("Erro ao carregar funcionários do arquivo: " + e.getMessage());
+            System.out.println("Erro ao ler arquivo de funcionários: " + e.getMessage());
         }
     }
 
@@ -310,11 +299,12 @@ public class UsuarioController {
             }
             return;
         }
+
         try (BufferedReader br = new BufferedReader(new FileReader(nomeArquivo))) {
             String linha;
             while ((linha = br.readLine()) != null) {
                 String[] dados = linha.split(";");
-                if (dados.length >= 5) { // login;senha;tipoPessoa;nome;cpf;cargo;turno
+                if (dados.length >= 6) {
                     String login = dados[0];
                     String senha = dados[1];
                     String tipoPessoa = dados[2];
@@ -322,105 +312,108 @@ public class UsuarioController {
                     String cpf = dados[4];
                     String turno = dados[5];
 
-
                     if ("Gerente".equals(tipoPessoa)) {
-                        gerentes.add(new Gerente(nome, login, cpf, turno, senha));
+                        Gerente gerente = new Gerente(nome, login, cpf, senha, turno);
+                        gerentes.add(gerente);
                     }
                 }
             }
-        } catch (IOException e) { //
-            System.out.println("Erro ao carregar gerentes do arquivo: " + e.getMessage()); //
+        } catch (IOException e) {
+            System.out.println("Erro ao ler arquivo de gerentes: " + e.getMessage());
         }
     }
     // SALVAR OS ARQUIVOOOOOS
 
     private void salvarEmArquivo(String nomeArquivo, Pessoa pessoa) {
-        try (FileWriter fw = new FileWriter(nomeArquivo, true);
-             BufferedWriter bw = new BufferedWriter(fw)) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo, true))) {
+            String linha = pessoa.getLogin() + ";" +
+                    pessoa.getSenha() + ";" +
+                    pessoa.getTipoPessoa() + ";" +
+                    pessoa.getNome() + ";" +
+                    pessoa.getCpf();
 
-            String linha = pessoa.getLogin() + ";" + pessoa.getSenha() + ";" + pessoa.getTipoPessoa();
-
-            if (pessoa instanceof Cliente) { //
-                Cliente cliente = (Cliente) pessoa; //
-                linha += ";" + cliente.getNome() + ";" + cliente.getCpf(); //
-                if (cliente.getEndereco() != null) { //
-                    linha += ";" + cliente.getEndereco().getRua() + ";" + cliente.getEndereco().getNumero() + ";" + //
-                            cliente.getEndereco().getBairro() + ";" + cliente.getEndereco().getCidade(); //
-                } else { //
-                    linha += ";;;;"; //
+            if (pessoa instanceof Cliente) {
+                Cliente cliente = (Cliente) pessoa;
+                if (cliente.getEndereco() != null) {
+                    linha += ";" + cliente.getEndereco().getRua() + ";" +
+                            cliente.getEndereco().getNumero() + ";" +
+                            cliente.getEndereco().getBairro() + ";" +
+                            cliente.getEndereco().getCidade();
                 }
-            } else if (pessoa instanceof Funcionario) { //
-                Funcionario funcionario = (Funcionario) pessoa; //
-                linha += ";" + funcionario.getNome() + ";" + funcionario.getCpf() + ";" + funcionario.getCargo() + ";" + funcionario.getTurno(); //
-            } else if (pessoa instanceof Gerente) { //
-                Gerente gerente = (Gerente) pessoa; //
-                linha += ";" + gerente.getNome() + ";" + gerente.getCpf() + ";" + gerente.getTurno(); //
+            } else if (pessoa instanceof Funcionario) {
+                Funcionario funcionario = (Funcionario) pessoa;
+                linha += ";" + funcionario.getCargo() + ";" + funcionario.getTurno();
+            } else if (pessoa instanceof Gerente) {
+                Gerente gerente = (Gerente) pessoa;
+                linha += ";" + gerente.getTurno();
             }
-            bw.write(linha);
-            bw.newLine();
 
+            writer.write(linha);
+            writer.newLine();
         } catch (IOException e) {
-            System.out.println("Erro ao salvar no arquivo " + nomeArquivo);
-            e.printStackTrace();
+            System.out.println("Erro ao salvar em arquivo: " + e.getMessage());
         }
     }
 
-
     private void salvarListaClientes() {
-        try (FileWriter fw = new FileWriter("data/clientes.txt", false);
-             BufferedWriter bw = new BufferedWriter(fw)) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("data" + File.separator + "clientes.txt"))) {
+            for (Cliente cliente : clientes) {
+                String linha = cliente.getLogin() + ";" +
+                        cliente.getSenha() + ";" +
+                        cliente.getTipoPessoa() + ";" +
+                        cliente.getNome() + ";" +
+                        cliente.getCpf();
 
-            for (Cliente c : clientes) {
-                String linha = c.getLogin() + ";" + c.getSenha() + ";" + c.getTipoPessoa() + ";" + c.getNome() + ";" + c.getCpf(); //
-
-                if (c.getEndereco() != null) {
-                    linha += ";" + c.getEndereco().getRua() + ";" + c.getEndereco().getNumero() + ";" +
-                            c.getEndereco().getBairro() + ";" + c.getEndereco().getCidade();
-                } else {
-                    linha += ";;;;";
+                if (cliente.getEndereco() != null) {
+                    linha += ";" + cliente.getEndereco().getRua() + ";" +
+                            cliente.getEndereco().getNumero() + ";" +
+                            cliente.getEndereco().getBairro() + ";" +
+                            cliente.getEndereco().getCidade();
                 }
 
-                bw.write(linha);
-                bw.newLine();
+                writer.write(linha);
+                writer.newLine();
             }
-
         } catch (IOException e) {
-            System.out.println("Erro ao salvar lista de clientes.");
-            e.printStackTrace();
+            System.out.println("Erro ao salvar lista de clientes: " + e.getMessage());
         }
     }
 
     private void salvarListaFuncionarios() {
-        try (FileWriter fw = new FileWriter("data/funcionarios.txt", false);
-             BufferedWriter bw = new BufferedWriter(fw)) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("data" + File.separator + "funcionarios.txt"))) {
+            for (Funcionario funcionario : funcionarios) {
+                String linha = funcionario.getLogin() + ";" +
+                        funcionario.getSenha() + ";" +
+                        funcionario.getTipoPessoa() + ";" +
+                        funcionario.getNome() + ";" +
+                        funcionario.getCpf() + ";" +
+                        funcionario.getCargo() + ";" +
+                        funcionario.getTurno();
 
-            for (Funcionario f : funcionarios) {
-                String linha = f.getLogin() + ";" + f.getSenha() + ";" + f.getTipoPessoa() + ";" + f.getNome() + ";" + f.getCpf() + ";" + f.getCargo() + ";" + f.getTurno(); //
-                bw.write(linha);
-                bw.newLine();
+                writer.write(linha);
+                writer.newLine();
             }
-
         } catch (IOException e) {
-            System.out.println("Erro ao salvar lista de funcionários.");
-            e.printStackTrace();
+            System.out.println("Erro ao salvar lista de funcionários: " + e.getMessage());
         }
     }
 
     private void salvarListaGerentes() {
-        try (FileWriter fw = new FileWriter("data/gerentes.txt", false);
-             BufferedWriter bw = new BufferedWriter(fw)) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("data" + File.separator + "gerentes.txt"))) {
+            for (Gerente gerente : gerentes) {
+                String linha = gerente.getLogin() + ";" +
+                        gerente.getSenha() + ";" +
+                        gerente.getTipoPessoa() + ";" +
+                        gerente.getNome() + ";" +
+                        gerente.getCpf() + ";" +
+                        gerente.getTurno();
 
-            for (Gerente g : gerentes) {
-                String linha = g.getLogin() + ";" + g.getSenha() + ";" + g.getTipoPessoa() + ";" + g.getNome() + ";" + g.getCpf() + ";" + g.getTurno(); //
-                bw.write(linha);
-                bw.newLine();
+                writer.write(linha);
+                writer.newLine();
             }
-
         } catch (IOException e) {
-            System.out.println("Erro ao salvar lista de gerentes.");
-            e.printStackTrace();
+            System.out.println("Erro ao salvar lista de gerentes: " + e.getMessage());
         }
     }
-
 }
 

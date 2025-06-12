@@ -64,7 +64,7 @@ public class Estoque{
 
     public static void atualizarQuantidade(int id, int novaQuantidade) {
         for (Ingrediente i : itens) {
-            if (i.getId() == id) { //busca do ingrediente
+            if (i.getId() == id) {
                 i.setQuantidade(novaQuantidade);
                 return;
             }

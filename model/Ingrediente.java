@@ -7,7 +7,6 @@ public class Ingrediente {
     private int quantidade;
     private String unidade; //g, ml, unidades
 
-
     public Ingrediente(int id, String nome, int quantidade, String unidade) {
         this.id = id;
         this.nome = nome;
@@ -39,11 +38,9 @@ public class Ingrediente {
         this.nome = nome;
     }
 
-
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
-
 
     public void setUnidade(String unidade) {
         this.unidade = unidade;

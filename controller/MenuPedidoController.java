@@ -4,6 +4,7 @@ import model.Pedido;
 import model.ItemPedido;
 import view.MenuPedido;
 import utils.InputHelper;
+import utils.Cores;
 import java.util.List;
 
 public class MenuPedidoController {
@@ -28,10 +29,10 @@ public class MenuPedidoController {
                 case 2 -> acompanharPedidos(usuario);
                 case 3 -> removerPedido(usuario);
                 case 4 -> pagamentoPedido(usuario);
-                case 5 -> view.exibirMensagem("\nVoltando...", MenuPedido.LAVENDER);
-                default -> view.exibirMensagem("\nOpção inválida!", MenuPedido.BROWN);
+                case 0-> view.exibirMensagem("\nVoltando...", Cores.LAVENDER);
+                default -> view.exibirMensagem("\nOpção inválida!", Cores.BROWN);
             }
-        } while (op != 5);
+        } while (op != 0);
     }
 
     private void registrarPedido(String usuario) {
@@ -52,11 +53,11 @@ public class MenuPedidoController {
                     
                     ItemPedido item = pedidoController.criarItemPedido(nomeProduto, quantidade);
                     pedidoController.adicionarItem(pedido, item);
-                    view.exibirMensagem("Item adicionado ao pedido!", MenuPedido.CREME);
+                    view.exibirMensagem("Item adicionado ao pedido!", Cores.CREME);
                     produtoValido = true;
                 } catch (IllegalArgumentException e) {
-                    view.exibirMensagem("\nProduto não encontrado: " + nomeProduto, MenuPedido.BROWN);
-                    view.exibirMensagem("Por favor, verifique o nome do produto e tente novamente.", MenuPedido.BROWN);
+                    view.exibirMensagem("\nProduto não encontrado: " + nomeProduto, Cores.BROWN);
+                    view.exibirMensagem("Por favor, verifique o nome do produto e tente novamente.", Cores.BROWN);
                 }
             }
             
@@ -65,15 +66,15 @@ public class MenuPedidoController {
             continuar = (opcao == 1);
         }
         
-        view.exibirMensagem("\nPedido registrado com sucesso!", MenuPedido.CREME);
+        view.exibirMensagem("\nPedido registrado com sucesso!", Cores.CREME);
     }
 
     private void acompanharPedidos(String usuario) {
         List<Pedido> pedidos = pedidoController.listarPedidosUsuario(usuario);
-        view.exibirMensagem("\nSeus pedidos:", MenuPedido.LAVENDER);
+        view.exibirMensagem("\nSeus pedidos:", Cores.LAVENDER);
         
         if (pedidos.isEmpty()) {
-            view.exibirMensagem("Você ainda não fez nenhum pedido.", MenuPedido.BROWN);
+            view.exibirMensagem("Você ainda não fez nenhum pedido.", Cores.BROWN);
             return;
         }
         
@@ -84,20 +85,20 @@ public class MenuPedidoController {
         List<Pedido> pedidosPendentes = pedidoController.listarPedidosPendentes(usuario);
         
         if (pedidosPendentes.isEmpty()) {
-            view.exibirMensagem("Você não tem pedidos pendentes para remover.", MenuPedido.BROWN);
+            view.exibirMensagem("Você não tem pedidos pendentes para remover.", Cores.BROWN);
             return;
         }
         
-        view.exibirMensagem("\nSeus pedidos pendentes:", MenuPedido.LAVENDER);
+        view.exibirMensagem("\nSeus pedidos pendentes:", Cores.LAVENDER);
         view.exibirListaPedidos(pedidosPendentes);
         
         view.exibirPrompt("\n>> Digite o número do pedido que deseja remover (ex: 28): ");
         int numeroPedido = InputHelper.lerInt();
         
         if (pedidoController.removerPedido(numeroPedido)) {
-            view.exibirMensagem("Pedido removido com sucesso!", MenuPedido.CREME);
+            view.exibirMensagem("Pedido removido com sucesso!", Cores.CREME);
         } else {
-            view.exibirMensagem("Número de pedido inválido!", MenuPedido.BROWN);
+            view.exibirMensagem("Número de pedido inválido!", Cores.BROWN);
         }
     }
 
@@ -105,11 +106,11 @@ public class MenuPedidoController {
         List<Pedido> pedidosPendentes = pedidoController.listarPedidosPendentes(usuario);
         
         if (pedidosPendentes.isEmpty()) {
-            view.exibirMensagem("Você não tem pedidos pendentes para pagar.", MenuPedido.BROWN);
+            view.exibirMensagem("Você não tem pedidos pendentes para pagar.", Cores.BROWN);
             return;
         }
         
-        view.exibirMensagem("\nSeus pedidos pendentes:", MenuPedido.LAVENDER);
+        view.exibirMensagem("\nSeus pedidos pendentes:", Cores.LAVENDER);
         view.exibirListaPedidos(pedidosPendentes);
         
         view.exibirPrompt("\n>> Digite o número do pedido que deseja pagar (ex: 28): ");
@@ -117,7 +118,7 @@ public class MenuPedidoController {
         
         Pedido pedidoPagar = pedidoController.buscarPedido(numeroPedido);
         if (pedidoPagar == null || !pedidoPagar.getUsuario().equals(usuario) || pedidoPagar.isPago()) {
-            view.exibirMensagem("Número de pedido inválido!", MenuPedido.BROWN);
+            view.exibirMensagem("Número de pedido inválido!", Cores.BROWN);
             return;
         }
         
@@ -139,13 +140,13 @@ public class MenuPedidoController {
                 dadosPagamento = String.valueOf(InputHelper.lerFloat());
             }
             default -> {
-                view.exibirMensagem("Opção inválida!", MenuPedido.BROWN);
+                view.exibirMensagem("Opção inválida!", Cores.BROWN);
                 return;
             }
         }
         
         if (pagamentoController.processarPagamentoCompleto(pedidoPagar, formaPagamento, dadosPagamento)) {
-            view.exibirMensagem("Pagamento realizado com sucesso!", MenuPedido.LAVENDER);
+            view.exibirMensagem("Pagamento realizado com sucesso!", Cores.LAVENDER);
             String infoPagamento = pagamentoController.obterInformacoesPagamento(
                 pedidoPagar.getFormaPagamento(), 
                 (float)pedidoPagar.getValorTotal()
@@ -153,14 +154,14 @@ public class MenuPedidoController {
             view.exibirInformacoesPagamento(infoPagamento);
             pedidoController.salvarPedidos();
         } else {
-            view.exibirMensagem("Falha no pagamento.", MenuPedido.BROWN);
+            view.exibirMensagem("Falha no pagamento.", Cores.BROWN);
         }
     }
 
     public void exibirPedidos(String usuario) {
         List<Pedido> pedidos = pedidoController.listarPedidosUsuario(usuario);
         if (pedidos.isEmpty()) {
-            view.exibirMensagem("Você ainda não fez nenhum pedido.", MenuPedido.BROWN);
+            view.exibirMensagem("Você ainda não fez nenhum pedido.", Cores.BROWN);
             return;
         }
         view.exibirListaPedidos(pedidos);
@@ -171,6 +172,5 @@ public class MenuPedidoController {
         String nomeProduto = InputHelper.lerString();
         view.exibirPrompt("Quantidade: ");
         int quantidade = InputHelper.lerInt();
-        // Process data...
     }
 } 
