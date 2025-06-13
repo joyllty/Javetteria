@@ -35,7 +35,7 @@ public class CardapioView {
     }
 
     public static void exibirCardapioCompleto() {
-        System.out.println("\n=============================================");
+        System.out.println(Cores.CREME + "\n=============================================" + Cores.RESET);
         System.out.println(Cores.LAVENDER + "              NOSSO CARDÁPIO                 " + Cores.RESET);
         System.out.println(Cores.CREME + "=============================================");
 
