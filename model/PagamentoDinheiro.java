@@ -8,7 +8,6 @@ public class PagamentoDinheiro implements Pagamento {
         this.valorRecebido = valorRecebido;
     }
 
-    // Processa pagamento e calcula troco se valor recebido for suficiente
     @Override
     public boolean processarPagamento(float valor) {
         if (validarPagamento(valor)) {
@@ -23,7 +22,6 @@ public class PagamentoDinheiro implements Pagamento {
         return "Dinheiro";
     }
 
-    // Valida se valor recebido é suficiente e valor da compra é positivo
     @Override
     public boolean validarPagamento(float valor) {
         return valorRecebido >= valor && valor > 0;

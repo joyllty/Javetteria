@@ -1,12 +1,15 @@
 package view;
 
 import model.Pedido;
+
+import java.sql.SQLOutput;
 import java.util.List;
 import utils.Cores;
 
 public class MenuPedido {
     public void exibirMenu() {
-        System.out.println(Cores.CREME + "\n ╔═════════════════════════╗");
+        System.out.println(Cores.CREME);
+        System.out.println("\n ╔═════════════════════════╗");
         System.out.println(" ║                         ║");
         System.out.println(" ║ [1] REGISTRAR PEDIDO    ║");
         System.out.println(" ║ [2] ACOMPANHAR PEDIDOS  ║");
@@ -15,7 +18,7 @@ public class MenuPedido {
         System.out.println(" ║ [0] VOLTAR              ║");
         System.out.println(" ║                         ║");
         System.out.println(" ╚═════════════════════════╝" + Cores.RESET);
-        System.out.print("\n" + (Cores.LAVENDER + ">>" + Cores.RESET) + Cores.CREME + " Selecione uma opção: " + Cores.RESET);
+        System.out.print("\n" + (Cores.LAVENDER + ">>" + Cores.RESET) + Cores.CREME + " Selecione uma opção: ");
     }
 
     public void exibirMensagem(String mensagem, String cor) {
@@ -39,12 +42,12 @@ public class MenuPedido {
         System.out.println(" ║ [2] PIX                 ║");
         System.out.println(" ║ [3] DINHEIRO            ║");
         System.out.println(" ║                         ║");
-        System.out.println(" ╚═════════════════════════╝" + Cores.RESET);
-        System.out.print("\n" + (Cores.LAVENDER + ">>" + Cores.RESET) + Cores.CREME + " Escolha: " + Cores.RESET);
+        System.out.println(" ╚═════════════════════════╝");
+        System.out.print("\n" + (Cores.LAVENDER + ">>" + Cores.RESET) + Cores.CREME + " Escolha: ");
     }
 
     public void exibirPrompt(String prompt) {
-        System.out.print(Cores.CREME + prompt + Cores.RESET);
+        System.out.print(Cores.CREME + prompt);
     }
 
     public void exibirInformacoesPagamento(String informacoes) {

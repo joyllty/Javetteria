@@ -17,12 +17,10 @@ public class ItemPedido {
         return quantidade;
     }
 
-    // Calcula subtotal multiplicando preço do produto pela quantidade
     public float getSubtotal() {
         return produto.getPreco() * quantidade;
     }
 
-    // Formata item para exibição com nome, quantidade e subtotal
     public String formatarItem() {
         return String.format("%s x%d - R$ %.2f", 
             produto.getNome(), 

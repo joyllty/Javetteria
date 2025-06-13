@@ -46,14 +46,4 @@ public class Ingrediente {
         this.unidade = unidade;
     }
 
-    /* ---------------------------------------------
-    @Override
-    public String toString() {
-        return "ID: " + id +
-                ", Nome: " + nome +
-                ", Quantidade: " + quantidade + " " + unidade +
-                ", Custo por unidade: R$" + custoPorUnidade;
-    }
-
-    */
 }

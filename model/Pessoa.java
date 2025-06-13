@@ -7,14 +7,13 @@ public abstract class Pessoa {
     private String cpf;
     private String senha;
 
-    public Pessoa(String nome, String login, String cpf, String senha) {
+    public Pessoa(String nome, String senha, String login, String cpf) {
         this.nome = nome;
+        this.senha = senha;
         this.login = login;
         this.cpf = cpf;
-        this.senha = senha; //
     }
 
-    // sets
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -31,7 +30,6 @@ public abstract class Pessoa {
         this.senha = senha;
     }
 
-    // gets
     public String getNome() {
         return nome;
     }
@@ -48,6 +46,5 @@ public abstract class Pessoa {
         return senha;
     }
 
-    // método abstrato
     public abstract String getTipoPessoa();
 }

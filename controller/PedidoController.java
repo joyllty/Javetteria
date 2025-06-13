@@ -99,9 +99,10 @@ public class PedidoController {
                     writer.println(pedido.resumoPedido());
                 }
             }
+
         } catch (IOException e) {
             System.err.println("Erro ao salvar pedidos: " + e.getMessage());
-        }   
+        }
     }
 
     private void carregarPedidos() {

@@ -7,12 +7,15 @@ import utils.Cores;
 import utils.InputHelper;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.Comparator;
 
 public class CardapioView {
 
     private static CardapioController controller;
+    private static Scanner input = new Scanner(System.in);
+
 
     public CardapioView(CardapioController controller) {
         this.controller = controller;
@@ -20,7 +23,7 @@ public class CardapioView {
 
     private static String pedirInput(String prompt) {
         System.out.print(prompt);
-        return InputHelper.lerString();
+        return input.nextLine();
     }
 
     private static void sleep(long millis) {
@@ -32,7 +35,6 @@ public class CardapioView {
     }
 
     public static void exibirCardapioCompleto() {
-        System.out.println();
         System.out.println("\n=============================================");
         System.out.println(Cores.LAVENDER + "              NOSSO CARDÁPIO                 " + Cores.RESET);
         System.out.println(Cores.CREME + "=============================================");
@@ -45,7 +47,6 @@ public class CardapioView {
             System.out.println("\nO cardápio está vazio no momento.");
             System.out.println("------------------------------------------");
             pedirInput("\nPressione Enter para continuar...");
-
             return;
         }
 

@@ -8,8 +8,6 @@ public class Endereco {
     String cidade;
 
 
-
-    //sets
     public void setRua(String rua) {
         this.rua = rua;
     }
@@ -26,7 +24,6 @@ public class Endereco {
         this.cidade = cidade;
     }
 
-    //gets
     public String getRua() {
         return rua;
     }

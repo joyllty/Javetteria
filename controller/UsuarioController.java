@@ -1,6 +1,5 @@
 package controller;
 
-//arquivos
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -39,7 +38,6 @@ public class UsuarioController {
         return gerentes;
     }
 
-    // --------- CLIENTES ---------
     public void adicionarCliente(Cliente cliente) {
         clientes.add(cliente);
         salvarEmArquivo("data" + File.separator + "clientes.txt", cliente);
@@ -56,16 +54,6 @@ public class UsuarioController {
             }
         }
         return null;
-    }
-
-    public boolean removerCliente(String login) {
-        Cliente c = buscarClientePorLogin(login);
-        if (c != null) {
-            clientes.remove(c);
-            salvarListaClientes();
-            return true;
-        }
-        return false;
     }
 
     public boolean atualizarCliente(String login, String novoNome, String novoCpf, String novaRua, String novoNumero, String novoBairro, String novaCidade) {
@@ -90,7 +78,6 @@ public class UsuarioController {
         return false;
     }
 
-    // --------- FUNCIONÁRIOS ---------
     public void adicionarFuncionario(Funcionario funcionario) {
         funcionarios.add(funcionario);
         salvarEmArquivo("data/funcionarios.txt", funcionario);
@@ -131,14 +118,9 @@ public class UsuarioController {
         return false;
     }
 
-    // --------- GERENTES ---------
     public void adicionarGerente(Gerente gerente) {
         gerentes.add(gerente);
         salvarEmArquivo("data/gerentes.txt", gerente);
-    }
-
-    public ArrayList<Gerente> listarGerentes() {
-        return gerentes;
     }
 
     public Gerente buscarGerentePorLogin(String login) {
@@ -148,16 +130,6 @@ public class UsuarioController {
             }
         }
         return null;
-    }
-
-    public boolean removerGerente(String login) {
-        Gerente g = buscarGerentePorLogin(login);
-        if (g != null) {
-            gerentes.remove(g);
-            salvarListaGerentes();
-            return true;
-        }
-        return false;
     }
 
     public boolean atualizarGerente(String login, String novoNome, String novoCpf, String novoTurno) {
@@ -171,7 +143,6 @@ public class UsuarioController {
         return false;
     }
 
-    // --------- ALTERAR SENHA (Clientes, Funcionários e Gerentes) ---------
     public boolean alterarSenha(String login, String novaSenha) {
         Cliente cliente = buscarClientePorLogin(login);
         if (cliente != null) {
@@ -197,11 +168,7 @@ public class UsuarioController {
         return false;
     }
 
-    //----------ARQUIVOS--------
-
-    //CARREGAMENTO DE ARQUIVOS
-
-    private void carregarDadosDosArquivos() {
+    public void carregarDadosDosArquivos() {
         carregarClientes("data" + File.separator + "clientes.txt");
         carregarFuncionarios("data" + File.separator + "funcionarios.txt");
         carregarGerentes("data" + File.separator + "gerentes.txt");
@@ -210,12 +177,12 @@ public class UsuarioController {
     private void carregarClientes(String nomeArquivo) {
         File file = new File(nomeArquivo);
         if (!file.exists()) {
-            System.out.println("Arquivo de clientes não encontrado, criando um novo: " + nomeArquivo);
+            System.out.println("\nArquivo de clientes não encontrado, criando um novo: " + nomeArquivo);
             try {
                 file.getParentFile().mkdirs();
                 file.createNewFile();
             } catch (IOException e) {
-                System.out.println("Erro ao criar arquivo de clientes: " + e.getMessage());
+                System.out.println("\nErro ao criar arquivo de clientes: " + e.getMessage());
             }
             return;
         }
@@ -232,7 +199,7 @@ public class UsuarioController {
                     String cpf = dados[4];
 
                     if ("Cliente".equals(tipoPessoa)) {
-                        Cliente cliente = new Cliente(nome, login, cpf, senha);
+                        Cliente cliente = new Cliente(nome, senha, login, cpf);
                         if (dados.length >= 9) {
                             Endereco endereco = new Endereco();
                             endereco.setRua(dados[5]);
@@ -267,7 +234,7 @@ public class UsuarioController {
             String linha;
             while ((linha = br.readLine()) != null) {
                 String[] dados = linha.split(";");
-                if (dados.length >= 6) {
+                if (dados.length >= 7) {
                     String login = dados[0];
                     String senha = dados[1];
                     String tipoPessoa = dados[2];
@@ -277,7 +244,7 @@ public class UsuarioController {
                     String turno = dados[6];
 
                     if ("Funcionario".equals(tipoPessoa)) {
-                        Funcionario funcionario = new Funcionario(nome, login, cpf, senha, cargo, turno);
+                        Funcionario funcionario = new Funcionario(nome, senha, login, cpf, cargo, turno);
                         funcionarios.add(funcionario);
                     }
                 }
@@ -313,7 +280,7 @@ public class UsuarioController {
                     String turno = dados[5];
 
                     if ("Gerente".equals(tipoPessoa)) {
-                        Gerente gerente = new Gerente(nome, login, cpf, senha, turno);
+                        Gerente gerente = new Gerente(nome, senha, login, cpf, turno);
                         gerentes.add(gerente);
                     }
                 }
@@ -322,7 +289,6 @@ public class UsuarioController {
             System.out.println("Erro ao ler arquivo de gerentes: " + e.getMessage());
         }
     }
-    // SALVAR OS ARQUIVOOOOOS
 
     private void salvarEmArquivo(String nomeArquivo, Pessoa pessoa) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo, true))) {

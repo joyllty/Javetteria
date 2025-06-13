@@ -77,7 +77,7 @@ public class MenuGerente{
     public static void menuGerenteGerenciamento () {
         int opGerencia;
         do {
-            System.out.println("\n ╔═════════════════════════════════╗");
+            System.out.println("\n ╔════════════════════════════════╗");
             System.out.println(" ║                                ║");
             System.out.println(" ║ [1] EXIBIR FUNCIONÁRIOS        ║");
             System.out.println(" ║ [2] EXIBIR CLIENTES            ║");

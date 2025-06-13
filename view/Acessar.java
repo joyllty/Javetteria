@@ -7,11 +7,13 @@ import utils.Cores;
 import utils.InputHelper;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Acessar {
 
     private static UsuarioController usuarioController;
     private static LoginController loginController;
+    private static Scanner input = new Scanner(System.in);
 
     public Acessar(UsuarioController usuarioController) {
         this.usuarioController = usuarioController;
@@ -24,7 +26,7 @@ public class Acessar {
 
     private static String pedirInput(String prompt) {
         System.out.print(prompt);
-        return InputHelper.lerString();
+        return input.nextLine();
     }
 
     public static void realizarLogin() {
@@ -61,13 +63,13 @@ public class Acessar {
 
         switch (tipo) {
             case 1:
-                cadastrarCliente(nome, login, cpf, senha);
+                cadastrarCliente(nome, senha, login, cpf);
                 break;
             case 2:
-                cadastrarFuncionario(nome, login, cpf, senha);
+                cadastrarFuncionario(nome, senha, login, cpf);
                 break;
             case 3:
-                cadastrarGerente(nome, login, cpf, senha);
+                cadastrarGerente(nome, senha, login, cpf);
                 break;
             default:
                 System.out.println("\nTipo inválido.");
@@ -96,18 +98,18 @@ public class Acessar {
         System.out.println("================================");
     }
 
-    private static void cadastrarFuncionario(String nome, String login, String cpf, String senha) {
+    private static void cadastrarFuncionario(String nome, String senha, String login, String cpf) {
         String cargo = pedirInput((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Cargo: ");
         String turno = pedirInput((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Turno: ");
-        Funcionario novoFuncionario = new Funcionario(nome, login, cpf, cargo, turno, senha);
+        Funcionario novoFuncionario = new Funcionario(nome, senha, login, cpf, cargo, turno);
         usuarioController.adicionarFuncionario(novoFuncionario);
         System.out.println("\nFuncionário cadastrado com sucesso!");
         System.out.println("==================================");
     }
 
-    private static void cadastrarGerente(String nome, String login, String cpf, String senha) {
+    private static void cadastrarGerente(String nome, String senha, String login, String cpf) {
         String turnoGerente = pedirInput((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Turno: ");
-        Gerente novoGerente = new Gerente(nome, login, cpf, turnoGerente, senha);
+        Gerente novoGerente = new Gerente(nome, senha, login, cpf, turnoGerente);
         usuarioController.adicionarGerente(novoGerente);
         System.out.println("\nGerente cadastrado com sucesso!");
         System.out.println("================================");
@@ -120,7 +122,7 @@ public class Acessar {
             case "Cliente":
                 MenuCliente.menuCliente((Cliente) pessoaLogada);
                 break;
-            case "Funcionário":
+            case "Funcionario":
                 MenuFuncionario.menuFuncionario((Funcionario) pessoaLogada);
                 break;
             case "Gerente":
@@ -171,7 +173,7 @@ public class Acessar {
         System.out.println((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Nome: " + funcionario.getNome());
         System.out.println((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Cargo: " + funcionario.getCargo());
         System.out.println((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Turno: " + funcionario.getTurno());
-        InputHelper.lerString();
+        pedirInput("\nPressione Enter para prosseguir...");
         System.out.println("================================");
     }
 
@@ -202,7 +204,7 @@ public class Acessar {
         String cargo = pedirInput((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Cargo: ");
         String turno = pedirInput((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Turno: ");
         String senha = pedirInput((Cores.LAVENDER + "\n>>" + Cores.RESET) + Cores.CREME + " Senha: ");
-        usuarioController.adicionarFuncionario(new Funcionario(nome, login, cpf, cargo, turno, senha));
+        usuarioController.adicionarFuncionario(new Funcionario(nome, senha, login, cpf, cargo, turno));
         System.out.println("\nFuncionário cadastrado com sucesso!");
         System.out.println("==============================");
     }

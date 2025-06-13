@@ -4,8 +4,8 @@ public class Gerente extends Pessoa implements ContaUsuario{
 
     private String turno;
 
-    public Gerente(String nome, String login, String cpf, String turno, String senha){
-        super(nome, login, cpf, senha);
+    public Gerente(String nome, String senha, String login, String cpf, String turno){
+        super(nome, senha, login, cpf);
         this.turno = turno;
     }
 

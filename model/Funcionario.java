@@ -6,13 +6,12 @@ public class Funcionario extends Pessoa implements ContaUsuario{
     private String turno;
 
 
-    public Funcionario(String nome, String login, String cpf, String cargo, String turno, String senha){
-        super(nome, login, cpf, senha);
+    public Funcionario(String nome,String senha, String login, String cpf, String cargo, String turno){
+        super(nome, senha, login, cpf);
         this.cargo = cargo;
         this.turno = turno;
     }
 
-    //sets
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
@@ -21,7 +20,6 @@ public class Funcionario extends Pessoa implements ContaUsuario{
         this.turno = turno;
     }
 
-    //gets
     public String getCargo() {
         return cargo;
     }
@@ -32,7 +30,7 @@ public class Funcionario extends Pessoa implements ContaUsuario{
 
     @Override
     public String getTipoPessoa(){
-        return "Funcionário";
+        return "Funcionario";
     }
 
     @Override

@@ -23,9 +23,9 @@ public class Cardapio {
         produtos.add(new Comidas(CategoriaProduto.SALGADOS,"Folhado 4 Queijos",9.50f,"folhado quentinho e macio com recheio" +
                 " de queijo mussarela, parmesão, provolone e gorgonzola.", "nenhum","1 UNIDADE MÉDIA"));
 
-        produtos.add(new Comidas(CategoriaProduto.SALGADOS,"Bauru da casa",8.20f,"Pão na chapa feito com presunto," +
+        produtos.add(new Comidas(CategoriaProduto.SALGADOS,"Bauru da casa",10.0f,"Pão na chapa feito com presunto," +
                 " queijo e tomate em rodelas","sachê de azeite", "1 UNIDADE MÉDIA"));
-        produtos.add(new Comidas(CategoriaProduto.SALGADOS,"Coxinha de cheddar", 10.0f,"coxinha feita a base de aipim rechada " +
+        produtos.add(new Comidas(CategoriaProduto.SALGADOS,"Coxinha com cheddar", 8.20f,"coxinha feita a base de aipim rechada " +
                 "com frango e catupiry", "Ketchup e Maionese","1 UNIDADE GRANDE"));
         produtos.add(new Comidas(CategoriaProduto.SALGADOS,"Empadão de Palmito[VEG]",11.50f,"Feito com uma massa crocante e recheado com palmito" +
                 " picado, cebola, alho e temperos a gosto","Ketchup e Maionese","1 FATIA MÉDIA"));

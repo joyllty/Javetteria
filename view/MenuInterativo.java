@@ -3,10 +3,8 @@ package view;
 import utils.Cores;
 import utils.InputHelper;
 
-// junção de todos os menus
 public class MenuInterativo {
 
-    // arte inicial do programa
     public static void arteInicial(){
         System.out.print(Cores.LAVENDER + "================================================" + Cores.RESET);
         System.out.print(Cores.LAVENDER + "\n" +
@@ -26,11 +24,9 @@ public class MenuInterativo {
         System.out.println(Cores.LAVENDER + "\n\n    ✧˖°. Seja bem-vinde a Javetteria! ✧˖°." + Cores.RESET);
     }
 
-    // view menu principal
     public static void menuPrincipal(){
         int opPrincipal;
         do{
-
             System.out.println(Cores.CREME + "\n ╔════════════════════════╗ ");
             System.out.println(" ║                        ║");
             System.out.println(" ║ [1] LOGIN              ║");
@@ -44,18 +40,14 @@ public class MenuInterativo {
 
 
             switch(opPrincipal) {
-                case 1 -> Acessar.realizarLogin(); // chama as opções de login
-                //ADICIONAR SLEEP
+                case 1 -> Acessar.realizarLogin();
                 case 2 -> menuCadastro();
-                //ADICIONAR SLEEP
                 case 0 -> System.out.println(Cores.LAVENDER + "\nSaindo do programa..." + Cores.RESET);
-                //ADICIONAR SLEEP
                 default -> System.out.print("\n" + (Cores.LAVENDER + ">>" + Cores.RESET) + Cores.CREME + " Opção inválida! ");
             }
 
         } while (opPrincipal != 0);
     }
-
 
     public static void menuCadastro() {
         int opCadastro;
@@ -74,7 +66,6 @@ public class MenuInterativo {
 
             if (opCadastro != 0) {
                 Acessar.exibirCadastro(opCadastro);
-                // Após cadastro, retorna para o menu principal automaticamente
                 return;
             }
 
