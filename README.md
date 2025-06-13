@@ -47,6 +47,7 @@ Javetteria é o nome do sistema da cafeteria desenvolvido como um **projeto da m
     * Definição e implementação da **estrutura de navegação** e experiência do usuário no sistema.
     * Desenvolvimento completo do módulo de **Controle de Estoque**, abrangendo Model (`Estoque`, `Ingrediente`), Controller (`EstoqueController`) e View (`EstoqueView`), incluindo funcionalidades de listagem, adição, remoção e atualização de itens.
     * Criação da classe utilitária `Cores`, que padroniza a formatação de mensagens com cores no terminal para todo o projeto.
+    * Responsável pela implementação de todos os módulos no corpo principal do código.
     * Coordenação da **inicialização e fluxo principal** do sistema através da classe `Main`.
 
 ### Rebecca Beccari Fagundes - Módulo: **Cardápio e Produtos**
