@@ -1,5 +1,5 @@
 
-#Javetteria
+##Javetteria
 
 ## ☕ Descrição do Projeto
 Javetteria é o nome do sistema da cafeteria desenvolvido como um **projeto da materia de desenvolvimento de software para compor a nota da A1**, ele **simula** e otimiza a gestão interna de um estabelecimento real abrangendo o controle de estoque e o registro de pedidos, além de gerenciar o cardápio. O sistema também permite cadastro e gerenciamento de novos clientes/funcionarios/gerentes.
