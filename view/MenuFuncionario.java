@@ -24,12 +24,14 @@ public class MenuFuncionario {
 
         int opFuncionario = 0;
         do {
+            System.out.print(Cores.CREME);
             System.out.println("\n  =======" + (Cores.LAVENDER +  " FUNCIONÁRIO " + Cores.RESET) + Cores.CREME +  "======");
             System.out.println(" ╔══════════════════════════╗");
             System.out.println(" ║                          ║");
             System.out.println(" ║ [1] REGISTRAR PEDIDOS    ║");
             System.out.println(" ║ [2] ACOMPANHAR PEDIDOS   ║");
-            System.out.println(" ║ [3] PAGAMENTO            ║");
+            System.out.println(" ║ [3] REMOVER PEDIDOS      ║");
+            System.out.println(" ║ [4] PAGAMENTO            ║");
             System.out.println(" ║ [0] VOLTAR               ║");
             System.out.println(" ║                          ║");
             System.out.println(" ╚══════════════════════════╝ ");
@@ -41,7 +43,8 @@ public class MenuFuncionario {
             switch (opFuncionario) {
                 case 1 -> menuPedidoController.registrarPedido(funcionarioAtual.getLogin());
                 case 2 -> menuPedidoController.listarPedidosPendentesGlobal();
-                case 3 -> menuPedidoController.pagamentoPedidoGlobal();
+                case 3 -> menuPedidoController.removerPedidoGlobal();
+                case 4 -> menuPedidoController.pagamentoPedidoGlobal();
                 case 0 -> System.out.println("\nVoltando para o menu principal...");
                 default -> System.out.print(Cores.LAVENDER + "\n>>" + Cores.RESET + Cores.CREME + "Opção inválida!");
             }

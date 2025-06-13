@@ -13,8 +13,7 @@ public class MenuPedido {
         System.out.println(" ║                         ║");
         System.out.println(" ║ [1] REGISTRAR PEDIDO    ║");
         System.out.println(" ║ [2] ACOMPANHAR PEDIDOS  ║");
-        System.out.println(" ║ [3] REMOVER PEDIDO      ║");
-        System.out.println(" ║ [4] PAGAMENTO           ║");
+        System.out.println(" ║ [3] PAGAMENTO           ║");
         System.out.println(" ║ [0] VOLTAR              ║");
         System.out.println(" ║                         ║");
         System.out.println(" ╚═════════════════════════╝" + Cores.RESET);

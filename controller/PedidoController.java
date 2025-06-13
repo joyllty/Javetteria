@@ -116,12 +116,14 @@ public class PedidoController {
                 }
 
                 if (linha.startsWith("Pedido #")) {
-                    String[] partes = linha.split(" - ");
+                    String[] partes = linha.split("\\| Usuário:");
                     if (partes.length >= 2) {
-                        int numeroPedido = Integer.parseInt(partes[0].substring(8));
+                        int numeroPedido = Integer.parseInt(partes[0].replace("Pedido #", "").trim());
                         String usuario = partes[1].trim();
+
                         pedidoAtual = new Pedido(usuario, numeroPedido);
                         pedidos.add(pedidoAtual);
+
                         if (numeroPedido >= proximoNumeroPedido) {
                             proximoNumeroPedido = numeroPedido + 1;
                         }

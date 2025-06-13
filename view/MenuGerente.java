@@ -22,6 +22,7 @@ public class MenuGerente{
         gerenteAtual = gerente;
         int opGerente = 0;
         do {
+            System.out.print(Cores.CREME);
             System.out.println("\n ╔══════════════════════════╗");
             System.out.println(" ║                          ║");
             System.out.println(" ║ [1] PEDIDOS              ║");
@@ -48,6 +49,7 @@ public class MenuGerente{
     public static void menuGerentePedidos() {
         int opPedidosG;
         do {
+            System.out.print(Cores.CREME);
             System.out.println("\n ╔══════════════════════════╗");
             System.out.println(" ║                          ║");
             System.out.println(" ║ [1] REGISTRAR PEDIDOS    ║");
@@ -77,6 +79,7 @@ public class MenuGerente{
     public static void menuGerenteGerenciamento () {
         int opGerencia;
         do {
+            System.out.print(Cores.CREME);
             System.out.println("\n ╔════════════════════════════════╗");
             System.out.println(" ║                                ║");
             System.out.println(" ║ [1] EXIBIR FUNCIONÁRIOS        ║");

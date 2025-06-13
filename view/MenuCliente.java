@@ -36,7 +36,7 @@ public class MenuCliente {
 
             switch (opCliente) {
                 case 1 -> menuClienteCardapio();
-                // case 2 ->
+                case 2 -> menuPedidoController.iniciar(cliente.getLogin());
                 case 3 -> Acessar.verDadosCliente(cliente);
                 case 4 -> Acessar.alterarEnderecoCliente(cliente);
                 case 0 -> System.out.println(Cores.CREME + "\nVoltando para o menu principal..." + Cores.RESET);
