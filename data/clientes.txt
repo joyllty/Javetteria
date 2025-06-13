@@ -1,0 +1,3 @@
+becca;shiroi;Cliente;Rebecca Beccari;09839166700;Ivo Ferro;323;Uberaba;Curitiba
+rico;botafogo;Cliente;Ricardo Chapelin;29007618474;Morretes;108;Portão;Curitiba
+acenak;nana;Cliente;Matheus Werle;00597138395;Desemb. Westphalen;669;Centro;Curitiba

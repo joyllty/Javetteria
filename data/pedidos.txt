@@ -1,0 +1,11 @@
+[PENDENTE] Pedido #1 | Usuário: lau
+Itens:
+- Bauru da casa x1 - R$ 10,00
+- Red Velvet Dream x2 - R$ 23,00
+- Espresso x1 - R$ 7,00
+Total: R$ 40,00
+[PENDENTE] Pedido #2 | Usuário: lau
+Itens:
+- Apple Dream x1 - R$ 17,00
+- Cappuccino com Leite x1 - R$ 9,00
+Total: R$ 26,00

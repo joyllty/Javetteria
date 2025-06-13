@@ -1,0 +1,145 @@
+========== ESTOQUE ==========
+→ ID: 1
+Nome: Café
+Quantidade: 20
+Unidade: 1Kg
+
+==============================
+→ ID: 2
+Nome: Leite
+Quantidade: 48
+Unidade: 1L
+
+==============================
+→ ID: 3
+Nome: Leite Zero Lactose
+Quantidade: 26
+Unidade: 1L
+
+==============================
+→ ID: 4
+Nome: Leite Vegetal
+Quantidade: 10
+Unidade: 1L
+
+==============================
+→ ID: 5
+Nome: Xarope de Limão
+Quantidade: 20
+Unidade: 700mL
+
+==============================
+→ ID: 6
+Nome: Xarope de Morango
+Quantidade: 23
+Unidade: 700mL
+
+==============================
+→ ID: 8
+Nome: Xarope de Pêssego
+Quantidade: 25
+Unidade: 700mL
+
+==============================
+→ ID: 9
+Nome: Xarope de Baunilha
+Quantidade: 25
+Unidade: 700mL
+
+==============================
+→ ID: 10
+Nome: Xarope de Cramberry
+Quantidade: 21
+Unidade: 700mL
+
+==============================
+→ ID: 11
+Nome: Calda de Caramelo
+Quantidade: 20
+Unidade: 1,3Kg
+
+==============================
+→ ID: 12
+Nome: Calda de Chocolate
+Quantidade: 20
+Unidade: 1,3Kg
+
+==============================
+→ ID: 13
+Nome: Chá Matte
+Quantidade: 2
+Unidade: 20un
+
+==============================
+→ ID: 14
+Nome: Polpa de Morango
+Quantidade: 20
+Unidade: 100g
+
+==============================
+→ ID: 15
+Nome: Polpa de Pêssego
+Quantidade: 20
+Unidade: 100g
+
+==============================
+→ ID: 16
+Nome: Laranja
+Quantidade: 52
+Unidade: unidade
+
+==============================
+→ ID: 17
+Nome: Sprite
+Quantidade: 30
+Unidade: 350mL
+
+==============================
+→ ID: 18
+Nome: Coca-Cola
+Quantidade: 45
+Unidade: 350mL
+
+==============================
+→ ID: 19
+Nome: Guaraná
+Quantidade: 43
+Unidade: 350mL
+
+==============================
+→ ID: 20
+Nome: Monster
+Quantidade: 30
+Unidade: 473mL
+
+==============================
+→ ID: 21
+Nome: Red Bull
+Quantidade: 34
+Unidade: 250mL
+
+==============================
+→ ID: 22
+Nome: Canela
+Quantidade: 1
+Unidade: 5Kg
+
+==============================
+→ ID: 23
+Nome: Açúcar
+Quantidade: 5
+Unidade: 10Kg
+
+==============================
+→ ID: 24
+Nome: Ovo
+Quantidade: 95
+Unidade: unidade
+
+==============================
+→ ID: 25
+Nome: Chocolate
+Quantidade: 10
+Unidade: 1Kg
+
+==============================

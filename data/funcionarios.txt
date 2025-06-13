@@ -1,0 +1,3 @@
+mathue;let;Funcionario;Matheus dos Santos;16722809347;barista;manhã
+cesar;sayuri;Funcionario;João César;35621480034;barista;noite
+
