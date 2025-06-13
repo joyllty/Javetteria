@@ -35,22 +35,6 @@ public class PedidoController {
         salvarPedidos();
     }
 
-    public void removerItem(Pedido pedido, ItemPedido item) {
-        pedido.removerItem(item);
-        salvarPedidos();
-    }
-
-    public boolean processarPagamento(Pedido pedido, Pagamento pagamento) {
-        if (pedido == null || pedido.isPago()) {
-            return false;
-        }
-        boolean sucesso = pedido.processarPagamento(pagamento);
-        if (sucesso && pedido.getItens().size() > 0) {
-            salvarPedidos();
-        }
-        return sucesso;
-    }
-
     public Pedido buscarPedido(int numeroPedido) {
         for (Pedido pedido : pedidos) {
             if (pedido.getNumeroPedido() == numeroPedido) {

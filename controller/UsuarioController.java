@@ -106,18 +106,6 @@ public class UsuarioController {
         return false;
     }
 
-    public boolean atualizarFuncionario(String login, String novoNome, String novoCpf, String novoCargo, String novoTurno) {
-        Funcionario funcionario = buscarFuncionarioPorLogin(login);
-        if (funcionario != null) {
-            funcionario.setNome(novoNome);
-            funcionario.setCpf(novoCpf);
-            funcionario.setCargo(novoCargo);
-            funcionario.setTurno(novoTurno);
-            return true;
-        }
-        return false;
-    }
-
     public void adicionarGerente(Gerente gerente) {
         gerentes.add(gerente);
         salvarEmArquivo("data/gerentes.txt", gerente);
@@ -130,17 +118,6 @@ public class UsuarioController {
             }
         }
         return null;
-    }
-
-    public boolean atualizarGerente(String login, String novoNome, String novoCpf, String novoTurno) {
-        Gerente gerente = buscarGerentePorLogin(login);
-        if (gerente != null) {
-            gerente.setNome(novoNome);
-            gerente.setCpf(novoCpf);
-            gerente.setTurno(novoTurno);
-            return true;
-        }
-        return false;
     }
 
     public boolean alterarSenha(String login, String novaSenha) {

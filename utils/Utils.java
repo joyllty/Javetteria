@@ -9,7 +9,4 @@ public class Utils {
                 .replaceAll("\\p{M}", "");
     }
 
-    public static boolean textosIguais(String texto1, String texto2) {
-        return normalizarTexto(texto1).equals(normalizarTexto(texto2));
-    }
-} 
+}

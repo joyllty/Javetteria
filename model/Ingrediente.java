@@ -5,7 +5,7 @@ public class Ingrediente {
     private int id;
     private String nome;
     private int quantidade;
-    private String unidade; //g, ml, unidades
+    private String unidade;
 
     public Ingrediente(int id, String nome, int quantidade, String unidade) {
         this.id = id;
