@@ -27,8 +27,7 @@ public class MenuPedidoController {
             switch (op) {
                 case 1 -> registrarPedido(usuario);
                 case 2 -> acompanharPedidos(usuario);
-                case 3 -> removerPedido(usuario);
-                case 4 -> pagamentoPedido(usuario);
+                case 3 -> pagamentoPedido(usuario);
                 case 0-> view.exibirMensagem("\nVoltando...", Cores.LAVENDER);
                 default -> view.exibirMensagem("\nOpção inválida!", Cores.BROWN);
             }
@@ -82,28 +81,6 @@ public class MenuPedidoController {
         }
         
         view.exibirListaPedidos(pedidos);
-    }
-
-    private void removerPedido(String usuario) {
-        List<Pedido> pedidosPendentes = pedidoController.listarPedidosPendentes(usuario);
-        
-        if (pedidosPendentes.isEmpty()) {
-            view.exibirMensagem("\nVocê não tem pedidos pendentes para remover.", Cores.BROWN);
-            return;
-        }
-        
-        view.exibirMensagem("\nSeus pedidos pendentes:", Cores.LAVENDER);
-        view.exibirListaPedidos(pedidosPendentes);
-        
-        view.exibirPrompt(Cores.LAVENDER + "\n>>" + Cores.RESET + Cores.CREME + " Digite o número do pedido que deseja " +
-                "remover (ex: 28): ");
-        int numeroPedido = InputHelper.lerInt();
-        
-        if (pedidoController.removerPedido(numeroPedido)) {
-            view.exibirMensagem("\nPedido removido com sucesso!", Cores.CREME);
-        } else {
-            view.exibirMensagem("\nNúmero de pedido inválido!", Cores.BROWN);
-        }
     }
 
     private void pagamentoPedido(String usuario) {
